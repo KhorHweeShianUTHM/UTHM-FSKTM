@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to Parenthood</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <style>
+    /* General Styles */
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f7f0fc;
+      color: #333;
+    }
+
+    header {
+      background-color: #6a0dad;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+      border-bottom: 5px solid #9b30ff;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      margin: 0;
+    }
+    .back-icon {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-size: 1.5rem;
+      color: #fff;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      margin: 5px 0 0;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 20px;
+    }
+
+    .intro {
+      background-color: #ece0f8;
+      padding: 20px;
+      border-left: 5px solid #9b30ff;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+
+    .intro h2 {
+      margin-top: 0;
+      font-size: 1.8rem;
+      color: #6a0dad;
+    }
+
+    .intro p {
+      margin: 10px 0;
+      font-size: 1rem;
+      color: #555;
+    }
+
+    /* Content Cards */
+    .content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .card i {
+      font-size: 40px;
+      color: #9b30ff;
+      margin-bottom: 15px;
+    }
+
+    .card h3 {
+      font-size: 1.4rem;
+      margin: 10px 0;
+      color: #6a0dad;
+    }
+
+    .card p {
+      font-size: 1rem;
+      color: #666;
+      margin: 10px 0 20px;
+    }
+
+    /* Call to Action Button */
+    .cta {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .cta a {
+      display: inline-block;
+      text-decoration: none;
+      background-color: #6a0dad;
+      color: #fff;
+      padding: 10px 20px;
+      font-size: 1rem;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    .cta a:hover {
+      background-color: #9b30ff;
+    }
+    footer {
+            background-color: #6a0dad;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        footer .social-links {
+            margin-top: 10px;
+        }
+
+        footer .social-links a {
+            color: #f4a261;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 16px;
+        }
+
+        footer .social-links a:hover {
+            text-decoration: underline;
+        }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="guide.html" class="back-icon"><i class="fas fa-arrow-left"></i></a>
+    <h1>Welcome to Parenthood!</h1>
+    <p>Gentle Guidance for First-Time Parents</p>
+  </header>
+
+  <div class="container">
+    <div class="intro">
+      <h2>Life with Your Newborn</h2>
+      <p>Life has changed now that your baby is here, and you might have lots of questions about what to do. These tips can help first-time parents feel confident about caring for a newborn in no time.</p>
+    </div>
+
+    <div class="content">
+      <div class="card">
+        <i class="fas fa-hands-helping"></i>
+        <h3>Getting Help</h3>
+        <p>Consider getting help from relatives or friends. Their experiences can be valuable as you adjust to your new life.</p>
+      </div>
+
+      <div class="card">
+        <i class="fas fa-baby"></i>
+        <h3>Handling Your Baby</h3>
+        <p>Wash your hands, support your baby's head, and avoid rough play. These basics keep your baby safe and happy.</p>
+      </div>
+
+      <div class="card">
+        <i class="fas fa-heart"></i>
+        <h3>Bonding</h3>
+        <p>Cradle and gently stroke your baby or try skin-to-skin contact for emotional connection and development.</p>
+      </div>
+
+      <div class="card">
+        <i class="fas fa-hand-holding-heart"></i>
+        <h3>Soothing</h3>
+        <p>Massage, calming sounds, and swaddling can help relax your baby and ensure they feel comfortable.</p>
+      </div>
+
+      <div class="card">
+        <i class="fas fa-toilet-paper"></i>
+        <h3>Diapering</h3>
+        <p>Babies will dirty about 10 diapers a day. Learn how to keep your baby clean and comfortable.</p>
+      </div>
+
+      <div class="card">
+        <i class="fas fa-water"></i>
+        <h3>Bathing</h3>
+        <p>Start with sponge baths until the umbilical cord stump and circumcision area (if applicable) heal.</p>
+      </div>
+
+      <div class="card">
+        <i class="fas fa-seedling"></i>
+        <h3>Feeding</h3>
+        <p>Feed your baby on demand. Whether breastfeeding or bottle-feeding, keep a steady schedule.</p>
+      </div>
+
+      <div class="card">
+        <i class="fas fa-bed"></i>
+        <h3>Sleep</h3>
+        <p>Newborns sleep 16+ hours a day in 2–4 hour cycles. Always place babies on their backs to sleep.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 KangarooCare | <a href="#" style="color: #f4a261;">Privacy Policy</a>
+    <div class="social-links">
+        <a href="https://facebook.com">Facebook</a>
+        <a href="https://instagram.com">Instagram</a>
+    </div>
+</footer>
+
+</body>
+</html>

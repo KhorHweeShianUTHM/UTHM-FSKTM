@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Postpartum Guide & Tips Slider</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      line-height: 1.6;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #ffffff;
+      color: #333;
+    }
+
+    header {
+            background-color: #00274d;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header img {
+            width: 150px;
+            margin-right: 15px;
+        }
+
+        header .header-title {
+            display: flex;
+            align-items: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .nav-links a:hover {
+            background-color: #f4a261;
+        }
+
+        footer {
+            background-color: #00274d;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        footer .social-links {
+            margin-top: 10px;
+        }
+
+        footer .social-links a {
+            color: #f4a261;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 16px;
+        }
+
+        footer .social-links a:hover {
+            text-decoration: underline;
+        }
+
+    h1 {
+      text-align: center;
+      color: #528abe;
+      margin: 20px 0;
+      font-size: 2rem;
+    }
+
+    .slider {
+      position: relative;
+      max-width: 900px;
+      margin: 20px auto;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .slides {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .slide {
+      min-width: 100%;
+      padding: 20px;
+      background: #ffffff;
+      color: #333;
+      box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+      text-align: center;
+    }
+
+    .slide h2 {
+      color: #528abe;
+      margin-bottom: 15px;
+      font-size: 1.5rem;
+    }
+
+    .slide ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .slide ul li {
+      margin-bottom: 10px;
+      background: #f1f1f1;
+      padding: 10px;
+      border-radius: 5px;
+      text-align: left;
+    }
+
+    .slider-controls {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+    }
+
+    .control-btn {
+      background: rgba(0, 0, 0, 0.5);
+      border: none;
+      color: #fff;
+      font-size: 1.5rem;
+      padding: 10px;
+      cursor: pointer;
+      border-radius: 50%;
+      transition: background 0.3s;
+    }
+
+    .control-btn:hover {
+      background: #f1f1f1;
+    }
+
+    .dots {
+      text-align: center;
+      margin-top: 10px;
+      color:#f1f1f1;
+    }
+
+    .dot {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      margin: 0 5px;
+      background: #ccc;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .dot.active {
+      background: #528abe;
+    }
+
+    .floating-boxes {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin: 40px auto;
+      max-width: 1200px;
+    }
+
+    .box {
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 10px;
+      width: 300px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .box h3 {
+      color: #528abe;
+      margin-bottom: 15px;
+    }
+        .box p {
+      color: #666;
+      font-size: 0.9rem;
+      margin-bottom: 15px;
+      height: 60px; /* Adjust based on your content */
+      display: flex;
+      align-items: center; /* Center vertically */
+      justify-content: center; /* Center horizontally if needed */
+      text-align: center; /* Ensure text is centered */
+    }
+
+    .box ul {
+      margin: 10px 0;
+      padding: 10px;
+      background: #f9f9f9;
+      border-radius: 5px;
+    }
+
+    .box a {
+      display: inline-block;
+      padding: 10px 20px;
+      background: #528abe;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .box a:hover {
+      background: #416a99;
+    }
+
+    @media (max-width: 768px) {
+      .floating-boxes {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+  <div class="header-title">
+    <img src="images/kangaroo-logo.png" alt="Logo">
+    <h1>KangarooCare Confinement Centre</h1>
+</div>
+<nav class="nav-links">
+    <a href="booking.php">Booking</a>
+    <a href="guide.html">Guide</a>
+    <a href="service_distinct">Services</a>
+    <a href="feedback.php">Feedback</a>
+</nav>
+</header>
+
+  <h1>Postpartum Guide & Tips for Mothers</h1>
+
+  <main>
+    <div class="slider">
+      <div class="slides">
+        <!-- Slide 1 -->
+        <div class="slide">
+          <h2>1. Rest and Recovery</h2>
+          <ul>
+            <li>Prioritize rest to allow your body to heal. Sleep when your baby sleeps.</li>
+            <li>Avoid overexertion—delegate chores or hire help if possible.</li>
+            <li>Practice proper posture while breastfeeding to avoid back pain.</li>
+          </ul>
+        </div>
+        <!-- Slide 2 -->
+        <div class="slide">
+          <h2>2. Nutrition and Hydration</h2>
+          <ul>
+            <li>Consume a balanced diet rich in protein, iron, calcium, fiber, and healthy fats.</li>
+            <li>Drink plenty of water and herbal teas to stay hydrated and boost milk production.</li>
+            <li>Include fresh fruits and vegetables to support recovery and overall health.</li>
+          </ul>
+        </div>
+        <!-- Slide 3 -->
+        <div class="slide">
+          <h2>3. Baby Care Tips</h2>
+          <ul>
+            <li>Breastfeed every 2–3 hours or on demand using proper latch techniques.</li>
+            <li>Bond with your baby through skin-to-skin contact.</li>
+            <li>Follow safe sleep practices: place the baby on their back in a crib.</li>
+          </ul>
+        </div>
+        <!-- Slide 4 -->
+        <div class="slide">
+          <h2>4. Postpartum Hygiene</h2>
+          <ul>
+            <li>Keep stitches or cesarean wounds clean by following medical advice.</li>
+            <li>Take warm baths to relieve soreness and relax muscles (if allowed).</li>
+            <li>Use maternity pads and change them frequently to maintain hygiene.</li>
+          </ul>
+        </div>
+      </div>
+    
+      <div class="slider-controls">
+        <button class="control-btn" id="prevBtn">&#10094;</button>
+        <button class="control-btn" id="nextBtn">&#10095;</button>
+      </div>
+    
+      <div class="dots">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+    </div>
+    
+  
+    <div>
+      <h1>Discover Helpful Resources</h1>
+      <div class="floating-boxes">
+        <!-- Box 1 -->
+        <div class="box">
+          <div class="icon">
+            <i class="fa fa-heartbeat" style="font-size: 40px; color: #00d4ff;"></i>
+          </div>
+          <h3>First-Time Parenting?</h3>
+          <p>Caring for your newborn made simple.</p>
+          <ul>
+            <ul>Safe diapering and bathing techniques</ul>
+            <ul>How to care for the umbilical cord</ul>
+            <ul>Feeding and sleep schedules</ul>
+          </ul>
+          <a href="guide1.html" class="cta-button">Read More</a>
+        </div>
+  
+        <!-- Box 2 -->
+        <div class="box">
+          <div class="icon">
+            <i class="fa fa-lightbulb-o" style="font-size: 40px; color: #00d4ff;"></i>
+          </div>
+          <h3>8 Tips for New Moms</h3>
+          <p>Essential advice for first-time mothers:</p>
+          <ul>
+            <ul>Breastfeeding challenges and solutions</ul>
+            <ul>Balancing rest and baby care</ul>
+            <ul>How to prioritize self-care with new born</ul>
+          </ul>
+          <a href="guide2.html" class="cta-button">Read More</a>
+        </div>
+  
+        <!-- Box 3 -->
+        <div class="box">
+          <div class="icon">
+            <i class="fa fa-smile-o" style="font-size: 40px; color: #00d4ff;"></i>
+          </div>
+          <h3>Postpartum Self-Care</h3>
+          <p>Boost your well-being after delivery.</p>
+          <ul>
+            <ul>Building a strong support system</ul>
+            <ul>Time management with a newborn</ul>
+            <ul>Tips for emotional well-being</ul>
+          </ul>
+          <a href="guide3.html" class="cta-button">Read More</a>
+        </div>
+
+        <div class="box">
+          <div class="icon">
+              <i class="fas fa-hand-holding-heart" style="font-size: 40px; color: #00d4ff;"></i>
+          </div>
+          <h3>Breastfeeding: The first few days</h3>
+          <p>Master breastfeeding with practical tips.</p>
+          <ul>
+            <ul>Building a strong support system</ul>
+            <ul>Time management with a newborn</ul>
+            <ul>Tips for emotional well-being</ul>
+          </ul>
+          <a href="guide4.html" class="cta-button">Read More</a>
+        </div>
+
+        <div class="box">
+          <div class="icon">
+            <i class="fas fa-hands-helping" style="font-size: 40px; color: #00d4ff;"></i>
+          </div>
+          <h3>Important Pre and post labouring tips</h3>
+          <p>Prepare for and recover from childbirth</p>
+          <ul>
+            <ul>Building a strong support system</ul>
+            <ul>Time management with a newborn</ul>
+            <ul>Tips for emotional well-being</ul>
+          </ul>
+          <a href="guide5.html" class="cta-button">Read More</a>
+        </div>
+
+        <div class="box">
+          <div class="icon">
+            <i class="fas fa-clipboard-list" style="font-size: 40px; color: #00d4ff;"></i>
+          </div>
+          <h3>9 Things to do before going into labor</h3>
+          <p>Prepare efficiently for the big day.</p>
+          <ul>
+            <ul>Building a strong support system</ul>
+            <ul>Time management with a newborn</ul>
+            <ul>Tips for emotional well-being</ul>
+          </ul>
+          <a href="guide6.html" class="cta-button">Read More</a>
+        </div>
+      </div>
+    </div>
+  
+    <script>
+      const slides = document.querySelector('.slides');
+      const dots = document.querySelectorAll('.dot');
+      let currentIndex = 0;
+    
+      function showSlide(index) {
+        slides.style.transform = `translateX(-${index * 100}%)`;
+        dots.forEach((dot, i) => {
+          dot.classList.toggle('active', i === index);
+        });
+      }
+    
+      document.getElementById('prevBtn').addEventListener('click', () => {
+        currentIndex = (currentIndex > 0) ? currentIndex - 1 : dots.length - 1;
+        showSlide(currentIndex);
+      });
+    
+      document.getElementById('nextBtn').addEventListener('click', () => {
+        currentIndex = (currentIndex < dots.length - 1) ? currentIndex + 1 : 0;
+        showSlide(currentIndex);
+      });
+    
+      dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+          currentIndex = index;
+          showSlide(currentIndex);
+        });
+      });
+    </script>
+    
+    </main>
+
+    <footer>
+      &copy; 2025 KangarooCare | <a href="#" style="color: #f4a261;">Privacy Policy</a>
+      <div class="social-links">
+          <a href="https://facebook.com">Facebook</a>
+          <a href="https://instagram.com">Instagram</a>
+      </div>
+  </footer>
+</body>
+</html>
