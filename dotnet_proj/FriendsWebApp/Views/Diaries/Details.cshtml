@@ -1,0 +1,36 @@
+﻿@model FriendsWebApp.Models.Diaries
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2 class="mb-4 text-info">Diary Details</h2>
+
+<div class="card shadow-sm mb-4">
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3 col-md-2 fw-semibold">@Html.DisplayNameFor(model => model.Title)</dt>
+            <dd class="col-sm-9 col-md-10">@Html.DisplayFor(model => model.Title)</dd>
+
+            <dt class="col-sm-3 col-md-2 fw-semibold">@Html.DisplayNameFor(model => model.Date)</dt>
+            <dd class="col-sm-9 col-md-10">@Html.DisplayFor(model => model.Date)</dd>
+
+            <dt class="col-sm-3 col-md-2 fw-semibold">@Html.DisplayNameFor(model => model.Mood)</dt>
+            <dd class="col-sm-9 col-md-10">@Html.DisplayFor(model => model.Mood)</dd>
+
+            <dt class="col-sm-3 col-md-2 fw-semibold">@Html.DisplayNameFor(model => model.Content)</dt>
+            <dd class="col-sm-9 col-md-10">@Html.DisplayFor(model => model.Content)</dd>
+
+            <dt class="col-sm-3 col-md-2 fw-semibold">@Html.DisplayNameFor(model => model.CreatedBy)</dt>
+            <dd class="col-sm-9 col-md-10">@Html.DisplayFor(model => model.CreatedBy)</dd>
+        </dl>
+
+        <form asp-action="Edit" method="post" class="mt-4">
+            @Html.AntiForgeryToken()
+            <input type="hidden" asp-for="Id" />
+            <button type="submit" class="btn btn-warning me-2">Edit</button>
+            <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+        </form>
+    </div>
+</div>
+
