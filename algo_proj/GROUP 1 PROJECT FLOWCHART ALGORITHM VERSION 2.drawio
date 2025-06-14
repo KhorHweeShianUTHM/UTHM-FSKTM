@@ -1,0 +1,98 @@
+<mxfile host="app.diagrams.net" modified="2024-01-12T02:02:26.351Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0" etag="7UHZJmLLOB9Xln4XmtrG" version="22.1.18" type="device">
+  <diagram name="第 1 页" id="hFb0iJHhR_Jfp0wm7lfm">
+    <mxGraphModel dx="1042" dy="577" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="G1jbm8quN5iNEK2Em9PK-23" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="G1jbm8quN5iNEK2Em9PK-1" target="G1jbm8quN5iNEK2Em9PK-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="G1jbm8quN5iNEK2Em9PK-1" value="START" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0050ef;strokeColor=#001DBC;fontColor=#ffffff;fontFamily=Times New Roman;" vertex="1" parent="1">
+          <mxGeometry x="355.63" width="90" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="G1jbm8quN5iNEK2Em9PK-2" value="END" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0050ef;strokeColor=#001DBC;fontColor=#ffffff;fontFamily=Times New Roman;" vertex="1" parent="1">
+          <mxGeometry x="355" y="1280" width="90" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="G1jbm8quN5iNEK2Em9PK-24" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="G1jbm8quN5iNEK2Em9PK-3">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="400.625" y="200" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="G1jbm8quN5iNEK2Em9PK-3" value="&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;Set FLAT RATE = 39.99&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;Set FLAT MIN = 600&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;Set ADDITIONAL COST PER MIN = 0.2&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;Set TAX = 0.055&lt;/span&gt;&lt;/div&gt;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fontFamily=Times New Roman;align=center;" vertex="1" parent="1">
+          <mxGeometry x="281.25" y="80" width="238.75" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="G1jbm8quN5iNEK2Em9PK-25" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" target="G1jbm8quN5iNEK2Em9PK-8">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="400.70000000000005" y="280" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="G1jbm8quN5iNEK2Em9PK-27" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="G1jbm8quN5iNEK2Em9PK-8" target="G1jbm8quN5iNEK2Em9PK-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="G1jbm8quN5iNEK2Em9PK-8" value="Read Name&#xa;Read Number of Weekday Min&#xa;Read Number of Night Min&#xa;Read Number of Weekend Min" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fontFamily=Times New Roman;" vertex="1" parent="1">
+          <mxGeometry x="281.25" y="320" width="240" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="G1jbm8quN5iNEK2Em9PK-28" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="G1jbm8quN5iNEK2Em9PK-9" target="G1jbm8quN5iNEK2Em9PK-15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="G1jbm8quN5iNEK2Em9PK-34" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="G1jbm8quN5iNEK2Em9PK-9" target="G1jbm8quN5iNEK2Em9PK-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="G1jbm8quN5iNEK2Em9PK-9" value="&lt;font face=&quot;Times New Roman&quot;&gt;If Number of Weekday Min &amp;gt; FLAT MINUTE&lt;/font&gt;" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="273.13" y="440" width="255" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="G1jbm8quN5iNEK2Em9PK-14" value="Pre Tax Bill = FLAT RATE" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Times New Roman;" vertex="1" parent="1">
+          <mxGeometry x="630" y="470" width="165" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="G1jbm8quN5iNEK2Em9PK-29" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="G1jbm8quN5iNEK2Em9PK-15" target="G1jbm8quN5iNEK2Em9PK-19">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="G1jbm8quN5iNEK2Em9PK-15" value="Pre Tax Bill = ((Weekday Min - FLAT MIN) * ADDITIONAL COST PER MIN) + FLAT RATE" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Times New Roman;" vertex="1" parent="1">
+          <mxGeometry x="280" y="600" width="240" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="G1jbm8quN5iNEK2Em9PK-30" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="G1jbm8quN5iNEK2Em9PK-19" target="G1jbm8quN5iNEK2Em9PK-20">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="G1jbm8quN5iNEK2Em9PK-19" value="SST COST = Pre Tax Bill * TAX" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Times New Roman;" vertex="1" parent="1">
+          <mxGeometry x="280.63" y="720" width="240" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="G1jbm8quN5iNEK2Em9PK-31" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="G1jbm8quN5iNEK2Em9PK-20" target="G1jbm8quN5iNEK2Em9PK-21">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="G1jbm8quN5iNEK2Em9PK-20" value="Average Min Cost = ((Weekday Min + Night Min + Weekend Min) - FLAT_MIN) / (FLAT_RATE * 100)" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Times New Roman;" vertex="1" parent="1">
+          <mxGeometry x="281.25" y="840" width="240" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="G1jbm8quN5iNEK2Em9PK-32" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="G1jbm8quN5iNEK2Em9PK-21" target="G1jbm8quN5iNEK2Em9PK-22">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="G1jbm8quN5iNEK2Em9PK-21" value="Total Bill = Pre Tax Bill + SST COST" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Times New Roman;" vertex="1" parent="1">
+          <mxGeometry x="281.25" y="960" width="240" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="G1jbm8quN5iNEK2Em9PK-33" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="G1jbm8quN5iNEK2Em9PK-22" target="G1jbm8quN5iNEK2Em9PK-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="G1jbm8quN5iNEK2Em9PK-22" value="&lt;div&gt;Display the Name&lt;/div&gt;&lt;div&gt;Display Number of Weekday Min&lt;/div&gt;&lt;div&gt;Display Number of Night Min&lt;/div&gt;&lt;div&gt;Display Number of Weekend Min&lt;/div&gt;&lt;div&gt;Display the Average Min Cost&lt;/div&gt;&lt;div&gt;Display the SST Cost&lt;/div&gt;&lt;div&gt;Display the Pre Tax Bill&lt;/div&gt;&lt;div&gt;Display the Total Bill&lt;/div&gt;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fontFamily=Times New Roman;" vertex="1" parent="1">
+          <mxGeometry x="281.25" y="1080" width="238.75" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="G1jbm8quN5iNEK2Em9PK-35" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="G1jbm8quN5iNEK2Em9PK-14">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="540" y="680" as="sourcePoint" />
+            <mxPoint x="400" y="700" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="713" y="700" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="G1jbm8quN5iNEK2Em9PK-36" value="FLASE" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Times New Roman;" vertex="1" parent="1">
+          <mxGeometry x="510" y="470" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="G1jbm8quN5iNEK2Em9PK-37" value="TRUE" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Times New Roman;" vertex="1" parent="1">
+          <mxGeometry x="400" y="555" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="G1jbm8quN5iNEK2Em9PK-39" value="&lt;div style=&quot;&quot;&gt;&lt;div style=&quot;border-color: var(--border-color);&quot;&gt;Insert Name&lt;/div&gt;&lt;div style=&quot;border-color: var(--border-color);&quot;&gt;Insert Number of Weekday Min&lt;/div&gt;&lt;div style=&quot;border-color: var(--border-color);&quot;&gt;Insert Number of Night Min&lt;/div&gt;&lt;div style=&quot;border-color: var(--border-color);&quot;&gt;Insert Number of Weekend Min&lt;/div&gt;&lt;/div&gt;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fontFamily=Times New Roman;align=center;" vertex="1" parent="1">
+          <mxGeometry x="280" y="200" width="238.75" height="80" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
