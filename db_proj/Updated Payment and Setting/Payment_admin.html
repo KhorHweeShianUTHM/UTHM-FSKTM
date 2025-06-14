@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AHK Auto Care</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="Payment.css">
+</head>
+
+<body>
+  <!-- Sidebar with navigation menu -->
+  <div class="sidebar">
+    <img src="ahk_logo.png"/>
+    <h2>Admin Menu</h2>
+    <ul class="menu-top">
+      <li><a href="admin_dashboard.php"><i class="fas fa-home"></i> Dashboard</a></li>
+      <li style="margin-left: 2px;"><a href="admin_inventory.php"><i class="fas fa-toolbox" style="margin-right: 12px;"></i> Inventory</a></li>
+      <li class="active"><a href="admin_customer.php"><i class="fas fa-users"></i> Customers</a></li>
+      <li style="margin-left: 3px;"><a href="admin_jobcards.php"><i class="fas fa-file-alt" style="margin-right: 12px;"></i> Job Cards</a></li>
+      <li><a href="admin_payment.php"><i class="fas fa-credit-card"></i> Payment</a></li>
+      <li><a href="admin_analytics.php"><i class="fas fa-chart-line"></i> Analytics</a></li>
+      <li><a href="admin_supplier.php"><i class="fas fa-boxes"></i> Suppliers</a></li>
+      <li><a href="admin_setting.php"><i class="fas fa-cog"></i> Settings</a></li>
+    </ul>
+  </div>
+
+<!-- Main content section -->
+<div class="main">
+  <!-- Top navbar -->
+  <div class="navbar">
+    <div class="page-info">
+      <h1>Payment</h1>
+      <p>Manage the payments</p>
+    </div>
+    <!-- User profile and notification -->
+    <div style="display: flex; align-items: center;">
+      <!-- Notification Container -->
+      <div class="notification-container" style="position: relative;">
+        <div class="notification-icon"><i class="fas fa-bell"></i></div>
+        <!-- Notification Popup -->
+        <div class="notification-popup" hidden>
+          <div class="popup-header">
+            <h2>Notifications</h2>
+            <a href="notification.html" class="mark-all-read">Mark as all read</a>
+          </div>
+          
+          <div class="notification-list" id="notification-list-container">
+          </div>
+
+          <div class="popup-footer">
+            <button class="view-all-btn" onclick="window.location.href='notification.html';">
+              View all Notifications
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="user-profile-container" style="position: relative;">
+        <div class="user-info" style="cursor:pointer;">
+          <div class="user-label">
+              <!-- <span class="user-name"><?php echo htmlspecialchars($username); ?></span> -->
+              <!-- <span class="user-role"><?php echo htmlspecialchars($role); ?></span> -->
+          </div>
+          <div class="user-icon"><i class="fas fa-user"></i></div>
+          <span class="dropdown-icon"><i class="fas fa-chevron-down"></i></span>
+        </div>
+        <!-- Dropdown menu for user options -->
+        <ul class="profile-dropdown-menu" hidden>
+          <li><a href="admin_profile.php">My Profile</a></li>
+          <li><a href="admin_setting.php">Settings</a></li>
+          <li><a href="logout.php">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+    <section>
+
+    <!--popout-->
+    <div class="popup-overlay" id="popup">
+      <div class="popup-form">
+        <div class="popup-header">
+          <h2>Add New Payment</h2>
+          <button class="close-popup" id="closePopup">&times;</button>
+        </div>
+        <form id="payment-form">
+          <label for="fullname">Full Name:</label>
+          <input type="text" id="fullname" required>
+
+          <label for="payment-method">Payment Method:</label>
+          <select id="payment-method" required>
+            <option value="">Select Method</option>
+            <option value="Cash">Cash</option>
+            <option value="Online Banking">Online Banking</option>
+            <option value="e-Wallet Boost">e-Wallet Boost</option>
+            <option value="e-Wallet TNG">e-Wallet TNG</option>
+            <option value="e-Wallet GrabPay">e-Wallet GrabPay</option>
+          </select>
+
+          <label for="payment-status">Payment Status:</label>
+            <select id="payment-status" required>
+              <option value="">Select Status</option>
+              <option value="Paid">Paid</option>
+              <option value="Pending">Pending</option>             
+            </select>
+
+
+          <label for="edit-amount">Amount (RM):</label>
+          <input type="number" id="amount" step="0.01" min="0" required>
+
+          <div class="popup-actions">
+            <button type="submit" class="btn-red">Confirm</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+
+    <!-- payment record table -->
+      <div class="table-container">
+        <div class="table-header">
+      <h2>Payment Record</h2>
+      <button id="add-payment">Add Payment</button>
+    </div>
+      <table id="payment-records">
+        <thead>
+          <tr>
+            <th>Payment ID</th>
+            <th>Full Name</th>
+            <th>Method</th>
+            <th>Status</th>
+            <th>Amount (RM)</th>
+            <th>Date & Time</th>
+            <th>Last Updated</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Records go here -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Edit Payment Popup -->
+    <div id="edit-popup" class="popup-container" style="display:none;">
+      <div class="popup-content">
+        <h2>Edit Payment</h2>
+        <form id="edit-payment-form">
+          <input type="hidden" id="edit-paymentID" name="paymentID">
+          <input type="text" id="edit-fullname" name="fullname" required>
+
+          <select id="edit-method" name="method" required>
+            <option>Cash</option>
+            <option>Online Banking</option>
+            <option>e-Wallet Boost</option>
+            <option>e-Wallet TNG</option>
+            <option>e-Wallet GrabPay</option>
+          </select>
+          
+          <select id="edit-status" name="status" required>
+            <option>Paid</option>
+            <option>Pending</option>
+          </select>
+
+          <input type="number" id="edit-amount" name="amount" step="0.01" required>
+
+         <div class="form-buttons">
+          <button type="button" class="btn-cancel" id="closeEditPopup">Cancel</button>
+          <button type="submit" class="btn-save">Save</button>
+        </div>
+        </form>
+      </div>
+    </div>
+    </section>
+  </div>
+<script src="Payment.js"></script>
+</body>
+</html>

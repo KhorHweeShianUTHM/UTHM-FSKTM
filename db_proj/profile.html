@@ -1,0 +1,861 @@
+<!--change to .php file please -->
+<!-- please follow admin_sidenavbar.php format -->
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AHK Auto Care</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+    body {
+      display: flex;
+      min-height: 100vh;
+      background-color: #ffffff;
+    }
+    .sidebar {
+      width: 240px;
+      background-color: #5a5a59;
+      color: white;
+      padding: 20px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      
+    }
+    .sidebar .menu-top,
+    .sidebar .menu-bottom {
+      list-style: none;
+      width: 100%;
+    }
+    .sidebar h2 {
+      font-size: 20px;
+    }
+    .sidebar ul {
+      list-style: none;
+      width: 100%;
+    }
+    .sidebar ul li {
+      display: flex;
+      align-items: center;
+      padding: 15px 30px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .sidebar ul li:hover {
+      background-color: #dc3545;
+    }
+    .sidebar ul li i {
+      margin-right: 10px;
+      flex-shrink: 0;
+    }
+    .main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .navbar {
+      height: 120px!important;
+      background-color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+      border-bottom: 1px solid #ccc;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      flex-shrink: 0;
+    }
+    .navbar .page-info h1 {
+      font-size: 20px;
+      margin-bottom: 5px;
+      color: #212B36;
+    }
+    .navbar .page-info p {
+      font-size: 14px;
+      color: #637381;
+    }
+    .navbar .user-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .navbar .user-label {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      margin-right: 15px;
+    }
+    .navbar .user-name {
+      font-weight: 600;
+      font-size: 14px;
+      color: #212B36;
+    }
+    .navbar .user-role {
+      font-size: 12px;
+      color: #637381;
+    }
+    .navbar .user-icon {
+      width: 32px;
+      height: 32px;
+      background-color: #EFF4FB;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #333;
+      font-size: 14px;
+      border: 1px solid #E2E8F0;
+      cursor: pointer;
+    }
+    .navbar .dropdown-icon i {
+      font-size: 12px;
+      color: #555;
+    }
+    .navbar .notification-icon {
+      width: 32px;
+      height: 32px;
+      background-color: #EFF4FB;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 30px;
+      cursor: pointer;
+      border: 1px solid #E2E8F0;
+    }
+    .navbar .notification-icon i {
+      color: #333;
+      font-size: 14px;
+    }
+
+      * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            line-height: 1.6;
+            
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* Main Container */
+        .main-content-container {
+            width: 100%;
+            
+            min-height:100vh;
+            max-width: 900px; /* Adjusted max-width for a more focused view */
+            margin: 1rem auto;
+            padding: 1rem; /* Reduced padding for a tighter feel on smaller screens */
+        }
+
+        /* Page Header */
+        .page-header {
+            padding: 1rem 0;
+            margin-bottom: 2rem;
+            text-align: center; /* Centered header */
+        }
+
+        .page-header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 28px; /* Slightly reduced */
+            font-weight: 700;
+            color: #1a202c;
+            margin-bottom: 0.25rem;
+        }
+
+        .page-header p {
+            font-family: 'Kumbh Sans', sans-serif;
+            font-size: 16px;
+            color: #4a5568;
+        }
+
+        /* Tabs */
+        .tabs-container {
+            display: flex;
+            border-bottom: 1px solid #cbd5e0;
+            margin-bottom: 0;
+        }
+
+        .tab-button {
+            width: 200px; /* Adjusted width */
+            height: 40px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700; /* Poppins bold is often 700 */
+            font-size: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            border-radius: 6px 6px 0 0; /* Slightly rounded top corners */
+            padding: 0 1rem;
+        }
+
+        .tab-button.active-tab {
+            background-color: #DC3545;
+            color: white;
+        }
+
+        .tab-button.inactive-tab {
+            background-color: #232321;
+            opacity: 0.85;
+            color: white;
+        }
+        .tab-button:not(.active-tab):hover {
+            opacity: 0.75;
+        }
+
+
+        /* Content Card (for Profile & Security sections) */
+        .content-card {
+            background-color: #ffffff;
+            padding: 2rem; /* Increased padding */
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Profile Details Section */
+        .profile-header-flex {
+            display: flex;
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+            align-items: flex-start; /* Align items to the top */
+            margin-bottom: 2rem;
+            gap: 1.5rem; /* Gap between flex items */
+        }
+
+        /* Container for avatar AND its action buttons (Upload/Remove) */
+        .profile-avatar-group {
+            display: flex; /* Lays out avatar and buttons side-by-side */
+            flex-direction: row; /* Explicitly row */
+            align-items: center; /* Vertically aligns avatar and button column */
+            gap: 1.5rem; /* Space between avatar and the buttons column */
+            margin-right: auto; /* Pushes the edit profile button to the right */
+        }
+        
+        #profileAvatar {
+            width: 120px; /* Increased size */
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid #e2e8f0;
+            object-fit: cover;
+        }
+        /* Column for Upload and Remove buttons */
+        .avatar-actions {
+            display: flex;
+            flex-direction: column; 
+            gap: 0.75rem; /* Space between upload and remove buttons */
+        }
+
+        /* Container for the "Edit Profile" button */
+        .profile-main-actions {
+            margin-left: auto; /* Pushes edit button to the far right */
+            align-self: flex-start; /* Align with top of avatar container */
+        }
+
+
+        /* Form Styling */
+        .form-fields-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem; /* Space between form groups */
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label.input-label {
+            font-family: 'Kumbh Sans', sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            color: #2d3748; /* Darker label color */
+            margin-bottom: 0.5rem;
+        }
+
+        input.profile-input {
+            font-family: 'Kumbh Sans', sans-serif;
+            font-weight: 400;
+            font-size: 14px;
+            color: #4a5568; /* Input text color */
+            padding: 0.75rem 1rem; /* More padding */
+            border: 1px solid #cbd5e0;
+            border-radius: 6px; /* Rounded inputs */
+            background-color: #f7fafc; /* Light background for inputs */
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+        input.profile-input:focus {
+            outline: none;
+            border-color: #DC3545; /* Red border on focus */
+            box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.2);
+        }
+
+        input.profile-input.input-readonly-bg {
+            background-color: #edf2f7; /* Slightly different for readonly */
+            cursor: not-allowed;
+        }
+
+        input.profile-input::placeholder {
+            font-family: 'Kumbh Sans', sans-serif;
+            font-size: 14px;
+            color: #a0aec0; /* Lighter placeholder */
+            opacity: 1;
+        }
+
+        /* Button Styling */
+        .form-actions {
+            display: flex;
+            justify-content: flex-end; /* Align buttons to the right */
+            gap: 0.75rem; /* Space between action buttons */
+            margin-top: 1rem;
+        }
+
+        .custom-button {
+            font-family: 'Poppins', sans-serif; /* All buttons Poppins */
+            font-weight: 600;
+            font-size: 15px; /* Consistent button text size */
+            padding: 0.6rem 1.25rem; /* Adjusted padding */
+            border-radius: 0; /* 0 radius as requested */
+            outline: 2px solid black; /* Black outline */
+            outline-offset: -2px; /* Outline inside border */
+            border: none; /* Remove default border if outline is used */
+            cursor: pointer;
+            transition: opacity 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem; /* Space between icon and text */
+        }
+        .custom-button i {
+            font-size: 0.9em; /* Slightly smaller icon relative to text */
+        }
+
+
+        /* Specific Button Colors (can be customized further) */
+        #uploadImageBtn, #editBtn {
+            background-color: #DC3545; /* Red */
+            color: white;
+        }
+        #uploadImageBtn:hover, #editBtn:hover {
+            opacity: 0.85;
+        }
+
+        #removePhotoBtn {
+            background-color: #e2e8f0; /* Light Gray */
+            color: #2d3748;
+        }
+        #removePhotoBtn:hover {
+            background-color: #cbd5e0;
+        }
+        
+        #cancelBtn {
+            background-color: #718096; /* Gray */
+            color: white;
+        }
+        #cancelBtn:hover {
+            background-color: #4a5568;
+        }
+
+        #emailError {
+    background-color: #fadbd8; /* Red background */
+    color: #e74c3c !important;              /* White text */
+    padding: 10px;             /* Add some space inside the box */
+    border-radius: 5px;        /* Rounded corners */
+    margin-top: 8px;           /* Space between the input and the error */
+    font-family: 'Poppins', sans-serif; /* A clean, modern font */
+    font-size: 14px;
+    font-weight: 500;
+    display: none;             /* Initially hidden */
+    transition: all 0.3s ease-in-out;
+}
+        #saveChangeBtn {
+            background-color: #48bb78; /* Green */
+            color: white;
+        }
+        #saveChangeBtn:hover {
+            background-color: #38a169;
+        }
+        
+        .password-update-button { /* For "Update Password" */
+            background-color: #4299e1; /* Blue */
+            color: white;
+        }
+        .password-update-button:hover {
+            background-color: #3182ce;
+        }
+
+
+        /* Security Section */
+        #securityContent h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: #1a202c;
+            margin-bottom: 0.5rem;
+        }
+        #securityContent p {
+            font-family: 'Kumbh Sans', sans-serif;
+            font-size: 16px;
+            color: #4a5568;
+            margin-bottom: 2rem;
+        }
+        
+        /* Message Box for Success/Error */
+        .message-box {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 12px 20px;
+            border-radius: 6px;
+            font-family: 'Kumbh Sans', sans-serif;
+            font-size: 15px;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+        }
+        .message-box.success {
+            background-color: #48bb78; /* Green */
+            color: white;
+        }
+         /* Responsive adjustments if needed */
+        @media (max-width: 768px) {
+            .tabs-container {
+                flex-direction: column; /* Stack tabs on smaller screens */
+            }
+            .tab-button {
+                width: 100%;
+                border-radius: 6px; /* Full radius when stacked */
+                margin-bottom: 0.25rem;
+            }
+            .tab-button.active-tab {
+                 border-radius: 6px;
+            }
+            .profile-header-flex {
+                flex-direction: column;
+                align-items: center; /* Center items when stacked */
+            }
+            .profile-avatar-group { /* Ensure avatar and its buttons stay together when stacked */
+                flex-direction: row; /* Keep avatar and buttons side-by-side if space allows or stack them if too narrow */
+                align-items: center;
+                margin-right: 0; /* Remove auto margin when stacked */
+                margin-bottom: 1rem; /* Add space below when stacked */
+            }
+            .profile-main-actions {
+                margin-left: 0; /* Remove auto margin */
+                margin-top: 1rem;
+            }
+            .content-card {
+                padding: 1.5rem;
+            }
+            .page-header h1 {
+                font-size: 24px;
+            }
+            .page-header p {
+                font-size: 15px;
+            }
+        }
+        /* Further refinement for avatar group on small screens if needed */
+        @media (max-width: 480px) { /* Example: for very small screens */
+            .profile-avatar-group {
+                flex-direction: column; /* Stack avatar and its buttons vertically */
+                align-items: center;
+            }
+            .avatar-actions {
+                flex-direction: row; /* Place buttons side-by-side below avatar */
+                gap: 0.5rem;
+                margin-top: 0.75rem;
+            }
+            #profileAvatar {
+                width: 100px;
+                height: 100px;
+            }
+        }
+
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+
+    <img src="ahk_logo.png"/>
+    <h2>Admin Menu</h2>
+
+  <ul class="menu-top" style="margin-bottom: 120px;">
+    <li><i class="fas fa-home"></i> Dashboard</li>
+    <li style="margin-left: 2px;"><i class="fas fa-toolbox" style="margin-right: 12px;"></i> Inventory</li>
+    <li><i class="fas fa-users"></i>Customers</li>
+    <li style="margin-left: 3px;"><i class="fas fa-file-alt" style="margin-right: 12px;"></i> Job Cards</li>
+    <li><i class="fas fa-credit-card"></i> Payment</li>
+    <li><i class="fas fa-chart-line"></i> Analytics</li>
+    <li><i class="fas fa-boxes"></i> Suppliers</li>
+    <li><i class="fas fa-cog"></i> Settings</li>
+  </ul>
+
+  <ul class="menu-bottom">
+    <li><i class="fas fa-sign-out-alt"></i> Sign Out</li>
+  </ul>
+</div>
+
+  <div class="main">
+    <div class="navbar">
+      <div class="page-info">
+        <h1>Profile Details and Settings</h1>
+        <p>Manage your account information and preferences</p>
+      </div>
+      <div style="display: flex; align-items: center;">
+        <div class="notification-icon">
+          <i class="fas fa-bell"></i>
+        </div>
+        <div class="user-info">
+          <div class="user-label">
+            <span class="user-name">Boss</span>
+            <span class="user-role">Admin</span>
+          </div>
+          <div class="user-icon">
+            <i class="fas fa-user"></i>
+          </div>
+          <span class="dropdown-icon"><i class="fas fa-chevron-down"></i></span>
+        </div>
+    </div>
+  </div>
+
+    <div class="main-content-container">
+        
+
+        <main>
+            <div class="tabs-container">
+                <button id="profileDetailsTab" class="tab-button">
+                    Profile Details
+                </button>
+                <button id="securityTab" class="tab-button">
+                    Security
+                </button>
+            </div>
+
+            <div id="profileDetailsContent" class="content-card">
+                <div class="profile-header-flex">
+                    <div class="profile-avatar-group"> 
+                        <img id="profileAvatar" src="https://placehold.co/120x120/E2E8F0/4A5568?text=Avatar" alt="Profile Avatar">
+                        <!-- Add this after <img id="profileAvatar" ... > -->
+                    <input type="file" id="profilePhotoInput" accept="image/*" style="display:none;">
+                        <div class="avatar-actions">
+                             <button id="uploadImageBtn" class="custom-button hidden"><i class="fas fa-upload"></i>Upload Image</button>
+                             <button id="removePhotoBtn" class="custom-button hidden"><i class="fas fa-trash-alt"></i>Remove Photo</button>
+                        </div>
+                    </div>
+                    <div class="profile-main-actions">
+                        <button id="editBtn" class="custom-button"><i class="fas fa-edit"></i>Edit Profile</button>
+                    </div>
+                </div>
+
+                <div class="form-fields-container">
+                    <div class="form-group">
+                        <label for="fullName" class="input-label">Full Name</label>
+                        <input type="text" id="fullName" value="Mel Peters" placeholder="Enter your full name" class="profile-input" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="input-label">Email</label>
+                        <input type="email" id="email" value="melpeters@example.com" placeholder="Enter your email address" class="profile-input" required pattern="^[a-zA-Z0-9._%+-]+@gmail\.com$" title="Only gmail.com emails are allowed">
+                        <div id="emailError" style="color:red;"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="title" class="input-label">Title</label>
+                        <input type="text" id="title" value="Boss" placeholder="Enter your title" class="profile-input" disabled>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button id="cancelBtn" class="custom-button hidden"><i class="fas fa-times"></i>Cancel</button>
+                    <button id="saveChangeBtn" class="custom-button hidden"><i class="fas fa-save"></i>Save Changes</button>
+                </div>
+            </div>
+
+            <div id="securityContent" class="content-card hidden">
+                <h2>Security Settings</h2>
+                <p>Manage your password and security preferences.</p>
+                <div class="form-fields-container">
+                    <div class="form-group">
+                        <label for="currentPassword" class="input-label">Current Password</label>
+                        <input type="password" id="currentPassword" placeholder="Enter current password" class="profile-input">
+                    </div>
+                    <div class="form-group">
+                        <label for="newPassword" class="input-label">New Password</label>
+                        <input type="password" id="newPassword" placeholder="Enter new password" class="profile-input">
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword" class="input-label">Confirm New Password</label>
+                        <input type="password" id="confirmPassword" placeholder="Confirm new password" class="profile-input">
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button class="custom-button password-update-button"><i class="fas fa-key"></i>Update Password</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+  </div>
+
+
+  
+    <script>
+        // DOM Elements
+        const profileDetailsTab = document.getElementById('profileDetailsTab');
+        const securityTab = document.getElementById('securityTab');
+        const profileDetailsContent = document.getElementById('profileDetailsContent');
+        const securityContent = document.getElementById('securityContent');
+
+        const editBtn = document.getElementById('editBtn');
+        const cancelBtn = document.getElementById('cancelBtn');
+        const saveChangeBtn = document.getElementById('saveChangeBtn');
+        
+        const inputsToToggle = [
+            document.getElementById('fullName'),
+            document.getElementById('email'),
+            document.getElementById('title')
+        ];
+        const uploadImageBtn = document.getElementById('uploadImageBtn');
+        const removePhotoBtn = document.getElementById('removePhotoBtn');
+        const profileAvatar = document.getElementById('profileAvatar');
+
+        // Store initial values for cancellation
+        let initialValues = {};
+        inputsToToggle.forEach(input => initialValues[input.id] = input.value);
+        let initialAvatarSrc = profileAvatar.src;
+        const defaultAvatarSrc = "https://placehold.co/120x120/E2E8F0/4A5568?text=Avatar";
+
+        // --- Functions ---
+
+            function setInputsEditable(isEditable) {
+        inputsToToggle.forEach(input => {
+            if (input.id === 'title') {
+                input.disabled = true; // Always keep title disabled
+            } else {
+                input.readOnly = !isEditable;
+                if (isEditable) {
+                    input.classList.remove('input-readonly-bg');
+                } else {
+                    input.classList.add('input-readonly-bg');
+                }
+            }
+        });
+    }
+    
+        function toggleEditModeButtons(isEditing) {
+            if (isEditing) {
+                editBtn.classList.add('hidden');
+                cancelBtn.classList.remove('hidden');
+                saveChangeBtn.classList.remove('hidden');
+                uploadImageBtn.classList.remove('hidden');
+                removePhotoBtn.classList.remove('hidden');
+            } else {
+                editBtn.classList.remove('hidden');
+                cancelBtn.classList.add('hidden');
+                saveChangeBtn.classList.add('hidden');
+                uploadImageBtn.classList.add('hidden');
+                removePhotoBtn.classList.add('hidden');
+            }
+        }
+
+        function updateTabStyles(activeTabElement, inactiveTabElement) {
+            activeTabElement.classList.add('active-tab');
+            activeTabElement.classList.remove('inactive-tab');
+
+            inactiveTabElement.classList.add('inactive-tab');
+            inactiveTabElement.classList.remove('active-tab');
+        }
+        
+        function showMessage(text, type = 'success', duration = 3000) {
+            // Remove any existing message box first
+            const existingMessageBox = document.querySelector('.message-box');
+            if (existingMessageBox) {
+                existingMessageBox.remove();
+            }
+
+            const messageBox = document.createElement('div');
+            messageBox.textContent = text;
+            messageBox.className = `message-box ${type}`; // e.g., message-box success
+            document.body.appendChild(messageBox);
+            setTimeout(() => {
+                messageBox.remove();
+            }, duration);
+        }
+
+        // --- Event Listeners ---
+
+        profileDetailsTab.addEventListener('click', () => {
+            profileDetailsContent.classList.remove('hidden');
+            securityContent.classList.add('hidden');
+            updateTabStyles(profileDetailsTab, securityTab);
+        });
+
+        securityTab.addEventListener('click', () => {
+            securityContent.classList.remove('hidden');
+            profileDetailsContent.classList.add('hidden');
+            updateTabStyles(securityTab, profileDetailsTab);
+        });
+
+        editBtn.addEventListener('click', () => {
+            inputsToToggle.forEach(input => initialValues[input.id] = input.value);
+            initialAvatarSrc = profileAvatar.src;
+            setInputsEditable(true);
+            toggleEditModeButtons(true);
+        });
+
+        cancelBtn.addEventListener('click', () => {
+            inputsToToggle.forEach(input => input.value = initialValues[input.id]);
+            profileAvatar.src = initialAvatarSrc;
+            setInputsEditable(false);
+            toggleEditModeButtons(false);
+        });
+
+        saveChangeBtn.addEventListener('click', () => {
+    const name = document.getElementById('fullName').value;
+    const email = document.getElementById('email').value;
+    const emailErrorDiv = document.getElementById('emailError');
+    document.getElementById('email').addEventListener('input', function() {
+        const email = this.value;
+
+        // --- Validation Logic ---
+        if (email && !email.endsWith('@gmail.com')) {
+            emailErrorDiv.textContent = "Only gmail.com emails are allowed.";
+            emailErrorDiv.style.display = 'block'; // Show the error message
+            e.preventDefault(); // Stop the rest of the function
+            return;
+        } else {
+          emailErrorDiv.style.display = 'none'; // Hide if valid
+    }
+});
+    fetch('update_profile.php', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        body: `name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}`
+    })
+    .then(response => response.text())
+    .then(result => {
+        if(result === "success") {
+            showMessage('Profile updated successfully!', 'success');
+            // Optionally, refresh the data from DB here
+        } else {
+            showMessage('Update failed!', 'error');
+        }
+    });
+
+    // Reset UI state
+    initialValues = {};
+    inputsToToggle.forEach(input => initialValues[input.id] = input.value);
+    initialAvatarSrc = profileAvatar.src;
+
+    setInputsEditable(false);
+    toggleEditModeButtons(false);
+});
+
+        // When the upload button is clicked, trigger the file input
+        uploadImageBtn.addEventListener('click', () => {
+            document.getElementById('profilePhotoInput').click();
+        });
+
+        removePhotoBtn.addEventListener('click', () => {
+           fetch('remove_photo.php', {
+                method: 'POST'
+            })
+            .then(response => response.text())
+            .then(() => {
+                profileAvatar.src = defaultAvatarSrc;
+                showMessage('Profile photo removed!', 'success');
+            })
+            .catch(() => {
+                showMessage('Failed to remove photo!', 'error');
+            });
+        });
+
+        document.querySelector('.password-update-button').addEventListener('click', () => {
+            const currentPassword = document.getElementById('currentPassword').value;
+            const newPassword = document.getElementById('newPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            if (newPassword !== confirmPassword) {
+                showMessage('Passwords do not match!', 'error');
+                return;
+            }
+
+            fetch('update_password.php', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                body: `current_password=${encodeURIComponent(currentPassword)}&new_password=${encodeURIComponent(newPassword)}`
+            })
+            .then(response => response.text())
+            .then(result => {
+    if(result === "success") {
+        showMessage('Password updated successfully!', 'success');
+        // Optionally, clear the input fields here
+        document.getElementById('currentPassword').value = '';
+        document.getElementById('newPassword').value = '';
+        document.getElementById('confirmPassword').value = '';
+    } else if(result === "weak") {
+        showMessage('Password is too weak! Must be at least 8 characters, include uppercase, lowercase, number, and special character.', 'error');
+    } else {
+        showMessage('Current password is incorrect!', 'error');
+    }
+});
+        });
+        // When a file is selected, upload it via AJAX
+        document.getElementById('profilePhotoInput').addEventListener('change', function() {
+            const file = this.files[0];
+            if (!file) return;
+
+            const formData = new FormData();
+            formData.append('profile_photo', file);
+
+            fetch('upload_photo.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(photoPath => {
+                profileAvatar.src = photoPath;
+                showMessage('Profile photo updated!', 'success');
+            })
+            .catch(() => {
+                showMessage('Photo upload failed!', 'error');
+            });
+        });
+
+        // --- Initial State Setup ---
+        window.onload = function() {
+    fetch('get_profile.php')
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById('fullName').value = data.name;
+        document.getElementById('email').value = data.email;
+        document.getElementById('title').value = data.role;
+        document.getElementById('profileAvatar').src = data.profile_photo || "https://placehold.co/120x120/E2E8F0/4A5568?text=Avatar";
+      });
+
+    setInputsEditable(false); // Inputs start as readonly
+    inputsToToggle.forEach(input => input.classList.add('input-readonly-bg')); // Apply readonly bg style
+    toggleEditModeButtons(false); // Show "Edit" button, hide others
+    updateTabStyles(profileDetailsTab, securityTab); // Set initial active tab
+    inputsToToggle.forEach(input => initialValues[input.id] = input.value);
+    initialAvatarSrc = profileAvatar.src;
+};
+    </script>
+
+</body>
+</html>

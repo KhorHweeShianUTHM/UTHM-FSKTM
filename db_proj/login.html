@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AHK Auto Services - Login</title>
+  <style>
+    body, html {
+      height: 100%;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .bg {
+      background-image: url('login_pic.jpg'); /* Ganti dengan gambar background anda */
+      height: 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .overlay {
+      background: rgba(0, 0, 0, 0.5);
+      padding: 40px;
+      border-radius: 15px;
+      backdrop-filter: blur(5px);
+      text-align: center;
+    }
+
+    .logo img {
+      max-width: 300px;
+      height: auto;
+      margin-bottom: 30px;
+    }
+
+    .form-container {
+      background: #fff;
+      text-align: center;
+      border-radius: 15px;
+      padding: 30px 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      width: 300px;
+    }
+
+    .form-container input[type="text"],
+    .form-container input[type="password"] {
+      width: 85%;
+      padding: 12px 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    .form-container button {
+      width: 85%;
+      padding: 12px;
+      margin-top: 15px;
+      background-color: #e63946;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .form-container button:hover {
+      background-color: #d62828;
+    }
+
+    .form-container a {
+      display: block;
+      margin-top: 10px;
+      font-size: 12px;
+      color: #0077cc;
+      text-decoration: none;
+    }
+
+    .form-container label {
+      font-size: 14px;
+      display: block;
+      margin-top: 10px;
+    }
+
+    .form-container input[type="checkbox"] {
+      margin-right: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg">
+    <div class="overlay">
+      <div class="logo">
+        <img src="ahk_logo.png" alt="AHK Auto Services Logo">
+      </div>
+      <div class="form-container">
+        <div id="error-container" style="display: none;">
+  <div id="error-message" style="color: red; font-size: 14px; margin-bottom: 10px;"></div>
+</div>
+        <form action="login.php" method="POST">
+          <input type="text" name="email" placeholder="Email" required>
+          <input type="password" name="password" placeholder="Password" required>
+          <label><input type="checkbox" name="remember"> Remember me</label>
+          <a href="reset_password.html">Forgot password</a>
+          <button type="submit">Login</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  const params = new URLSearchParams(window.location.search);
+  const error = params.get('error');
+  if (error) {
+    const errorContainer = document.getElementById('error-container');
+    const errorMessage = document.getElementById('error-message');
+    errorMessage.textContent = decodeURIComponent(error);
+    errorContainer.style.display = 'block';
+  
+  // Remove ?error=... from URL without reloading the page
+    window.history.replaceState({}, document.title, window.location.pathname);
+  
+  // Optional: auto-hide after 5 seconds
+  setTimeout(() => {
+    errorContainer.style.display = 'none';
+  }, 10000);
+}
+</script>
+
+</body>
+</html>
+

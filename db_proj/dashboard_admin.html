@@ -1,0 +1,705 @@
+<!--change to .php file please -->
+<!-- please follow admin_sidenavbar.php format -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AHK Auto Services Admin Dashboard</title>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+    html, body {
+      height: 100%;
+      background: #f9fafb;
+      overflow-y: auto;
+    }
+    body {
+      display: flex;
+      min-height: 100vh;
+      color: #212b36;
+      font-size: 14px;
+      flex-direction: row;
+    }
+    /* Sidebar */
+    .sidebar {
+      width: 240px;
+      background-color: #5a5a59;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 0;
+      user-select: none;
+      box-shadow: 2px 0 8px rgba(0,0,0,0.1);
+      height: 100vh;
+      position: sticky;
+      top: 0;
+      overflow-y: auto;
+      flex-shrink: 0;
+    }
+    .sidebar img {
+      width: 150px;
+      margin-bottom: 30px;
+      object-fit: contain;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .sidebar h2 {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      margin-bottom: 30px;
+      flex-shrink: 0;
+    }
+    .sidebar ul {
+      list-style: none;
+      width: 100%;
+      padding: 0;
+      flex-grow: 1;
+      overflow: visible;
+    }
+    .sidebar ul li {
+      padding: 15px 30px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      font-weight: 500;
+      font-size: 14px;
+      transition: background-color 0.2s;
+      white-space: nowrap;
+    }
+    .sidebar ul li i {
+      margin-right: 10px;
+      width: 20px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+    .sidebar ul li:hover {
+      background-color: #7a7a7a;
+    }
+    .sidebar ul li.active {
+      background-color: #dc3545;
+    }
+    .sidebar ul.menu-bottom {
+      margin-top: auto;
+      padding-bottom: 20px;
+    }
+    /* Main content */
+    .main {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      overflow: visible;
+    }
+    /* Navbar */
+    .navbar {
+      height: 120px;
+      background: white;
+      border-bottom: 1px solid #ccc;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 30px;
+      user-select: none;
+      position: relative;
+      z-index: 10;
+      flex-shrink: 0;
+    }
+    .navbar .page-info {
+      font-size: 13px;
+      color: #8c8c8c;
+      font-weight: 600;
+      opacity: 0.5;
+      white-space: nowrap;
+      max-width: 60vw;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .navbar .actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .icon-button {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: #eff4fb;
+      border: 1px solid #e2e8f0;
+      color: #333;
+      font-size: 16px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      position: relative;
+      transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    }
+    .icon-button:hover {
+      background: #d43161;
+      color: white;
+      border-color: #d43161;
+    }
+    /* Notification popup */
+    #notification-popup {
+      position: absolute;
+      top: 52px;
+      right: 80px;
+      background: white;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      border-radius: 8px;
+      padding: 15px;
+      width: 320px;
+      display: none;
+      z-index: 100;
+    }
+    #notification-popup textarea {
+      width: 100%;
+      height: 70px;
+      resize: none;
+      font-family: inherit;
+      font-size: 14px;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      transition: border-color 0.3s;
+    }
+    #notification-popup textarea:focus {
+      border-color: #dc3545;
+      outline: none;
+    }
+    #notification-popup button {
+      margin-top: 12px;
+      background-color: #dc3545;
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 6px;
+      cursor: pointer;
+      float: right;
+      font-weight: 600;
+      font-size: 14px;
+      transition: background-color 0.3s;
+    }
+    #notification-popup button:hover {
+      background-color: #a8253f;
+    }
+    /* Profile dropdown */
+    #profile-dropdown {
+      position: absolute;
+      top: 52px;
+      right: 20px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      width: 200px;
+      display: none;
+      z-index: 100;
+      user-select: none;
+    }
+    #profile-dropdown div {
+      padding: 14px 20px;
+      cursor: pointer;
+      border-bottom: 1px solid #eee;
+      font-weight: 600;
+      font-size: 14px;
+      transition: background-color 0.2s;
+    }
+    #profile-dropdown div:last-child {
+      border-bottom: none;
+      color: #dc3545;
+      font-weight: 700;
+    }
+    #profile-dropdown div:hover {
+      background-color: #f2f2f2;
+    }
+    /* Profile modal */
+    #profile-modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: rgba(0,0,0,0.35);
+      justify-content: center;
+      align-items: center;
+      z-index: 200;
+      user-select: text;
+      overflow-y: auto;
+      padding: 40px 15px;
+    }
+    #profile-modal.active {
+      display: flex;
+    }
+    #profile-modal .modal-content {
+      background: white;
+      border-radius: 8px;
+      padding: 30px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      position: relative;
+    }
+    #profile-modal h3 {
+      margin-bottom: 20px;
+      font-weight: 700;
+      font-size: 22px;
+      color: #222;
+    }
+    #profile-modal label {
+      display: block;
+      margin-bottom: 14px;
+      font-weight: 600;
+      font-size: 14px;
+      color: #333;
+    }
+    #profile-modal input[type="text"],
+    #profile-modal input[type="email"],
+    #profile-modal input[type="password"],
+    #profile-modal input[type="file"] {
+      width: 100%;
+      padding: 10px 12px;
+      margin-top: 6px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+      font-family: inherit;
+      transition: border-color 0.3s;
+    }
+    #profile-modal input[type="text"]:focus,
+    #profile-modal input[type="email"]:focus,
+    #profile-modal input[type="password"]:focus,
+    #profile-modal input[type="file"]:focus {
+      border-color: #dc3545;
+      outline: none;
+    }
+    #profile-modal .modal-actions {
+      margin-top: 25px;
+      text-align: right;
+    }
+    #profile-modal button {
+      padding: 10px 20px;
+      border-radius: 7px;
+      border: none;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 15px;
+      transition: background-color 0.3s;
+    }
+    #profile-modal button.save-btn {
+      background-color: #dc3545;
+      color: white;
+      margin-left: 12px;
+    }
+    #profile-modal button.save-btn:hover {
+      background-color: #a8253f;
+    }
+    #profile-modal button.cancel-btn {
+      background-color: #ddd;
+      color: #444;
+    }
+    #profile-modal button.cancel-btn:hover {
+      background-color: #bbb;
+    }
+    /* Welcome box */
+    .welcome-box {
+      margin: 20px 30px 10px 30px;
+      background-color: #dc3545;
+      border-radius: 8px;
+      padding: 20px 30px;
+      color: white;
+      font-weight: 600;
+      font-size: 20px;
+      user-select: none;
+      max-width: 100%;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+      text-align: center;
+    }
+    /* Main content area */
+    #content-area {
+      padding: 25px 40px;
+      font-size: 18px;
+      color: #333;
+      overflow-y: auto;
+      flex-grow: 1;
+      min-height: 0;
+    }
+    /* Image container styling */
+    .image-container {
+      text-align: center;
+      margin: 20px 30px;
+      display: none;
+    }
+    .image-container.active {
+      display: block;
+    }
+    .image-container img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      display: inline-block;
+    }
+    /* Location container styling */
+    .location-section {
+      background-color: #dc3545;
+      color: white;
+      padding: 30px 40px;
+      margin: 0 30px 30px 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      max-width: calc(100% - 60px);
+      text-align: center;
+    }
+    .location-section h2 {
+      font-weight: 700;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    .location-map-wrapper {
+      margin: 0 auto 20px auto;
+      max-width: 600px;
+      height: 280px;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+    .location-map-wrapper iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+    .location-description {
+      font-size: 14px;
+      line-height: 1.5;
+      max-width: 720px;
+      margin: 0 auto;
+      user-select: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar" role="navigation" aria-label="Sidebar Navigation">
+    <img src="ahk_logo.png" alt="AHK Auto Services Logo" />
+    <h2>ADMIN MENU</h2>
+    <ul>
+      <li class="active" data-module="Dashboard" tabindex="0"><i class="fas fa-home"></i> Dashboard</li>
+      <li data-module="Customers" tabindex="0"><i class="fas fa-users"></i> Customers</li>
+      <li data-module="Job Cards" tabindex="0"><i class="fas fa-file-alt"></i> Job Cards</li>
+      <li data-module="Analytics" tabindex="0"><i class="fas fa-chart-line"></i> Analytics</li>
+      <li data-module="Suppliers" tabindex="0"><i class="fas fa-boxes"></i> Suppliers</li>
+      <li data-module="Settings" tabindex="0"><i class="fas fa-cog"></i> Settings</li>
+      <li data-module="Logout" style="color:#ff6b6b;" tabindex="0"><i class="fas fa-sign-out-alt"></i> Logout</li>
+    </ul>
+  </div>
+  <div class="main">
+    <nav class="navbar" role="banner">
+      <div class="page-info" aria-live="polite" aria-atomic="true">Dashboard (admin)</div>
+      <div class="actions" role="group" aria-label="User actions">
+        <div id="notification-btn" class="icon-button" title="Create Notification" tabindex="0" role="button" aria-haspopup="true" aria-expanded="false" aria-controls="notification-popup">
+          <i class="fas fa-bell" aria-hidden="true"></i>
+          <span class="sr-only">Create Notification</span>
+        </div>
+        <div id="profile-btn" class="icon-button" title="Profile" tabindex="0" role="button" aria-haspopup="true" aria-expanded="false" aria-controls="profile-dropdown">
+          <i class="fas fa-user" aria-hidden="true"></i>
+          <span class="sr-only">User Profile</span>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Notification Popup -->
+    <div id="notification-popup" role="dialog" aria-modal="true" aria-labelledby="notif-title" tabindex="-1">
+      <label id="notif-title" for="notif-message" style="display:none;">Create Notification</label>
+      <textarea id="notif-message" placeholder="Type your notification here..." aria-describedby="notif-desc"></textarea>
+      <button id="send-notification-btn">Send</button>
+    </div>
+
+    <!-- Profile Dropdown -->
+    <div id="profile-dropdown" role="menu" aria-label="Profile menu">
+      <div id="open-profile" role="menuitem" tabindex="0">Your Profile</div>
+      <div id="open-settings" role="menuitem" tabindex="0">Settings</div>
+      <div id="logout-btn" role="menuitem" tabindex="0" style="color: #dc3545;">Logout</div>
+    </div>
+
+    <!-- Profile Modal -->
+    <div id="profile-modal" role="dialog" aria-modal="true" aria-labelledby="profile-title" tabindex="-1">
+      <div class="modal-content">
+        <h3 id="profile-title">Your Profile</h3>
+        <form id="profile-form" novalidate>
+          <label for="profile-name">Name</label>
+          <input type="text" id="profile-name" name="name" required autocomplete="name" />
+          <label for="profile-email">Email</label>
+          <input type="email" id="profile-email" name="email" required autocomplete="email" />
+          <label for="profile-password">Password</label>
+          <input type="password" id="profile-password" name="password" placeholder="Enter new password" autocomplete="new-password" />
+          <label for="profile-title-input">Title</label>
+          <input type="text" id="profile-title-input" name="title" autocomplete="organization-title" />
+          <label for="profile-photo">Upload Photo</label>
+          <input type="file" id="profile-photo" name="photo" accept="image/*" />
+          <div class="modal-actions">
+            <button type="button" class="cancel-btn">Cancel</button>
+            <button type="submit" class="save-btn">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="welcome-box" aria-live="polite" aria-atomic="true">
+      Welcome back, <b id="user-name">Admin</b>!<br /><br /> Have a nice day!
+    </div>
+
+    <div class="image-container active" id="dashboard-image-container">
+      <img src="dashboard_admin.png" alt="Dashboard background" id="dashboard-image" />
+    </div>
+
+    <section class="location-section active" aria-label="Our Location" id="location-section">
+      <h2>Our Location</h2>
+      <div
+        class="location-map-wrapper"
+        aria-label="Google Maps location of AHK Auto Services Bandar Puncak Alam, Selangor"
+        role="region"
+        tabindex="0"
+      >
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3991.2265808931767!2d101.49455991525879!3d3.2949134978955216!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc32b3f35f3a4b%3A0xf3049deec9afae02!2sAHK%20Auto%20Services%20Bandar%20Puncak%20Alam!5e0!3m2!1sen!2smy!4v1688312345678!5m2!1sen!2smy"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Google Maps AHK Auto Services Bandar Puncak Alam, Selangor"
+        ></iframe>
+      </div>
+      <p class="location-description">
+        AHK Auto Services is conveniently located in Bandar Puncak Alam, Selangor,
+        providing professional automotive services and repairs. We are committed to
+        delivering the highest quality care and support to our customers in the Selangor
+        region and nearby areas.
+      </p>
+    </section>
+
+    <main id="content-area" tabindex="0" aria-label="Main content area">
+      <!-- Content for modules will be injected here -->
+    </main>
+  </div>
+
+  <script>
+    // Sidebar navigation handler
+    const sidebarItems = document.querySelectorAll('.sidebar ul li');
+    const contentArea = document.getElementById('content-area');
+    const pageInfo = document.querySelector('.navbar .page-info');
+    const userNameDisplay = document.getElementById('user-name');
+
+    sidebarItems.forEach(item => {
+      item.addEventListener('click', () => {
+        if(item.dataset.module === "Logout") {
+          alert("Logging out...");
+          // Add logout logic here (e.g., redirect to login page)
+          return;
+        }
+        sidebarItems.forEach(i => i.classList.remove('active'));
+        item.classList.add('active');
+        loadModule(item.dataset.module);
+      });
+      // Keyboard accessibility
+      item.addEventListener('keydown', e => {
+        if(e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          item.click();
+        }
+      });
+    });
+
+    function loadModule(moduleName) {
+      pageInfo.textContent = `${moduleName} (admin)`;
+      switch(moduleName) {
+        case "Dashboard":
+          contentArea.innerHTML = "";
+          document.querySelector('.image-container').classList.add('active');
+          document.querySelector('.location-section').classList.add('active');
+          break;
+        case "Customers":
+          contentArea.innerHTML = "<h2>Customers Module Content</h2>";
+          document.querySelector('.image-container').classList.remove('active');
+          document.querySelector('.location-section').classList.remove('active');
+          break;
+        case "Job Cards":
+          contentArea.innerHTML = "<h2>Job Cards Module Content</h2>";
+          document.querySelector('.image-container').classList.remove('active');
+          document.querySelector('.location-section').classList.remove('active');
+          break;
+        case "Analytics":
+          contentArea.innerHTML = "<h2>Analytics Module Content</h2>";
+          document.querySelector('.image-container').classList.remove('active');
+          document.querySelector('.location-section').classList.remove('active');
+          break;
+        case "Suppliers":
+          contentArea.innerHTML = "<h2>Suppliers Module Content</h2>";
+          document.querySelector('.image-container').classList.remove('active');
+          document.querySelector('.location-section').classList.remove('active');
+          break;
+        case "Settings":
+          contentArea.innerHTML = "<h2>Settings Module Content</h2>";
+          document.querySelector('.image-container').classList.remove('active');
+          document.querySelector('.location-section').classList.remove('active');
+          break;
+        default:
+          contentArea.innerHTML = "<h2>Module Content</h2>";
+          document.querySelector('.image-container').classList.remove('active');
+          document.querySelector('.location-section').classList.remove('active');
+      }
+    }
+
+    // Notification popup toggle
+    const notifBtn = document.getElementById('notification-btn');
+    const notifPopup = document.getElementById('notification-popup');
+    const sendNotifBtn = document.getElementById('send-notification-btn');
+    const notifMessage = document.getElementById('notif-message');
+
+    notifBtn.addEventListener('click', () => {
+      if(notifPopup.style.display === "block") {
+        notifPopup.style.display = "none";
+        notifBtn.setAttribute('aria-expanded', 'false');
+      } else {
+        notifPopup.style.display = "block";
+        profileDropdown.style.display = "none";
+        notifBtn.setAttribute('aria-expanded', 'true');
+      }
+    });
+
+    sendNotifBtn.addEventListener('click', () => {
+      const msg = notifMessage.value.trim();
+      if(msg === "") {
+        alert("Please enter a notification message.");
+        return;
+      }
+      alert("Notification sent:\n" + msg);
+      notifMessage.value = "";
+      notifPopup.style.display = "none";
+      notifBtn.setAttribute('aria-expanded', 'false');
+    });
+
+    // Profile dropdown toggle
+    const profileBtn = document.getElementById('profile-btn');
+    const profileDropdown = document.getElementById('profile-dropdown');
+    const openProfileBtn = document.getElementById('open-profile');
+    const openSettingsBtn = document.getElementById('open-settings');
+    const logoutBtn = document.getElementById('logout-btn');
+
+    profileBtn.addEventListener('click', () => {
+      if(profileDropdown.style.display === "block") {
+        profileDropdown.style.display = "none";
+        profileBtn.setAttribute('aria-expanded', 'false');
+      } else {
+        profileDropdown.style.display = "block";
+        notifPopup.style.display = "none";
+        profileBtn.setAttribute('aria-expanded', 'true');
+      }
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!profileBtn.contains(e.target) && !profileDropdown.contains(e.target)) {
+        profileDropdown.style.display = "none";
+        profileBtn.setAttribute('aria-expanded', 'false');
+      }
+      if (!notifBtn.contains(e.target) && !notifPopup.contains(e.target)) {
+        notifPopup.style.display = "none";
+        notifBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    openProfileBtn.addEventListener('click', () => {
+      profileDropdown.style.display = "none";
+      profileBtn.setAttribute('aria-expanded', 'false');
+      loadProfile();
+      profileModal.classList.add("active");
+      profileModal.focus();
+    });
+
+    openSettingsBtn.addEventListener('click', () => {
+      alert("Open Settings Module");
+      profileDropdown.style.display = "none";
+      profileBtn.setAttribute('aria-expanded', 'false');
+    });
+
+    logoutBtn.addEventListener('click', () => {
+      alert("Logging out...");
+      profileDropdown.style.display = "none";
+      profileBtn.setAttribute('aria-expanded', 'false');
+    });
+
+    // Profile modal and form handling
+    const profileModal = document.getElementById('profile-modal');
+    const profileForm = document.getElementById('profile-form');
+    const profileName = document.getElementById('profile-name');
+    const profileEmail = document.getElementById('profile-email');
+    const profilePassword = document.getElementById('profile-password');
+    const profileTitle = document.getElementById('profile-title-input');
+    const profilePhoto = document.getElementById('profile-photo');
+    const cancelBtn = profileModal.querySelector('.cancel-btn');
+
+    let profileData = {
+      name: "Admin",
+      email: "admin@example.com",
+      password: "",
+      title: "Administrator",
+      photo: null,
+    };
+
+    function loadProfile() {
+      profileName.value = profileData.name;
+      profileEmail.value = profileData.email;
+      profilePassword.value = "";
+      profileTitle.value = profileData.title;
+      profilePhoto.value = "";
+    }
+
+    function updateWelcomeName() {
+      userNameDisplay.textContent = profileData.name;
+    }
+
+    cancelBtn.addEventListener('click', () => {
+      profileModal.classList.remove("active");
+    });
+
+    profileForm.addEventListener('submit', e => {
+      e.preventDefault();
+      const photoFile = profilePhoto.files[0];
+
+      profileData = {
+        name: profileName.value.trim(),
+        email: profileEmail.value.trim(),
+        password: profilePassword.value,
+        title: profileTitle.value.trim(),
+        photo: photoFile || profileData.photo,
+      };
+
+      alert("Profile saved:\n" + JSON.stringify({
+        name: profileData.name,
+        email: profileData.email,
+        title: profileData.title,
+        password: profileData.password ? "(updated)" : "(unchanged)",
+        photo: profileData.photo ? "Uploaded" : "No photo",
+      }, null, 2));
+
+      updateWelcomeName();
+      profileModal.classList.remove("active");
+      profilePassword.value = "";
+      profilePhoto.value = "";
+    });
+
+    // Initialize welcome name
+    updateWelcomeName();
+  </script>
+</body>
+</html>

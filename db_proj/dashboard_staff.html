@@ -1,0 +1,342 @@
+<!--change to .php file please -->
+<!-- please follow staff_sidenavbar.php format -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AHK Auto Care Dashboard</title>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+    body {
+      display: flex;
+      height: 100vh;
+      background-color: #ffffff;
+      color: #222;
+    }
+    /* Sidebar styling */
+    .sidebar {
+      width: 240px;
+      background-color: #5a5a59;
+      color: white;
+      padding: 20px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .sidebar img {
+      max-width: 140px;
+      margin-bottom: 15px;
+    }
+    .sidebar h2 {
+      font-size: 20px;
+      margin-bottom: 30px;
+    }
+    .sidebar ul.menu-top,
+    .sidebar ul.menu-bottom {
+      list-style: none;
+      width: 100%;
+      padding-left: 0;
+    }
+    .sidebar ul.menu-top {
+      margin-bottom: 120px;
+    }
+    .sidebar ul li {
+      font-weight: 600;
+      font-size: 14px;
+    }
+    .sidebar ul li a {
+      display: flex;
+      align-items: center;
+      padding: 15px 30px;
+      color: white;
+      text-decoration: none;
+      transition: background 0.2s;
+      width: 100%;
+    }
+    .sidebar ul li a:hover {
+      background-color: #dc3545;
+    }
+    .sidebar ul li a i {
+      margin-right: 10px;
+      flex-shrink: 0;
+      width: 18px;
+      text-align: center;
+    }
+    /* Main container */
+    .main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      position: relative;
+    }
+    /* Navbar */
+    .navbar {
+      height: 120px;
+      background-color: white;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 0 30px;
+      border-bottom: 1px solid #ccc;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      flex-shrink: 0;
+      position: relative;
+      z-index: 10;
+    }
+    .navbar .user-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      position: relative;
+    }
+    .navbar .user-label {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      margin-right: 15px;
+      user-select: none;
+    }
+    .navbar .user-name {
+      font-weight: 600;
+      font-size: 14px;
+      color: #212B36;
+    }
+    .navbar .user-role {
+      font-size: 12px;
+      color: #637381;
+    }
+    .navbar .user-icon {
+      width: 32px;
+      height: 32px;
+      background-color: #EFF4FB;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #333;
+      font-size: 14px;
+      border: 1px solid #E2E8F0;
+      cursor: pointer;
+    }
+    .navbar .dropdown-icon i {
+      font-size: 12px;
+      color: #555;
+      user-select: none;
+    }
+    /* Profile dropdown */
+    .profile-dropdown {
+      position: absolute;
+      top: 120px;
+      right: 30px;
+      width: 320px;
+      background: white;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+      border-radius: 10px;
+      padding: 20px;
+      display: none;
+      flex-direction: column;
+      z-index: 20;
+    }
+    .profile-dropdown.active {
+      display: flex;
+    }
+    .profile-dropdown h3 {
+      margin-bottom: 15px;
+      font-weight: 700;
+      font-size: 18px;
+      color: #212B36;
+    }
+    .profile-dropdown label {
+      font-size: 14px;
+      font-weight: 600;
+      margin-top: 10px;
+      margin-bottom: 5px;
+      color: #444;
+      user-select: none;
+    }
+    .profile-dropdown input[type="text"],
+    .profile-dropdown input[type="email"],
+    .profile-dropdown input[type="password"],
+    .profile-dropdown input[type="file"] {
+      width: 100%;
+      padding: 8px 10px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      outline: none;
+    }
+    .profile-dropdown input[type="file"] {
+      padding: 3px 5px;
+    }
+    .profile-dropdown input[type="text"]:focus,
+    .profile-dropdown input[type="email"]:focus,
+    .profile-dropdown input[type="password"]:focus {
+      border-color: #e2323b;
+      box-shadow: 0 0 5px rgba(226,50,59,0.5);
+    }
+    /* Content */
+    .content {
+      padding: 20px 30px;
+      background-color: #fefefe;
+      flex: 1;
+      overflow-y: auto;
+    }
+    .welcome-banner {
+      background-color: #e2323b;
+      border-radius: 10px;
+      color: white;
+      padding: 25px 30px;
+      font-weight: 700;
+      margin-bottom: 30px;
+    }
+    .welcome-banner small {
+      font-weight: 400;
+      display: block;
+      margin-top: 5px;
+      font-size: 12px;
+    }
+    /* Welcome Image container */
+    .welcome-image-container {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .welcome-image-container img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+    /* Location container for map */
+    .location-container {
+      margin-top: 30px;
+      width: 100%;
+      height: 350px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .location-container iframe {
+      border: 0;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <img src="ahk_logo.png" alt="AHK Logo" />
+    <h2>STAFF MENU</h2>
+
+    <ul class="menu-top">
+      <li><a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a></li>
+      <li><a href="inventory.html"><i class="fas fa-toolbox"></i> Inventory</a></li>
+      <li><a href="customers.html"><i class="fas fa-users"></i> Customers</a></li>
+      <li><a href="jobcards.html"><i class="fas fa-file-alt"></i> Job Cards</a></li>
+    </ul>
+
+    <ul class="menu-bottom">
+      <li><a href="logout.html"><i class="fas fa-sign-out-alt"></i> Sign Out</a></li>
+    </ul>
+  </div>
+
+  <div class="main">
+    <div class="navbar">
+      <div class="user-info" id="profileToggle" tabindex="0" aria-haspopup="true" aria-expanded="false" role="button" title="Your Profile">
+        <div class="user-label">
+          <span class="user-name">Friend</span>
+          <span class="user-role">Staff</span>
+        </div>
+        <div class="user-icon">
+          <i class="fas fa-user"></i>
+        </div>
+        <span class="dropdown-icon"><i class="fas fa-chevron-down"></i></span>
+      </div>
+
+      <div class="profile-dropdown" id="profileDropdown" aria-label="User Profile Panel">
+        <h3>Your Profile</h3>
+        <form>
+          <label for="nameInput">Name</label>
+          <input type="text" id="nameInput" value="Friend" />
+
+          <label for="emailInput">Email</label>
+          <input type="email" id="emailInput" value="friend@example.com" />
+
+          <label for="passwordInput">Password</label>
+          <input type="password" id="passwordInput" value="password123" />
+
+          <label for="titleInput">Title</label>
+          <input type="text" id="titleInput" value="Staff" />
+
+          <label for="photoInput">Upload Photo</label>
+          <input type="file" id="photoInput" accept="image/*" />
+        </form>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="welcome-banner">
+        Welcome back, Friend
+        <small>Have a nice day !</small>
+      </div>
+
+      <div class="welcome-image-container">
+        <img src="dashboard_staff.png" alt="Welcome Image" />
+      </div>
+
+      <div class="location-container" title="Our Location on Google Maps">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3168.938653612229!2d-122.08424968469268!3d37.42206577982521!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fb24c1a2f7033%3A0x5bb8a960cd6f4b46!2sGoogleplex!5e0!3m2!1sen!2sus!4v1685688000000!5m2!1sen!2sus"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          aria-label="Google Maps location"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const profileToggle = document.getElementById('profileToggle');
+    const profileDropdown = document.getElementById('profileDropdown');
+
+    profileToggle.addEventListener('click', () => {
+      const expanded = profileToggle.getAttribute('aria-expanded') === 'true';
+      if (expanded) {
+        profileDropdown.classList.remove('active');
+        profileToggle.setAttribute('aria-expanded', 'false');
+      } else {
+        profileDropdown.classList.add('active');
+        profileToggle.setAttribute('aria-expanded', 'true');
+      }
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!profileDropdown.contains(e.target) && !profileToggle.contains(e.target)) {
+        profileDropdown.classList.remove('active');
+        profileToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === "Escape" && profileDropdown.classList.contains('active')) {
+        profileDropdown.classList.remove('active');
+        profileToggle.setAttribute('aria-expanded', 'false');
+        profileToggle.focus();
+      }
+    });
+  </script>
+</body>
+</html>

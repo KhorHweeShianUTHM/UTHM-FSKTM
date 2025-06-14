@@ -1,0 +1,1300 @@
+<!--change to .php file please -->
+<!-- please follow admin_sidenavbar.php format -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K&M Auto Services - Analytics Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary-color: #e63946;
+            --border-color: #d1d5db;
+            --sidebar-bg: #4a4a4a;
+            --text-light: #ffffff;
+            --text-dark: #333333;
+            --card-bg: #ffffff;
+            --border-color: #e0e0e0;
+            --positive-color: #4caf50;
+            --chart-colors: #4285f4, #ea4335, #fbbc05, #34a853, #ff6d01, #46bdc6, #7baaf7, #f07b72;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 100%;
+            /* Be cautious with this on '*' as it can constrain elements unexpectedly */
+            /* max-height: 100%; */ /* Be cautious with this on '*' */
+        }
+
+        html, body {
+            background-color: #f5f5f5;
+            overflow-x: hidden!important; /* Prevent horizontal scroll */
+            overflow-y: auto; /* Allow vertical scroll for the whole page if content exceeds viewport */
+            height: 100%; /* Ensure body takes full height */
+        }
+
+        .container {
+            display: flex;
+          width: 100%;
+          max-width: 100vw;
+          overflow-x: hidden; /* Prevent horizontal overflow */
+            min-height: 100vh; /* Make container at least full viewport height */
+        }
+
+        /* =============== Sidebar Styles =============== */
+.sidebar {
+  width: 240px;
+  height: auto;
+  min-height: 100vh; /* Ensure sidebar spans full height */
+  background-color: #5a5a59;
+  color: white;
+  padding: 20px 0;
+  align-items: center;
+}
+.sidebar img {
+  margin-top: 10px;
+}
+.sidebar h2 {
+  margin-top: 30px;
+  font-size: 20px;
+  text-align: center;
+}
+.sidebar ul,
+.sidebar .menu-top {
+  margin-top: 30px;
+  list-style: none;
+  width: 100%;
+}
+.sidebar ul li {
+  display: flex;
+  align-items: center;
+  padding: 15px 30px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.sidebar ul li:hover {
+  background-color: #dc3545; /* Highlight on hover */
+}
+.sidebar ul li i {
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+.sidebar ul li a {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: white;
+}
+.sidebar ul li a:hover {
+  text-decoration: none;
+  color: white;
+}
+
+/* =============== Main Content Area =============== */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+main.content { /* Or just .content if it's exclusively for this main area */
+    flex: 1; /* Makes this element take up available space in the parent .container */
+    display: flex;
+    flex-direction: column;
+    /* Optional: Add to prevent internal content from causing horizontal scroll on this main block */
+    /* overflow-x: hidden; */
+    /* Optional: Sometimes helps with flex item sizing issues */
+    /* min-width: 0; */
+}
+
+/* =============== Navbar Styles =============== */
+.navbar {
+  height: 120px;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  border-bottom: 1px solid #ccc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.navbar .page-info h1 {
+  font-size: 20px;
+  margin-bottom: 5px;
+  color: #212B36;
+}
+.navbar .page-info p {
+  font-size: 14px;
+  color: #637381;
+}
+.navbar .user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.navbar .user-label {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-right: 15px;
+}
+.navbar .user-name {
+  font-weight: 600;
+  font-size: 14px;
+  color: #212B36;
+}
+.navbar .user-role {
+  font-size: 12px;
+  color: #637381;
+}
+.navbar .user-icon,
+.navbar .notification-icon {
+  width: 32px;
+  height: 32px;
+  background-color: #EFF4FB;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  border: 1px solid #E2E8F0;
+  cursor: pointer;
+}
+.navbar .notification-icon {
+  margin-right: 40px;
+}
+.navbar .notification-icon i,
+.navbar .dropdown-icon i {
+  color: #333;
+}
+
+/* =============== Dropdown Menu Styles =============== */
+.profile-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #fff;
+  border: 1px solid #E2E8F0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  list-style: none;
+  padding: 5px 0;
+  margin-top: 10px;
+  z-index: 1000;
+  min-width: 160px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.profile-dropdown-menu li a {
+  display: block;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #212B36;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+.profile-dropdown-menu li a:hover {
+  background-color: #EFF4FB;
+  color: #dc3545;
+}
+.profile-dropdown-menu[hidden] {
+  display: none;
+}
+.user-profile-container.active {
+  background-color: rgba(157, 157, 157, 0.1);
+  border-radius: 8px;
+}
+        .user-actions {
+            display: flex;
+            align-items: center;
+        }
+
+        .export-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            margin-right: 20px;
+            display:none;
+        }
+
+        .export-btn i {
+            margin-right: 8px;
+        }
+
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+        }
+
+        .notification {
+            position: relative;
+            margin-right: 15px;
+            cursor: pointer;
+        }
+
+        .notification-dot {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 8px;
+            height: 8px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+        }
+
+        .user-info {
+            margin-right: 10px;
+            text-align: right;
+        }
+
+        .user-name {
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .user-role {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .user-avatar img {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        /* Dashboard Grid */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* Default to 2 columns */
+            grid-gap: 20px;
+            padding: 20px;
+            width: 100%; /* Ensure grid takes full width of its container */
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            padding: 20px;
+            display: flex; /* Use flexbox for card layout */
+            flex-direction: column; /* Stack card elements vertically */
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center; /* Vertically align items in header */
+            margin-bottom: 20px;
+            flex-shrink: 0; /* Prevent header from shrinking */
+        }
+
+        .card-header h2 {
+            font-size: 18px;
+            color: var(--text-dark);
+            margin: 0; /* Remove default margin from h2 */
+        }
+
+        .monthly-revenue .card-header {
+            /* No specific alignment needed if using flex defaults for card-header */
+        }
+
+        .monthly-revenue .card-actions {
+            position: relative; /* For absolute positioning of the popup */
+        }
+
+        /* Simple Year Display Button */
+        .simple-year-display {
+            border: 1px solid var(--border-color);
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            display: inline-flex; /* Use inline-flex for alignment */
+            align-items: center;
+            background-color: var(--card-bg);
+            font-size: 14px;
+            color: var(--text-dark);
+            min-width: 100px; /* Adjust as needed */
+            justify-content: space-between; /* Space out text and icon */
+        }
+        .simple-year-display:hover {
+            border-color: #999;
+        }
+        .simple-year-display i.fa-chevron-down {
+            margin-left: 8px;
+            font-size: 12px;
+        }
+
+        /* Year Selector Popup */
+        #complexYearSelectorPopup {
+            display: none; /* Initially hidden */
+            position: absolute;
+            top: calc(100% + 5px); /* Position below the button */
+            right: 0; /* Align to the right of .card-actions */
+            min-width: 220px; /* Adjust width as needed */
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 0.375rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            padding: 15px;
+           flex-shrink: 0; /* Prevent popup from shrinking */
+            z-index: 100; /* Ensure it's above other elements */
+        }
+
+        #complexYearSelectorPopup .heading {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 1rem; /* Increased margin */
+            text-align: left;
+        }
+
+        #complexYearSelectorPopup .form-group {
+            margin-bottom: 0.75rem;
+        }
+
+        #complexYearSelectorPopup .label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #555;
+            margin-bottom: 0.375rem;
+        }
+
+        #complexYearSelectorPopup .select,
+        #complexYearSelectorPopup .input {
+            box-sizing: border-box;
+            width: 100% !important;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 0.375rem;
+            color: #333;
+            font-size: 0.8rem;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-weight: 400;
+        }
+        #complexYearSelectorPopup .select {
+             line-height: normal;
+             margin:0;
+             /* Remove onfocus/onblur/onchange from HTML select for better control with JS if needed */
+        }
+
+        #complexYearSelectorPopup .select:focus,
+        #complexYearSelectorPopup .input:focus {
+            outline: none;
+            border-color: var(--primary-color); /* Use primary color for focus */
+            box-shadow: 0 0 0 0.2rem rgba(230, 57, 70, 0.25); /* Use primary color for focus shadow */
+        }
+
+        #complexYearSelectorPopup select option { /* General option styling */
+            padding: 5px;
+        }
+        /* Keep hover/checked styles if they work well, otherwise simplify */
+        #complexYearSelectorPopup select option:hover {
+            background-color: var(--primary-color) !important;
+            color: white !important;
+        }
+        #complexYearSelectorPopup select option:checked { /* This might be aggressive */
+            /* box-shadow: 0 0 10px 100px var(--primary-color) inset !important; */
+            background-color: var(--primary-color) !important;
+            color: white !important;
+        }
+
+
+        #complexYearSelectorPopup #custom-year-input-group {
+            display: none;
+            margin-top: 0.75rem;
+        }
+
+        #complexYearSelectorPopup .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.6rem 1rem; /* Slightly larger padding */
+            background-color: var(--primary-color);
+            color: white;
+            font-size: 0.85rem; /* Slightly larger font */
+            font-weight: 550;
+            border: none;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            transition: background-color 0.15s ease-in-out, transform 0.1s ease;
+            width: 100%;
+            margin-top: 1rem; /* Increased margin */
+        }
+        #complexYearSelectorPopup .button:hover {
+            background-color: #c82333;
+            transform: translateY(-1px);
+        }
+        #complexYearSelectorPopup .button:active {
+            background-color: #b11e2d;
+            transform: translateY(0);
+        }
+
+        .chart-container {
+            flex-grow: 1; /* Allow chart container to take available space in card */
+            position: relative; /* Needed for Chart.js responsiveness and center value */
+            min-height: 250px; /* Minimum height for charts */
+        }
+
+
+        /* Center Value for Doughnut Chart */
+        .revenue-breakdown .chart-container .center-value {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        /* Product List */
+        .product-list { list-style: none; padding-left: 0; }
+        .product-item { display: flex; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--border-color); }
+        .product-item:last-child { border-bottom: none; }
+        .product-dot { width: 10px; height: 10px; background-color: var(--primary-color); border-radius: 50%; margin-right: 10px; flex-shrink: 0; }
+        .product-name { flex: 1; font-size: 14px; margin-right: 10px; }
+        .product-units { font-size: 14px; color: #666; white-space: nowrap; }
+
+        /* Inventory Value */
+        .inventory-content { display: flex; align-items: center; justify-content: center; flex-grow: 1; /* Allow to take space */ }
+        .inventory-icon { background-color: rgba(255, 193, 7, 0.1); width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 20px; flex-shrink: 0; }
+        .inventory-icon i { font-size: 32px; color: #ffc107; } /* Larger icon */
+        .inventory-details { text-align: left; }
+        .inventory-amount { font-size: 28px; font-weight: 600; margin-bottom: 5px; color: var(--text-dark); }
+        .inventory-change { font-size: 14px; display: flex; align-items: center; }
+        .inventory-change.positive { color: var(--positive-color); }
+        .inventory-change.negative { color: var(--primary-color); } /* Added for negative change */
+        .inventory-change i { margin-right: 5px; }
+
+
+        /* General Icon Styles */
+        .nav-menu a i, .sign-out a i, .export-btn i, .notification i, .inventory-change i {
+            margin-right: 10px;
+            width: 18px;
+            text-align: center;
+        }
+        
+        
+        .popover-container {
+            position: absolute; 
+            top: calc(100% + 5px); 
+            right: 0; /* This ensures right alignment */
+            z-index: 10; 
+            display: none;
+            background-color: #ffffff; 
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            padding: 16px;
+            min-width: 250px; 
+        }
+
+        .popover-container.show {
+        display: block; 
+        }
+
+        
+        #popover-trigger-revenue { 
+        border: 1px solid #d1d5db; /* was var(--popover-border-color) */
+        padding: 6px 12px;
+        border-radius: 4px;
+        cursor: pointer;
+        background-color: #ffffff; 
+        font-size: 14px;
+        color: #374151; /* was var(--popover-text-dark) */
+        min-width: 100px; 
+        display: inline-flex; 
+        align-items: center; 
+        justify-content: center; 
+        }
+
+        /* --- START: Date Range Popover CSS --- */
+
+
+
+        #popover-trigger-revenue { 
+        border: 1px solid #d1d5db; /* was var(--popover-border-color) */
+        padding: 6px 12px;
+        border-radius: 4px;
+        cursor: pointer;
+        background-color: #ffffff; 
+        font-size: 14px;
+        color: #374151; /* was var(--popover-text-dark) */
+        min-width: 100px; 
+        display: inline-flex; 
+        align-items: center; 
+        justify-content: center; 
+        }
+
+        #popover-trigger-revenue:hover {
+        background-color: #f3f4f6; 
+        }
+
+        .date-label { 
+            display: block;
+            font-size: 0.75rem; 
+            font-weight: 500;
+            color: #555;
+            margin-bottom: 0.375rem; 
+        }
+
+        .popover-container input[type="date"] {
+            box-sizing: border-box;
+            width: 100% !important; 
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 0.375rem; 
+            color: #333;
+            font-size: 0.8rem; 
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            font-weight: 400;
+            box-shadow: none; 
+            appearance: none; 
+        }
+
+        .popover-container input[type="date"]:focus {
+            outline: none;
+            border-color: var(--primary-color); /* Or your specific primary color e.g., #e63946 */
+            box-shadow: 0 0 0 0.2rem rgba(230, 57, 70, 0.25); 
+        }
+
+        #apply-button-revenue { 
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.6rem 1rem; 
+            background-color: var(--primary-color); /* Or your specific primary color e.g., #e63946 */
+            color: white;
+            font-size: 0.85rem; 
+            font-weight: 550;
+            border: none;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            transition: background-color 0.15s ease-in-out, transform 0.1s ease;
+            width: 100%;
+            margin-top: 1rem; 
+        }
+
+        #apply-button-revenue:hover {
+            background-color: #d0323e; 
+            transform: translateY(-1px);
+        }
+
+        #apply-button-revenue:active {
+            background-color: #b92b36; 
+            transform: translateY(0);
+        }
+
+
+        /* Legend Styles */
+        .legend-container { margin-top: 15px; flex-shrink: 0; }
+        .legend-items { display: flex; flex-wrap: wrap; gap: 10px 15px; /* row-gap column-gap */ justify-content: center; }
+        .legend-item { display: flex; align-items: center; font-size: 12px; }
+        .legend-color { width: 10px; height: 10px; border-radius: 50%; margin-right: 5px; flex-shrink: 0; }
+
+        /* Revenue Breakdown Card Specifics */
+        
+        .revenue-breakdown .card-actions .date-picker .date-btn {
+            background: none; border: 1px solid var(--border-color); padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 13px;
+            display: inline-flex; align-items: center;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 1200px) { /* For tablets and smaller desktops */
+            .dashboard-grid {
+                grid-template-columns: 1fr; /* Single column for cards */
+            }
+        }
+        
+        
+        @media (max-width: 768px) {
+
+            .card-header {
+    display: flex;
+    justify-content: space-between; /* Keeps h2 on left, button on right */
+    align-items: center;
+   
+}
+
+.card-actions {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+}
+
+
+    #popover-trigger-revenue {
+        float: right;
+    }
+
+        .simple-year-display{
+            float:right;
+        }
+    
+        .container {
+    flex-direction: column;
+    min-width:100%;
+            width: 100vw; /* Important for mobile */
+        }
+       #popover-trigger-revenue {
+        position: relative;
+        margin-left: auto;
+        margin-right: 0;
+       }
+
+        .content {
+            width: 100% !important;
+            max-width: 100vw;
+        }
+            .sidebar {
+               
+                 width: 100% !important;
+            max-width: 100vw; /* Prevent overflow */
+                height: auto; /* Adjust height as needed */
+                padding: 10px;
+                /* Could make sidebar collapsible here */
+            }
+            .top-bar {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 15px;
+            }
+            .user-actions {
+                margin-top: 15px;
+                width: 100%;
+                justify-content: space-between;
+            }
+            .page-title h1 { font-size: 20px; }
+            .page-title p { font-size: 12px; }
+
+            /* Hide monthly revenue chart on very small screens if it causes layout issues */
+            /* .monthly-revenue .chart-container { display: none; } */
+            
+            #complexYearSelectorPopup {
+                width: 180px; /* Adjust popup width for smaller screens */
+                padding: 10px;
+                position:absolute;
+            }
+            #complexYearSelectorPopup .heading { font-size: 0.8rem; margin-bottom: 0.5rem;}
+            #complexYearSelectorPopup .button { padding: 0.5rem; font-size: 0.8rem; margin-top: 0.5rem;}
+
+            .card-header { flex-direction: column; align-items: flex-start; }
+            .card-header h2 { margin-bottom: 10px; }
+            .card-actions { width: 100%; justify-content: flex-end;/* Align actions to right */ }
+            .monthly-revenue .card-actions { /* Ensure it doesn't make header too tall */
+               
+            }
+        }
+ 
+        
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+    <img src="ahk_logo.png"/>
+    <h2>Admin Menu</h2>
+    <ul class="menu-top">
+        <!-- Navigation links -->
+        <li><a href="admin_dashboard.php"><i class="fas fa-home"></i> Dashboard</a></li>
+        <li style="margin-left: 2px;"><a href="admin_inventory.php"><i class="fas fa-toolbox" style="margin-right: 12px;"></i> Inventory</a></li>
+        <li><a href="admin_customer.php"><i class="fas fa-users"></i> Customers</a></li>
+        <li style="margin-left: 3px;"><a href="admin_jobcards.php"><i class="fas fa-file-alt" style="margin-right: 12px;"></i> Job Cards</a></li>
+        <li><a href="admin_payment.php"><i class="fas fa-credit-card"></i> Payment</a></li>
+        <li class="active"><a href="admin_analytics.php"><i class="fas fa-chart-line"></i> Analytics</a></li>
+        <li><a href="admin_supplier.php"><i class="fas fa-boxes"></i> Suppliers</a></li>
+        <li><a href="admin_setting.php"><i class="fas fa-cog"></i> Settings</a></li>
+    </ul>
+</div>
+
+
+<!-- Main content section -->
+
+        <main class="main">
+          <div class="navbar">
+        <div class="page-info">
+            <h1>Analytics</h1>
+            <p>Track, view and analyze your workshop metrics and performances</p>
+        </div>
+        <!-- User profile and notification -->
+        <div style="display: flex; align-items: center;">
+            <div class="notification-icon"><i class="fas fa-bell"></i></div>
+            <div class="user-profile-container" style="position: relative;">
+                <div class="user-info" style="cursor:pointer;">
+                    <div class="user-label">
+                        <span class="user-name">Boss</span>
+                        <span class="user-role">Admin</span>
+                    </div>
+                    <div class="user-icon"><i class="fas fa-user"></i></div>
+                    <span class="dropdown-icon"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <!-- Dropdown menu for user options -->
+                <ul class="profile-dropdown-menu" hidden>
+                    <li><a href="admin_profile.php">My Profile</a></li>
+                    <li><a href="admin_setting.php">Settings</a></li>
+                    <li><a href="logout.php">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+                      <div class="dashboard-grid">
+                <div class="card monthly-revenue">
+                    <div class="card-header">
+                        <h2 style="display:inline-block">Monthly Revenue</h2>
+                        <div class="card-actions">
+                            <div class="simple-year-display" id="simpleYearDisplayButton">
+                                <span style="display: inline-block" id="simpleYearDisplayText">This Year</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div id="complexYearSelectorPopup">
+                                <h1 class="heading">Select Year</h1>
+                                <div class="form-group">
+                                    <label for="year-select" class="label">Choose Year:</label>
+                                    <select id="year-select" class="select">
+                                        <option value="this-year">This Year</option>
+                                        <option value="last-year">Last Year</option>
+                                        <option value="custom-year">Custom Year</option>
+                                    </select>
+                                </div>
+                                <div id="custom-year-input-group" class="form-group input-group">
+                                    <label for="custom-year" class="label">Enter Year:</label>
+                                    <input type="number" id="custom-year" placeholder="e.g., 2025" class="input">
+                                </div>
+                                <button id="applyYearButton" class="button">Apply</button> </div>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="revenueChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="card revenue-breakdown">
+                    <div class="card-header">
+                        <h2>Revenue Breakdown</h2>
+                        <div class="card-actions">
+                            <div class="relative inline-block">
+    <button id="popover-trigger-revenue">
+        Filter Date
+    </button>
+    <div id="date-popover-revenue" class="popover-container">
+        <div class="mb-4">
+            <label for="from-date-revenue" class="date-label">From:</label>
+            <input type="date" id="from-date-revenue" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        </div>
+        <div class="mb-4">
+            <label for="to-date-revenue" class="date-label">To:</label>
+            <input type="date" id="to-date-revenue" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        </div>
+        <div class="flex justify-end">
+            <button id="apply-button-revenue">
+                Apply
+            </button>
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="breakdownChart"></canvas>
+                        <div class="center-value" id="breakdownCenterValue">RM 0</div> </div>
+                    <div class="legend-container">
+                        <div class="legend-items" id="breakdownLegend">
+                            </div>
+                    </div>
+                </div>
+                
+                <div class="card top-products">
+                    <div class="card-header"><h2>Top Inventory Products Quantity</h2></div>
+                    <ul class="product-list" id="topProductsList">
+                        <li class="product-item"><span class="product-dot" style="background-color: #4285f4;"></span><span class="product-name">Perodua ATF SP3 GEAR OIL 1L</span><span class="product-units">43 units</span></li>
+                        <li class="product-item"><span class="product-dot" style="background-color: #ea4335;"></span><span class="product-name">Engine Oil Synthetic 5L</span><span class="product-units">38 units</span></li>
+                        <li class="product-item"><span class="product-dot" style="background-color: #fbbc05;"></span><span class="product-name">Brake Pads - Front Set</span><span class="product-units">31 units</span></li>
+                        <li class="product-item"><span class="product-dot" style="background-color: #34a853;"></span><span class="product-name">Air Filter - Model X</span><span class="product-units">25 units</span></li>
+                        <li class="product-item"><span class="product-dot" style="background-color: #ff6d01;"></span><span class="product-name">Wiper Blades (Pair)</span><span class="product-units">22 units</span></li>
+                    </ul>
+                </div>
+                
+                <div class="card inventory-value">
+                    <div class="card-header"><h2>Inventory Value</h2></div>
+                    <div class="inventory-content">
+                        <div class="inventory-icon">
+                            <i class="fas fa-coins"></i>
+                        </div>
+                        <div class="inventory-details">
+                            <h3 class="inventory-amount" id="inventoryTotalValue">$ 0.00</h3>
+                            <p class="inventory-change positive" id="inventoryChange">
+                                <i class="fas fa-arrow-up"></i> <span>0.0% vs last period</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>  
+
+        </main>
+    </div>
+    
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // --- Year Selector Logic for Monthly Revenue ---
+        const simpleYearDisplayButton = document.getElementById('simpleYearDisplayButton');
+        const simpleYearDisplayText = document.getElementById('simpleYearDisplayText');
+        const complexYearSelectorPopup = document.getElementById('complexYearSelectorPopup');
+        const yearSelect = document.getElementById("year-select");
+        const customYearInputGroup = document.getElementById("custom-year-input-group");
+        const customYearInput = document.getElementById("custom-year");
+        const applyYearButton = document.getElementById("applyYearButton"); // Updated ID
+
+        // Set initial text for the simple display to the current year
+        const currentGlobalYear = new Date().getFullYear();
+        simpleYearDisplayText.textContent = currentGlobalYear.toString();
+
+        simpleYearDisplayButton.addEventListener('click', function(event) {
+            event.stopPropagation();
+            const isHidden = complexYearSelectorPopup.style.display === 'none' || complexYearSelectorPopup.style.display === '';
+            complexYearSelectorPopup.style.display = isHidden ? 'block' : 'none';
+            if (isHidden) { // If showing, set select to match current display
+                if (simpleYearDisplayText.textContent === currentGlobalYear.toString()) {
+                    yearSelect.value = "this-year";
+                } else if (simpleYearDisplayText.textContent === (currentGlobalYear - 1).toString()) {
+                    yearSelect.value = "last-year";
+                } else {
+                    yearSelect.value = "custom-year";
+                    customYearInput.value = simpleYearDisplayText.textContent;
+                }
+                customYearInputGroup.style.display = (yearSelect.value === "custom-year") ? "block" : "none";
+            }
+        });
+
+        document.addEventListener('click', function(event) {
+            if (!complexYearSelectorPopup.contains(event.target) && event.target !== simpleYearDisplayButton && !simpleYearDisplayButton.contains(event.target)) {
+                complexYearSelectorPopup.style.display = 'none';
+            }
+        });
+
+        yearSelect.addEventListener("change", function() {
+            customYearInputGroup.style.display = (this.value === "custom-year") ? "block" : "none";
+            if (this.value !== "custom-year") {
+                customYearInput.value = ""; // Clear custom input if not selected
+            }
+        });
+
+        applyYearButton.addEventListener("click", function() {
+            let selectedDisplayString = "";
+            let yearForData = currentGlobalYear;
+
+            if (yearSelect.value === "this-year") {
+                yearForData = currentGlobalYear;
+                selectedDisplayString = yearForData.toString();
+            } else if (yearSelect.value === "last-year") {
+                yearForData = currentGlobalYear - 1;
+                selectedDisplayString = yearForData.toString();
+            } else if (yearSelect.value === "custom-year") {
+                const customYearVal = customYearInput.value.trim();
+                if (!customYearVal || !/^\d{4}$/.test(customYearVal) || parseInt(customYearVal) < 1900 || parseInt(customYearVal) > 2100) {
+                    // Basic alert, consider a more styled message box
+                    const messageBox = document.createElement('div');
+                    messageBox.textContent = "Please enter a valid 4-digit year (e.g., 2024).";
+                    messageBox.style.cssText = "position:fixed; top:20px; left:50%; transform:translateX(-50%); background-color: #f8d7da; color: #721c24; padding:10px 20px; border-radius:5px; z-index:1001; border: 1px solid #f5c6cb;";
+                    document.body.appendChild(messageBox);
+                    setTimeout(() => messageBox.remove(), 3000);
+                    customYearInput.focus();
+                    return;
+                }
+                yearForData = parseInt(customYearVal);
+                selectedDisplayString = yearForData.toString();
+            }
+
+            simpleYearDisplayText.textContent = selectedDisplayString;
+            complexYearSelectorPopup.style.display = 'none';
+            updateRevenueChartData(yearForData);
+        });
+
+        // --- Chart.js Instances and Updaters ---
+        let revenueChartInstance, breakdownChartInstance;
+
+       // REMOVE or COMMENT OUT the old getRevenueDataForYear function:
+        /*
+        function getRevenueDataForYear(year) {
+            // ... dummy data logic ...
+        }
+        */
+
+        // Initialize or update Revenue Chart
+        function updateRevenueChartData(year) {
+            console.log(`Fetching monthly revenue data for year: ${year}`); // For debugging
+
+            fetch(`get_monthly_revenue.php?year=${year}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Monthly revenue data received:', data); // For debugging
+
+                    if (data.error) {
+                        console.error('Error from PHP (monthly revenue):', data.error);
+                        // Optionally, display an error message to the user on the chart or page
+                        // For now, it will show 0s for all months based on the PHP error response
+                    }
+
+                    // Ensure data.labels and data.values exist, even if there was an error reported in data.error
+                    const chartLabels = data.labels || ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+                    const chartValues = data.values || Array(12).fill(0);
+
+
+                    if (revenueChartInstance) {
+                        revenueChartInstance.data.labels = chartLabels;
+                        revenueChartInstance.data.datasets[0].data = chartValues;
+                        revenueChartInstance.update();
+                    } else {
+                        const revenueCtx = document.getElementById('revenueChart').getContext('2d');
+                        revenueChartInstance = new Chart(revenueCtx, {
+                            type: 'line',
+                            data: {
+                                labels: chartLabels, // Use fetched labels
+                                datasets: [{
+                                    label: 'Monthly Revenue',
+                                    data: chartValues, // Use fetched values
+                                    borderColor: '#b11e2d',
+                                    backgroundColor: 'rgba(230, 57, 70, 0.1)',
+                                    tension: 0.4,
+                                    fill: true,
+                                    pointRadius: 3,
+                                    pointHoverRadius: 6,
+                                    pointBackgroundColor: 'var(--primary-color)'
+                                }]
+                            },
+                            options: {
+                                responsive: true, maintainAspectRatio: false,
+                                plugins: { legend: { display: false }, tooltip: { mode: 'index', intersect: false, callbacks: { label: (ctx) => `RM ${ctx.raw.toLocaleString()}` } } },
+                                scales: { y: { beginAtZero: true, ticks: { callback: (val) => 'RM ' + val.toLocaleString() }, grid: { drawBorder: false } }, x: { grid: { display: false } } }
+                            }
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Fetch error for monthly revenue:', error);
+                    // Handle fetch error (e.g., network issue, PHP script not found)
+                    // You might want to display a more user-friendly error on the chart
+                    const errorLabels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+                    const errorValues = Array(12).fill(0);
+                    if (revenueChartInstance) {
+                        revenueChartInstance.data.labels = errorLabels;
+                        revenueChartInstance.data.datasets[0].data = errorValues;
+                        revenueChartInstance.data.datasets[0].label = 'Error Loading Data';
+                        revenueChartInstance.update();
+                    } else {
+                         const revenueCtx = document.getElementById('revenueChart').getContext('2d');
+                         revenueChartInstance = new Chart(revenueCtx, { /* ... configuration with error state ... */ });
+                    }
+                    // Optionally alert the user or show a message on the page
+                    const messageBox = document.createElement('div');
+                    messageBox.textContent = "Error loading monthly revenue data. Please try again later.";
+                    messageBox.style.cssText = "position:fixed; top:20px; left:50%; transform:translateX(-50%); background-color: #f8d7da; color: #721c24; padding:10px 20px; border-radius:5px; z-index:1001; border: 1px solid #f5c6cb;";
+                    document.body.appendChild(messageBox);
+                    setTimeout(() => messageBox.remove(), 5000);
+                });
+        }
+
+        const popoverTriggerRevenue = document.getElementById('popover-trigger-revenue');
+const datePopoverRevenue = document.getElementById('date-popover-revenue');
+const applyButtonRevenue = document.getElementById('apply-button-revenue');
+const fromDateRevenueInput = document.getElementById('from-date-revenue');
+const toDateRevenueInput = document.getElementById('to-date-revenue');
+
+if (popoverTriggerRevenue && datePopoverRevenue && applyButtonRevenue && fromDateRevenueInput && toDateRevenueInput) {
+    popoverTriggerRevenue.addEventListener('click', (event) => {
+        event.stopPropagation(); // Prevent click from immediately closing via document listener
+        datePopoverRevenue.classList.toggle('show');
+    });
+
+    // Hide popover when clicking outside
+    document.addEventListener('click', (event) => {
+        if (datePopoverRevenue.classList.contains('show') &&
+            !popoverTriggerRevenue.contains(event.target) &&
+            !datePopoverRevenue.contains(event.target)) {
+            datePopoverRevenue.classList.remove('show');
+        }
+    });
+    
+    const formatDateForDisplay = (dateStr) => {
+        if (!dateStr) return '';
+        const [year, month, day] = dateStr.split('-');
+        return `${day}/${month}/${year}`;
+    };
+
+    applyButtonRevenue.addEventListener('click', () => {
+        const fromDateVal = fromDateRevenueInput.value;
+        const toDateVal = toDateRevenueInput.value;
+
+        // Update the trigger button text
+        if (fromDateVal && toDateVal) {
+            popoverTriggerRevenue.textContent = `${formatDateForDisplay(fromDateVal)} - ${formatDateForDisplay(toDateVal)}`;
+        } else if (fromDateVal) {
+            popoverTriggerRevenue.textContent = `From: ${formatDateForDisplay(fromDateVal)}`;
+        } else if (toDateVal) {
+            popoverTriggerRevenue.textContent = `To: ${formatDateForDisplay(toDateVal)}`;
+        } else {
+            popoverTriggerRevenue.textContent = 'Filter Date'; // Reset to default
+        }
+
+        datePopoverRevenue.classList.remove('show');
+
+        // Fetch and update breakdown chart with the new date range
+        fetchRevenueBreakdownData(fromDateVal, toDateVal);
+    });
+}
+        // Define an array of distinct colors for the doughnut chart segments
+        const PREDEFINED_BREAKDOWN_COLORS = [
+            '#4285F4', '#EA4335', '#FBBC05', '#34A853', '#FF6D01',
+            '#46BDC6', '#7BAAF7', '#F07B72', '#B36AFB', '#FF8BCB' 
+            // Add more colors if you expect more categories
+        ];
+
+        // Function to fetch and update Revenue Breakdown Chart
+        function fetchRevenueBreakdownData(fromDate = null, toDate = null) {
+            let fetchUrl = 'get_revenue_breakdown_data.php';
+            const params = new URLSearchParams();
+            if (fromDate) {
+                params.append('from_date', fromDate);
+            }
+            if (toDate) {
+                params.append('to_date', toDate);
+            }
+            if (params.toString()) {
+                fetchUrl += `?${params.toString()}`;
+            }
+            console.log('Fetching revenue breakdown from:', fetchUrl); // For debugging
+
+            fetch(fetchUrl)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Revenue breakdown data received:', data); // For debugging
+                    if (data.error) {
+                        console.error('Error from PHP (revenue breakdown):', data.error);
+                        updateBreakdownChart({ labels: ['Error'], values: [0], colors: ['#cccccc'] }); 
+                        return;
+                    }
+                    
+                    let chartColors = [];
+                    if (data.labels.length === 0) { // Handle no data case explicitly for colors
+                         chartColors = ['#cccccc']; // Default color for "no data"
+                    } else if (data.labels.length > PREDEFINED_BREAKDOWN_COLORS.length) {
+                        for (let i = 0; i < data.labels.length; i++) {
+                            chartColors.push(PREDEFINED_BREAKDOWN_COLORS[i % PREDEFINED_BREAKDOWN_COLORS.length]);
+                        }
+                    } else {
+                        chartColors = PREDEFINED_BREAKDOWN_COLORS.slice(0, data.labels.length);
+                    }
+
+                    updateBreakdownChart({ 
+                        labels: data.labels.length > 0 ? data.labels : ['No data'], // Ensure 'No data' label if empty
+                        values: data.values.length > 0 ? data.values : [0], // Ensure a value for 'No data'
+                        colors: chartColors 
+                    });
+                })
+                .catch(error => {
+                    console.error('Fetch error for revenue breakdown:', error);
+                    updateBreakdownChart({ labels: ['Load Failed'], values: [0], colors: ['#cccccc'] });
+                });
+        }
+
+        // Initialize or update Revenue Breakdown Chart (actual rendering)
+        function updateBreakdownChart(data) {
+            const breakdownCtx = document.getElementById('breakdownChart').getContext('2d');
+            const legendContainer = document.getElementById('breakdownLegend');
+            const centerValueEl = document.getElementById('breakdownCenterValue');
+            
+            const totalValue = data.values.reduce((a, b) => a + b, 0);
+            centerValueEl.textContent = `RM ${totalValue.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+
+            if (breakdownChartInstance) {
+                breakdownChartInstance.data.labels = data.labels;
+                breakdownChartInstance.data.datasets[0].data = data.values;
+                breakdownChartInstance.data.datasets[0].backgroundColor = data.colors;
+                breakdownChartInstance.update();
+            } else {
+                breakdownChartInstance = new Chart(breakdownCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: data.labels,
+                        datasets: [{ data: data.values, backgroundColor: data.colors, borderWidth: 0, hoverOffset: 8 }]
+                    },
+                    options: {
+                        responsive: true, maintainAspectRatio: false, cutout: '70%',
+                        plugins: {
+                            legend: { display: false }, // Using custom legend
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        const val = context.raw;
+                                        const percentage = totalValue > 0 ? Math.round((val / totalValue) * 100) : 0;
+                                        if (context.label === 'Error' || context.label === 'Load Failed' || context.label === 'No data') {
+                                            return context.label;
+                                        }
+                                        return `${context.label}: RM ${val.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (${percentage}%)`;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Update Legend
+            legendContainer.innerHTML = ''; // Clear existing legend
+            if (data.labels && data.labels.length > 0 && data.labels[0] !== 'Error' && data.labels[0] !== 'Load Failed' && data.labels[0] !== 'No data') {
+                data.labels.forEach((label, index) => {
+                    const item = document.createElement('div');
+                    item.className = 'legend-item';
+                    item.innerHTML = `<span class="legend-color" style="background-color: ${data.colors[index % data.colors.length]}"></span><span>${label}</span>`;
+                    legendContainer.appendChild(item);
+                });
+            } else if (data.labels && data.labels.length > 0) { // Handle Error, Load Failed, No data messages
+                 const item = document.createElement('div');
+                 item.className = 'legend-item';
+                 item.textContent = data.labels[0]; // Display the message like 'Error', 'Load Failed', or 'No data'
+                 legendContainer.appendChild(item);
+            }
+        }
+        
+        // Top Products (Static example, can be dynamic)
+       
+        // Top Products (Dynamic from database)
+        function loadTopProducts() {
+            fetch('get_top_products_qty.php') // Fetch from the new PHP script
+                .then(response => response.json())
+                .then(data => {
+                    const listEl = document.getElementById('topProductsList');
+                    listEl.innerHTML = ''; // Clear existing items
+
+                    if (data.error) {
+                        console.error('Error fetching top products:', data.error);
+                        const itemEl = document.createElement('li');
+                        itemEl.className = 'product-item';
+                        itemEl.textContent = 'Could not load top products.';
+                        listEl.appendChild(itemEl);
+                        return;
+                    }
+
+                    if (data.length === 0) {
+                        const itemEl = document.createElement('li');
+                        itemEl.className = 'product-item';
+                        itemEl.textContent = 'No products found.';
+                        listEl.appendChild(itemEl);
+                        return;
+                    }
+                    
+                    // Define an array of distinct colors for the dots
+                    const dotColors = ['#4285f4', '#ea4335', '#fbbc05', '#34a853', '#ff6d01'];
+
+                    data.forEach((product, index) => {
+                        const itemEl = document.createElement('li');
+                        itemEl.className = 'product-item';
+                        // Use modulo operator to cycle through dotColors if more than 5 products (though query limits to 5)
+                        const dotColor = dotColors[index % dotColors.length]; 
+                        itemEl.innerHTML = `<span class="product-dot" style="background-color: ${dotColor};"></span><span class="product-name">${product.name}</span><span class="product-units">${product.stock} units</span>`;
+                        listEl.appendChild(itemEl);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching top products:', error);
+                    const listEl = document.getElementById('topProductsList');
+                    listEl.innerHTML = ''; // Clear existing items
+                    const itemEl = document.createElement('li');
+                    itemEl.className = 'product-item';
+                    itemEl.textContent = 'Error loading top products.';
+                    listEl.appendChild(itemEl);
+                });
+        }
+// ... existing code ...
+
+function loadInventoryValue() {
+    fetch('get_inventory_data.php')
+        .then(response => response.json())
+        .then(data => {
+            const totalValue = data.total_value;
+            const changePercent = data.percentage_change;
+            const isPositive = changePercent >= 0;
+
+            document.getElementById('inventoryTotalValue').textContent = `$ ${totalValue.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+            const changeEl = document.getElementById('inventoryChange');
+            changeEl.className = `inventory-change ${isPositive ? 'positive' : 'negative'}`;
+            changeEl.querySelector('i').className = `fas ${isPositive ? 'fa-arrow-up' : 'fa-arrow-down'}`;
+            changeEl.querySelector('span').textContent = `${Math.abs(changePercent)}% vs last period`;
+        })
+        .catch(error => {
+            console.error('Error fetching inventory data:', error);
+            document.getElementById('inventoryTotalValue').textContent = '$ 0.00';
+            document.getElementById('inventoryChange').innerHTML = '<i class="fas fa-minus"></i><span>0.0% vs last period</span>';
+        });
+}
+
+
+        // Initial chart loads
+        updateRevenueChartData(currentGlobalYear); // Load current year's revenue data
+        fetchRevenueBreakdownData(); // Load initial breakdown data (no date filter)
+        loadTopProducts();
+        loadInventoryValue();
+
+    });
+
+    // --- Profile Dropdown Logic ---
+document.addEventListener('DOMContentLoaded', () => {
+    const userProfile = document.querySelector('.user-profile-container');
+    const dropdown = document.querySelector('.profile-dropdown-menu');
+    const icon = userProfile.querySelector('.dropdown-icon i');
+
+    userProfile.addEventListener('click', e => {
+        e.stopPropagation(); // Prevent click from bubbling up
+        const isHidden = dropdown.hasAttribute('hidden');
+
+        // Toggle dropdown visibility
+        dropdown.toggleAttribute('hidden');
+        icon.classList.toggle('fa-chevron-down', !isHidden);
+        icon.classList.toggle('fa-chevron-up', isHidden);
+        userProfile.classList.toggle('active', isHidden);
+    });
+
+    // Hide dropdown when clicking outside
+    document.addEventListener('click', () => {
+        if (!dropdown.hasAttribute('hidden')) {
+            dropdown.setAttribute('hidden', '');
+            icon.classList.replace('fa-chevron-up', 'fa-chevron-down');
+            userProfile.classList.remove('active');
+        }
+    });
+});
+    
+    </script>
+</body>
+</html>
+

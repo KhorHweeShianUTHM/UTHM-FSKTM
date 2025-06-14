@@ -1,0 +1,617 @@
+/* =============== Global Reset & Font =============== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+/* =============== Page Body Layout =============== */
+body {
+  display: flex;
+  background-color: #f0f2f5;
+  color: #333;
+}
+
+/* =============== Sidebar Styles =============== */
+.sidebar {
+  width: 240px;
+  height: auto;
+  min-height: 100vh;
+  background-color: #5a5a59;
+  color: white;
+  padding: 20px 0;
+  align-items: center;
+}
+.sidebar img {
+  margin-top: 10px;
+}
+.sidebar h2 {
+  margin-top: 30px;
+  font-size: 20px;
+  text-align: center;
+}
+.sidebar ul,
+.sidebar .menu-top {
+  margin-top: 30px;
+  list-style: none;
+  width: 100%;
+}
+.sidebar ul li {
+  display: flex;
+  align-items: center;
+  padding: 15px 30px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.sidebar ul li:hover {
+  background-color: #dc3545;
+}
+.sidebar ul li i {
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+.sidebar ul li a {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: white;
+}
+.sidebar ul li a:hover {
+  text-decoration: none;
+  color: white;
+}
+
+/* =============== Main Content Area =============== */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* =============== Navbar Styles =============== */
+.navbar {
+  height: 120px;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  border-bottom: 1px solid #ccc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.navbar .page-info h1 {
+  font-size: 20px;
+  margin-bottom: 5px;
+  color: #212B36;
+}
+.navbar .page-info p {
+  font-size: 14px;
+  color: #637381;
+}
+.navbar .user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.navbar .user-label {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-right: 15px;
+}
+.navbar .user-name {
+  font-weight: 600;
+  font-size: 14px;
+  color: #212B36;
+}
+.navbar .user-role {
+  font-size: 12px;
+  color: #637381;
+}
+.navbar .user-icon,
+.navbar .notification-icon {
+  width: 32px;
+  height: 32px;
+  background-color: #EFF4FB;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  border: 1px solid #E2E8F0;
+  cursor: pointer;
+}
+.navbar .notification-icon {
+  margin-right: 40px;
+  position: relative; /* Added for notification popup positioning */
+}
+.navbar .notification-icon i,
+.navbar .dropdown-icon i {
+  color: #333;
+}
+
+/* =============== Dropdown Menu Styles =============== */
+.profile-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #fff;
+  border: 1px solid #E2E8F0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  list-style: none;
+  padding: 5px 0;
+  margin-top: 10px;
+  z-index: 1000;
+  min-width: 160px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.profile-dropdown-menu li a {
+  display: block;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #212B36;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+.profile-dropdown-menu li a:hover {
+  background-color: #EFF4FB;
+  color: #dc3545;
+}
+.profile-dropdown-menu[hidden] {
+  display: none;
+}
+.user-profile-container.active {
+  background-color: rgba(157, 157, 157, 0.1);
+  border-radius: 8px;
+}
+
+/* =============== Notification Popup Styles =============== */
+.notification-popup {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 380px;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  z-index: 1000;
+  margin-top: 10px;
+}
+
+.notification-popup[hidden] {
+  display: none;
+}
+
+.popup-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.popup-header h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.popup-header .mark-all-read {
+  font-size: 14px;
+  font-weight: 600;
+  color: #d9534f;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.popup-header .mark-all-read:hover {
+  text-decoration: underline;
+}
+
+.notification-list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.notification-item {
+  padding: 16px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.notification-item:last-child {
+  border-bottom: none;
+}
+
+.notification-item h3 {
+  margin: 0 0 4px 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.notification-item .notification-message {
+  margin: 0;
+  font-size: 14px;
+  color: #555;
+  line-height: 1.4;
+}
+
+.notification-item .notification-timestamp {
+  margin: 8px 0 0 0;
+  font-size: 12px;
+  color: #888;
+}
+
+.no-notifications {
+  text-align: center;
+  padding: 40px 20px;
+  color: #888;
+  font-size: 15px;
+}
+
+.popup-footer {
+  padding: 12px;
+  text-align: center;
+  border-top: 1px solid #e0e0e0;
+}
+
+.popup-footer .view-all-btn {
+  background-color: transparent;
+  border: none;
+  color: #333;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  padding: 8px;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+}
+
+.popup-footer .view-all-btn:hover {
+  background-color: #f8f9fa;
+}
+
+/* Active state for notification icon */
+.notification-container.active .notification-icon {
+  background-color: rgba(157, 157, 157, 0.1);
+}
+
+
+    /* popout css */
+    .popup-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 100;
+    justify-content: center;
+    align-items: center;
+    }
+
+    .popup-overlay.active {
+    display: flex;
+    }
+
+    .popup-form {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    width: 400px;
+    max-width: 90%;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+    }
+
+    .popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    }
+
+    .popup-header h2 {
+    margin: 0;
+    font-size: 20px;
+    }
+
+    .close-popup {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #333;
+    cursor: pointer;
+    }
+
+    .popup-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    }
+
+    .popup-form input,
+    .popup-form select {
+    width: 100%;
+    padding: 8px 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    }
+
+    .popup-actions {
+    text-align: right;
+    }
+
+
+    /* table css*/
+    .table-container {
+    width: 95%;       /* or try 80%, 95%, or fixed px like 800px */
+    max-width: 90%; /* optional: max width to avoid too wide */
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    box-sizing: border-box; /* makes padding included in width */
+    padding: 20px; /* increase bottom padding */
+    }
+
+
+    /* Table styles */
+    table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    margin-top: 0%;
+    /* margin removed here */
+    }
+
+    thead {
+    background-color: #eeeeee;
+    }
+
+    thead th {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: center; /* center column titles */
+    }
+
+    tbody td {
+    padding: 10px;
+    border: 1px solid #c0c0c0;
+    text-align: left;
+    }
+
+    tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+    }
+
+
+    .table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    }
+
+    .table-header h2 {
+    margin: 0;
+    font-size: 20px;
+    }
+
+
+
+    /* add payment button*/
+    #add-payment {
+    background-color: #ff4b4b;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+    }
+
+    #add-payment:hover {
+    background-color: #ec2b2b;
+    }
+
+    /*confirm button(inside popout) */
+    .btn-red {
+    background-color: #ff4b4b;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+    }
+
+    .btn-red:hover {
+    background-color: #ec2b2b;
+    }
+
+
+    /*edit and delete button inside table*/
+    .btn-edit {
+    background-color: #ff4b4b;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    }
+
+    .btn-edit:hover {
+    background-color: #ff4b4b;
+    }
+
+    .btn-delete {
+    background-color: #ff4b4b;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    }
+
+    .btn-delete:hover {
+    background-color: #ec2b2b;
+    }
+
+    /* Edit Payment Popup Modal Styles */
+    #edit-popup {
+    display: none; /* hidden by default */
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.5); /* semi-transparent dark background */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    }
+
+    #edit-popup .popup-content {
+    background: #fff;
+    padding: 20px 30px;
+    border-radius: 8px;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    position: relative;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    #edit-popup h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+    color: #333;
+    }
+
+    #edit-popup label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #555;
+    }
+
+    #edit-popup input[type="text"],
+    #edit-popup select {
+    width: 100%;
+    padding: 8px 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    }
+
+    #edit-popup .btn-save,
+    #edit-popup .btn-cancel {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: background-color 0.3s ease;
+    }
+
+    #edit-popup .btn-save {
+    background-color: #e03e3e; /* red */
+    color: white;
+    }
+
+    #edit-popup .btn-save:hover {
+    background-color: #b63131;
+    }
+
+    #edit-popup .btn-cancel {
+    background-color: #ccc;
+    color: #333;
+    }
+
+    #edit-popup .btn-cancel:hover {
+    background-color: #999;
+    }
+
+    #edit-popup .form-buttons {
+    display: flex;
+    justify-content: space-between; /* put buttons at left and right ends */
+    padding: 10px 0 0 0; /* some space on top, optional */
+    width: 100%;  /* full width inside popup */
+    box-sizing: border-box;
+    }
+
+    /* Optional overrides if you want to keep existing button styles */
+    #edit-popup .btn-save,
+    #edit-popup .btn-cancel {
+    margin-right: 0; /* remove margin-right if any, because space-between handles spacing */
+    }
+
+
+    #edit-popup .close-btn:hover {
+    color: #e03e3e;
+    }
+
+    #edit-amount {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    font-size: 14px;
+  }
+
+    body {
+    min-width: 1200px; /* optional, if your full layout needs space */
+    }
+
+    .table-container {
+    min-width: 1000px;  /* adjust based on your table size */
+    overflow-x: auto;
+    }
+
+
+    /* Prevent table cell from wrapping buttons */
+    td:last-child {
+    white-space: nowrap;
+    }
+
+    /* Make sure the buttons stay inline */
+    .btn-edit,
+    .btn-delete {
+    display: inline-block;
+    margin-right: 6px;
+    white-space: nowrap;
+    }
+
+    /*Give them buttons fixed size*/
+    .btn-edit,
+    .btn-delete {
+    min-width: 70px;
+    text-align: center;
+    }
+

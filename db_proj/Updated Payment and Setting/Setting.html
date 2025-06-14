@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AHK Auto Care with Settings</title>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="Setting.css">
+
+</head>
+
+<body>
+  <!-- Sidebar with navigation menu -->
+  <div class="sidebar">
+    <img src="ahk_logo.png"/>
+    <h2>Admin Menu</h2>
+    <ul class="menu-top">
+      <li><a href="admin_dashboard.php"><i class="fas fa-home"></i> Dashboard</a></li>
+      <li style="margin-left: 2px;"><a href="admin_inventory.php"><i class="fas fa-toolbox" style="margin-right: 12px;"></i> Inventory</a></li>
+      <li class="active"><a href="admin_customer.php"><i class="fas fa-users"></i> Customers</a></li>
+      <li style="margin-left: 3px;"><a href="admin_jobcards.php"><i class="fas fa-file-alt" style="margin-right: 12px;"></i> Job Cards</a></li>
+      <li><a href="admin_payment.php"><i class="fas fa-credit-card"></i> Payment</a></li>
+      <li><a href="admin_analytics.php"><i class="fas fa-chart-line"></i> Analytics</a></li>
+      <li><a href="admin_supplier.php"><i class="fas fa-boxes"></i> Suppliers</a></li>
+      <li><a href="admin_setting.php"><i class="fas fa-cog"></i> Settings</a></li>
+    </ul>
+  </div>
+
+  <!-- Main content section -->
+  <div class="main">
+    <!-- Top navbar -->
+    <div class="navbar">
+      <div class="page-info">
+        <h1>Setting</h1>
+        <p>Manage the settings</p>
+      </div>
+      <!-- User profile and notification -->
+    <div style="display: flex; align-items: center;">
+      <!-- Notification Container -->
+      <div class="notification-container" style="position: relative;">
+        <div class="notification-icon"><i class="fas fa-bell"></i></div>
+        <!-- Notification Popup -->
+        <div class="notification-popup" hidden>
+          <div class="popup-header">
+            <h2>Notifications</h2>
+            <a href="notification.html" class="mark-all-read">Mark as all read</a>
+          </div>
+
+          <div class="notification-list" id="notification-list-container">
+          </div>
+
+          <div class="popup-footer">
+            <button class="view-all-btn" onclick="window.location.href='notification.html';">
+              View all Notifications
+            </button>
+          </div>
+        </div>
+      </div>
+
+
+        <div class="user-profile-container" style="position: relative;">
+        <div class="user-info" style="cursor:pointer;">
+          <div class="user-label">
+              <!-- <span class="user-name"><?php echo htmlspecialchars($username); ?></span> -->
+              <!-- <span class="user-role"><?php echo htmlspecialchars($role); ?></span> -->
+          </div>
+          <div class="user-icon"><i class="fas fa-user"></i></div>
+          <span class="dropdown-icon"><i class="fas fa-chevron-down"></i></span>
+        </div>
+        <!-- Dropdown menu for user options -->
+        <ul class="profile-dropdown-menu" hidden>
+          <li><a href="admin_profile.php">My Profile</a></li>
+          <li><a href="admin_setting.php">Settings</a></li>
+          <li><a href="logout.php">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+    <!-- SETTINGS PANEL: initially hidden -->
+    <section id="settingsPanel" class="active" aria-label="Settings Panel">
+
+      <!-- Tabs -->
+      <nav class="tabs" role="tablist" aria-label="Settings Tabs">
+        <div
+          class="tab active"
+          role="tab"
+          tabindex="0"
+          aria-selected="true"
+          aria-controls="generalTab"
+          id="tab-general"
+        >
+          General
+        </div>
+        <div
+          class="tab"
+          role="tab"
+          tabindex="-1"
+          aria-selected="false"
+          aria-controls="userTab"
+          id="tab-user"
+        >
+          User
+        </div>
+      </nav>
+
+      <!-- Tab Contents -->
+      <article
+        id="generalTab"
+        class="tab-content"
+        role="tabpanel"
+        aria-labelledby="tab-general"
+      >
+      <form id="generalForm" class="general-form" autocomplete="off">
+
+      <div class="input-row">
+        <label for="workshopName">Workshop Name</label>
+        <div class="input-edit-container">
+          <input
+            type="text"
+            id="workshopName"
+            name="workshop_name"
+            disabled
+          />
+          <button type="button" class="edit-btn">Edit</button>
+        </div>
+      </div>
+
+      <div class="input-row">
+        <label for="contactNumber">Contact Number</label>
+        <div class="input-edit-container">
+          <input
+            type="tel"
+            id="contactNumber"
+            name="contact_number"
+            disabled
+          />
+          <button type="button" class="edit-btn">Edit</button>
+        </div>
+      </div>
+
+      <div class="input-row">
+        <label for="emailAddress">Email Address</label>
+        <div class="input-edit-container">
+          <input
+            type="email"
+            id="emailAddress"
+            name="email"
+            disabled
+          />
+          <button type="button" class="edit-btn">Edit</button>
+        </div>
+      </div>
+
+      <div class="input-row">
+        <label for="address">Address</label>
+        <div class="input-edit-container">
+          <textarea
+            id="address"
+            name="address"
+            rows="3"
+            disabled
+          ></textarea>
+          <button type="button" class="edit-btn">Edit</button>
+        </div>
+      </div>
+
+      <!--
+      <div class="input-row">
+        <label for="uploadLogo">Upload Logo</label>
+        <div class="input-edit-container">
+          <input type="file" id="uploadLogo" name="logo_path" disabled />
+          <button type="button" class="edit-btn">Edit</button>
+        </div>
+      </div>
+      -->
+
+      <!-- Save Changes Button -->
+      <div class="save-button-container">
+        <button id="saveChangesBtn" type="button">Save Changes</button>
+      </div>
+    </form>
+      </article>
+
+      <article
+        id="userTab"
+        class="tab-content"
+        role="tabpanel"
+        aria-labelledby="tab-user"
+        hidden
+      >
+        <div class="user-table-controls">
+          <button id="add-user" class="add-user">Add User</button>
+
+
+
+        </div>
+        <table id="userTable" class="user-table" aria-label="User Management Table">
+          <thead>
+            <tr>
+              <th scope="col">User ID</th>
+              <th scope="col">Full Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Role</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Add more user rows here -->
+          </tbody>
+        </table>
+
+      <!-- Add user popout -->
+      <div id="addUserPopup" class="popup-overlay">
+      <div class="popup-form">
+      <div class="popup-header">
+      <h2>Add New User</h2>
+      <button class="close-popup">&times;</button>
+        </div>
+        <form id="newUserForm">
+        <label for="newFullName">Full Name</label>
+        <input type="text" id="full_name" name="full_name" required>
+
+        <label for="newEmail">Email</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="newPassword">Password</label>
+        <input type="password" id="password" name="password" required>
+
+        <label for="newRole">Role</label>
+        <select id="role" name="role" required>
+        <option value="">Select Role</option>
+        <option value="Admin">Admin</option>
+        <option value="Staff">Staff</option>
+        </select>
+
+        <div class="popup-actions">
+          <button type="submit" class="submit-user">Add User</button>
+        </div>
+        </form>
+      </div>
+      </div>
+
+
+      <!-- Overlay-->
+      <div id="editOverlay"></div>
+
+      <!-- Edit user popout -->  
+      <div id="editUserPopup" class="popup" style="display: none;">
+        <div class="popup-content">
+          <span class="close-popup" id="closeEditPopup">&times;</span>
+          <h2>Edit User</h2>
+          <form id="editUserForm">
+            <input type="hidden" id="user_id" name="editUserId">
+            
+            <label for="full_name_edit">Full Name</label>
+            <input type="text" id="full_name_edit" name="editFullName">
+
+            <label for="email_edit">Email</label>
+            <input type="email" id="email_edit" name="editEmail">
+
+            <label for="password_edit">New Password</label>
+            <input type="password" id="password_edit" name="editPassword" />
+
+            <label for="role_edit">Role</label>
+            <select id="role_edit" name="role_edit">
+              <option value="">Select Role</option>
+              <option value="Admin">Admin</option>
+              <option value="Staff">Staff</option>
+            </select>
+
+            <div class="popup-footer">
+              <button type="submit" class="submit-user">Save Changes</button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+
+
+      </article>
+
+    </section>
+  </div>
+
+<script src="Setting.js"></script>
+</body>
+</html>
