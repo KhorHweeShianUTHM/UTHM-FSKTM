@@ -1,41 +1,44 @@
 <?php
-include('config.php');
+session_start();
+include('config/db.php'); // Database connection
 
-// ----- INPUT FILTERING -----
-$period = $_GET['user_filter'] ?? 'day';
-$activity_filter = $_GET['activity_filter'] ?? '';
-$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-$limit = 5;
-$offset = ($page - 1) * $limit;
+// INPUT FILTERING
+$period = $_GET['user_filter'] ?? 'day';         // Filter period: day, week, month, year
+$activity_filter = $_GET['activity_filter'] ?? ''; // Filter activity: online, offline
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1; // Current pagination page
+$limit = 5;                                       // Items per page
+$offset = ($page - 1) * $limit;                   // Offset for pagination
 
-// ----- ACTIVITY CONDITION -----
+// ACTIVITY CONDITION (Online/Offline)
 $activity_condition = match ($activity_filter) {
-    'online' => "WHERE last_login >= NOW() - INTERVAL 10 MINUTE",
-    'offline' => "WHERE last_login < NOW() - INTERVAL 10 MINUTE",
-    default => "",
+    'online' => "WHERE last_login >= NOW() - INTERVAL 10 MINUTE",   // User active within 10 mins
+    'offline' => "WHERE last_login < NOW() - INTERVAL 10 MINUTE",   // User inactive for more than 10 mins
+    default => "", // No filter
 };
 
-// ----- TOTAL USERS COUNT (BASED ON PERIOD) -----
+// TOTAL USERS COUNT (for summary card)
 $query_users = match ($period) {
     'week' => "SELECT COUNT(*) AS total_users FROM users WHERE YEARWEEK(created_at, 1) = YEARWEEK(CURDATE(), 1)",
     'month' => "SELECT COUNT(*) AS total_users FROM users WHERE MONTH(created_at) = MONTH(CURDATE()) AND YEAR(created_at) = YEAR(CURDATE())",
     'year' => "SELECT COUNT(*) AS total_users FROM users WHERE YEAR(created_at) = YEAR(CURDATE())",
-    default => "SELECT COUNT(*) AS total_users FROM users WHERE DATE(created_at) = CURDATE()"
+    default => "SELECT COUNT(*) AS total_users FROM users WHERE DATE(created_at) = CURDATE()" // Default = today
 };
+
 $result_users = $conn->query($query_users);
-if (!$result_users) die("Error executing query for total users: " . $conn->error);
+if (!$result_users) die("Error fetching total users: " . $conn->error);
+
 $total_users = $result_users->fetch_assoc()['total_users'];
 
-// ----- CHART DATA (LABELS + COUNTS) -----
-$trend_labels = [];
-$trend_counts = [];
+// CHART DATA (Users registered over time)
+$trend_labels = []; // X-axis labels (days, dates, or months)
+$trend_counts = []; // Y-axis data points (counts)
 
 switch ($period) {
     case 'week':
         $start = strtotime('monday this week');
         for ($i = 0; $i < 7; $i++) {
-            $date = date('Y-m-d', $start + 86400 * $i);
-            $trend_labels[] = date('D', strtotime($date));
+            $date = date('Y-m-d', $start + (86400 * $i));
+            $trend_labels[] = date('D', strtotime($date)); // Mon, Tue, etc.
             $row = $conn->query("SELECT COUNT(*) AS count FROM users WHERE DATE(created_at) = '$date'")->fetch_assoc();
             $trend_counts[] = (int)$row['count'];
         }
@@ -45,7 +48,7 @@ switch ($period) {
         $daysInMonth = date('t');
         for ($d = 1; $d <= $daysInMonth; $d++) {
             $date = date('Y-m-' . str_pad($d, 2, '0', STR_PAD_LEFT));
-            $trend_labels[] = (string)$d;
+            $trend_labels[] = (string)$d; // 1, 2, ..., 31
             $row = $conn->query("SELECT COUNT(*) AS count FROM users WHERE DATE(created_at) = '$date'")->fetch_assoc();
             $trend_counts[] = (int)$row['count'];
         }
@@ -53,7 +56,7 @@ switch ($period) {
 
     case 'year':
         for ($m = 1; $m <= 12; $m++) {
-            $trend_labels[] = date('M', mktime(0, 0, 0, $m, 1));
+            $trend_labels[] = date('M', mktime(0, 0, 0, $m, 1)); // Jan, Feb, ...
             $row = $conn->query("SELECT COUNT(*) AS count FROM users WHERE MONTH(created_at) = $m AND YEAR(created_at) = YEAR(CURDATE())")->fetch_assoc();
             $trend_counts[] = (int)$row['count'];
         }
@@ -63,29 +66,29 @@ switch ($period) {
     default:
         for ($i = 6; $i >= 0; $i--) {
             $date = date('Y-m-d', strtotime("-$i days"));
-            $trend_labels[] = date('D', strtotime($date));
+            $trend_labels[] = date('D', strtotime($date)); // Mon, Tue, etc.
             $row = $conn->query("SELECT COUNT(*) AS count FROM users WHERE DATE(created_at) = '$date'")->fetch_assoc();
             $trend_counts[] = (int)$row['count'];
         }
         break;
 }
 
-// ----- PAGINATION COUNT -----
-$count_query = "SELECT COUNT(*) as total FROM users $activity_condition";
+// PAGINATION SETUP (for user list table)
+$count_query = "SELECT COUNT(*) AS total FROM users $activity_condition";
 $total_result = $conn->query($count_query);
 $total_users_paginated = $total_result->fetch_assoc()['total'];
-$total_pages = ceil($total_users_paginated / $limit);
+$total_pages = ceil($total_users_paginated / $limit); // For pagination buttons
 
-// ----- FINAL PAGINATED ACTIVITY QUERY -----
+// FINAL DATA FETCH (Paginated user activity list)
 $query_activity = "
-    SELECT id, name, role, created_at, last_login 
-    FROM users 
-    $activity_condition 
-    ORDER BY last_login DESC 
+    SELECT id, name, role, created_at, last_login
+    FROM users
+    $activity_condition
+    ORDER BY last_login DESC
     LIMIT $limit OFFSET $offset";
+
 $result_activity = $conn->query($query_activity);
 
-// Close DB connection
 $conn->close();
 ?>
 
@@ -94,8 +97,8 @@ $conn->close();
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>AHK Auto Care</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <title>AHK Auto Care - Admin Dashboard</title>
 </head>
 
 <style>
@@ -105,30 +108,19 @@ $conn->close();
   box-sizing: border-box;
   font-family: 'Inter', sans-serif;
 }
-
 body {
   display: flex;
   background-color: #f0f2f5;
   color: #333;
-  overflow-x: hidden;  /* Prevent horizontal scrolling */
 }
-
 .sidebar {
-  position: fixed;
-  top: 0;
-  left: 0;
   width: 240px;
-  height: 100vh;
+  height: auto;
+  min-height: 100vh; /* Ensure sidebar spans full height */
   background-color: #5a5a59;
   color: white;
   padding: 20px 0;
-  z-index: 100;
-  overflow-y: auto;
-  overflow-x: hidden; /* Prevent horizontal scrolling in sidebar */
-  scrollbar-width: none; /* Firefox */
-}
-.sidebar::-webkit-scrollbar {
-  display: none; /* Chrome, Safari */
+  align-items: center;
 }
 .sidebar img {
   margin-top: 10px;
@@ -152,7 +144,7 @@ body {
   transition: background 0.2s;
 }
 .sidebar ul li:hover {
-  background-color: #dc3545;
+  background-color: #dc3545; /* Highlight on hover */
 }
 .sidebar ul li i {
   margin-right: 10px;
@@ -170,15 +162,11 @@ body {
   text-decoration: none;
   color: white;
 }
-
 .main {
   flex: 1;
-  margin-left: 240px;
   display: flex;
   flex-direction: column;
-  overflow-x: hidden;  /* Prevent horizontal scrolling in main content */
 }
-
 .navbar {
   height: 120px;
   background-color: white;
@@ -189,59 +177,90 @@ body {
   border-bottom: 1px solid #ccc;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-
 .navbar .page-info h1 {
   font-size: 20px;
   margin-bottom: 5px;
   color: #212B36;
 }
-
 .navbar .page-info p {
   font-size: 14px;
   color: #637381;
 }
-
 .navbar .user-info {
   display: flex;
   align-items: center;
   gap: 10px;
 }
-
-/* Dropdown menu styles */
+.navbar .user-label {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-right: 15px;
+}
+.navbar .user-name {
+  font-weight: 600;
+  font-size: 14px;
+  color: #212B36;
+}
+.navbar .user-role {
+  font-size: 12px;
+  color: #637381;
+}
+.navbar .user-icon,
+.navbar .notification-icon {
+  width: 32px;
+  height: 32px;
+  background-color: #EFF4FB;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  border: 1px solid #E2E8F0;
+  cursor: pointer;
+}
+.navbar .notification-icon {
+  margin-right: 40px;
+}
+.navbar .notification-icon i,
+.navbar .dropdown-icon i {
+  color: #333;
+}
 .profile-dropdown-menu {
   position: absolute;
   top: 100%;
   right: 0;
-  background-color: white;
-  color: #333;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  width: 150px;
+  background-color: #fff;
+  border: 1px solid #E2E8F0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   list-style: none;
-  margin: 5px 0 0 0;
-  padding: 0;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-  z-index: 200;
+  padding: 5px 0;
+  margin-top: 10px;
+  z-index: 1000;
+  min-width: 160px;
+  border-radius: 8px;
+  overflow: hidden;
 }
-
-.hidden {
+.profile-dropdown-menu li a {
+  display: block;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #212B36;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+.profile-dropdown-menu li a:hover {
+  background-color: #EFF4FB;
+  color: #dc3545;
+}
+.profile-dropdown-menu[hidden] {
   display: none;
 }
-
-.profile-dropdown-menu li {
-  padding: 10px 15px;
+.user-profile-container.active {
+  background-color: rgba(157, 157, 157, 0.1);
+  border-radius: 8px;
 }
-
-.profile-dropdown-menu li a {
-  color: #333;
-  text-decoration: none;
-  display: block;
-  width: 100%;
-}
-
-.profile-dropdown-menu li:hover {
-  background-color: #f0f0f0;
-}
+/* line */
 
 .card-container {
   display: flex;
@@ -383,14 +402,30 @@ body {
   <img src="ahk_logo.png"/>
   <h2>Admin Menu</h2>
   <ul class="menu-top">
-    <li><a href="admin_dashboard.php"><i class="fas fa-home"></i> Dashboard</a></li>
-    <li style="margin-left: 2px;"><a href="admin_inventory.php"><i class="fas fa-toolbox" style="margin-right: 12px;"></i> Inventory</a></li>
-    <li><a href="admin_customer.php"><i class="fas fa-users"></i> Customers</a></li>
-    <li><a href="admin_jobcards.php"><i class="fas fa-file-alt" style="margin-right: 12px;"></i> Job Cards</a></li>
-    <li><a href="admin_payment.php"><i class="fas fa-credit-card"></i> Payment</a></li>
-    <li><a href="admin_analytics.php"><i class="fas fa-chart-line"></i> Analytics</a></li>
-    <li><a href="admin_supplier.php"><i class="fas fa-boxes"></i> Suppliers</a></li>
-    <li><a href="admin_setting.php"><i class="fas fa-cog"></i> Settings</a></li>
+    <li class="active"><a href="admin_dashboard.php">
+      <i class="fas fa-home"></i> Dashboard
+    </a></li>
+    <li style="margin-left: 2px;"><a href="admin_inventory.php">
+      <i class="fas fa-toolbox" style="margin-right: 12px;"></i> Inventory
+    </a></li>
+    <li><a href="admin_customer.php">
+      <i class="fas fa-users"></i> Customers
+    </a></li>
+    <li style="margin-left: 3px;"><a href="admin_jobcards.php">
+      <i class="fas fa-file-alt" style="margin-right: 12px;"></i> Job Cards
+    </a></li>
+    <li><a href="admin_payment.php">
+      <i class="fas fa-credit-card"></i> Payment
+  </a></li>
+    <li><a href="admin_analytics.php">
+      <i class="fas fa-chart-line"></i> Analytics
+    </a></li>
+    <li><a href="admin_supplier.php">
+      <i class="fas fa-boxes"></i> Suppliers
+    </a></li>
+    <li><a href="admin_setting.php">
+      <i class="fas fa-cog"></i> Settings
+    </a></li>
   </ul>
 </div>
 
@@ -428,7 +463,7 @@ body {
 <?php endif; ?>
 
   <div class="image-container active" id="dashboard-image-container">
-    <img src="dashboard_admin.png" alt="Dashboard background" id="dashboard-image" />
+    <img src="img/dashboard_admin.png" alt="Dashboard background" id="dashboard-image" />
   </div>
 
   <!-- Staff Availability Management -->
@@ -445,7 +480,7 @@ body {
       </thead>
       <tbody>
         <?php
-        include('config.php');
+        include('config/db.php');
         $staff_result = $conn->query("SELECT id, name, role, availability FROM staff");
         while ($staff = $staff_result->fetch_assoc()):
         ?>
@@ -577,6 +612,7 @@ $availabilityOptions = [
     </div>
   </div>
 </div>
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
   const ctx = document.getElementById('userChart').getContext('2d');

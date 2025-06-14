@@ -3,95 +3,34 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" type="text/css" href="css/signup_styles.css">
   <title>AHK Auto Services - Sign Up</title>
-  <style>
-    body, html {
-      height: 100%;
-      margin: 0;
-      font-family: Arial, sans-serif;
-    }
-
-    .bg {
-      background-image: url('login_pic.jpg'); /* Replace with your background image path */
-      height: 100%;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .overlay {
-      background: rgba(0, 0, 0, 0.5); /* Slight dark overlay */
-      padding: 40px;
-      border-radius: 15px;
-      backdrop-filter: blur(5px);
-      text-align: center;
-    }
-
-    .logo img {
-      max-width: 300px;
-      height: auto;
-      margin-bottom: 30px;
-    }
-
-    .form-container {
-      background: #fff;
-      text-align: center;
-      border-radius: 10px;
-      padding: 30px 20px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-
-      width: 300px;      /* kecilkan lebar kad putih */
-    max-width: 90vw;
-    }
-
-    .form-container input {
-      width: 80%;
-      padding: 12px 10px;
-      margin: 10px 0;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      font-size: 14px;
-    }
-
-    .form-container button {
-      width: 80%;
-      padding: 12px;
-      margin-top: 15px;
-      background-color: #e63946;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-
-    .form-container button:hover {
-      background-color: #d62828;
-    }
-  </style>
 </head>
+
 <body>
   <div class="bg">
     <div class="overlay">
       <div class="logo">
-        <img src="ahk_logo.png" alt="AHK Auto Services Logo"> <!-- Replace with actual file path -->
+        <img src="img/ahk_logo.png" alt="AHK Auto Services Logo">
       </div>
       <div class="form-container">
-        <div id="error-container" style="display: none;">
-  <div id="error-message" style="color: red; font-size: 14px; margin-bottom: 10px;"></div>
-</div>
         <form action="signup.php" method="POST">
-            <input type="text" name="name" placeholder="Name" required>
-            <input type="text" name="role" placeholder="Role" required>
-            <input type="email" name="email" placeholder="Email" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <input type="text" name="contact_number" placeholder="Contact Number" required>
-            <input type="date" name="date_enroll" placeholder="Date Enroll" required>
-            <button type="submit">Sign up</button></form>
-            </div>
+          <input type="text" name="userid" placeholder="User ID" required>
+          <input type="text" name="name" placeholder="Name" required>
+          
+          <select name="role" required>
+            <option value="">Select Role</option>
+            <option value="admin">Admin</option>
+            <option value="staff">Staff</option>
+          </select>
+          
+          <input type="email" name="email" placeholder="Email" required>
+          <input type="password" name="password" placeholder="Password" required>
+          
+          <button type="submit">Sign up</button>
+        </form>
+        <a href="login.html">Click here to login</a>
+      </div>
     </div>
   </div>
 </body>

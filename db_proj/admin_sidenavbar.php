@@ -1,31 +1,3 @@
-<?php
-/* session_start();
-** include('admin_auth.php');
-** 
-** // Fetch user data from database
-** $stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
-** $stmt->bind_param("s", $username);
-** $stmt->execute();
-** $result = $stmt->get_result();
-**
-** if ($result->num_rows === 1) {
-**    $user = $result->fetch_assoc();
-**
-**    // Store required user info in session
-**    $_SESSION['username'] = $user['username'];
-**    $_SESSION['role'] = $user['role'];
-**    
-**    // Redirect to dashboard or protected page
-**    header("Location: dashboard.php");
-**    exit();
-** } else {
-**    // Invalid login
-**    header("Location: login.html");
-**    exit();
-** }
-*/
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,22 +8,17 @@
 </head>
 
 <style>
-/* =============== Global Reset & Font =============== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: 'Inter', sans-serif;
 }
-
-/* =============== Page Body Layout =============== */
 body {
   display: flex;
   background-color: #f0f2f5;
   color: #333;
 }
-
-/* =============== Sidebar Styles =============== */
 .sidebar {
   width: 240px;
   height: auto;
@@ -101,15 +68,11 @@ body {
   text-decoration: none;
   color: white;
 }
-
-/* =============== Main Content Area =============== */
 .main {
   flex: 1;
   display: flex;
   flex-direction: column;
 }
-
-/* =============== Navbar Styles =============== */
 .navbar {
   height: 120px;
   background-color: white;
@@ -169,8 +132,6 @@ body {
 .navbar .dropdown-icon i {
   color: #333;
 }
-
-/* =============== Dropdown Menu Styles =============== */
 .profile-dropdown-menu {
   position: absolute;
   top: 100%;
@@ -214,29 +175,43 @@ body {
   <img src="ahk_logo.png"/>
   <h2>Admin Menu</h2>
   <ul class="menu-top">
-    <!-- Navigation links -->
-    <li><a href="admin_dashboard.php"><i class="fas fa-home"></i> Dashboard</a></li>
-    <li style="margin-left: 2px;"><a href="admin_inventory.php"><i class="fas fa-toolbox" style="margin-right: 12px;"></i> Inventory</a></li>
-    <li class="active"><a href="admin_customer.php"><i class="fas fa-users"></i> Customers</a></li>
-    <li style="margin-left: 3px;"><a href="admin_jobcards.php"><i class="fas fa-file-alt" style="margin-right: 12px;"></i> Job Cards</a></li>
-    <li><a href="admin_payment.php"><i class="fas fa-credit-card"></i> Payment</a></li>
-    <li><a href="admin_analytics.php"><i class="fas fa-chart-line"></i> Analytics</a></li>
-    <li><a href="admin_supplier.php"><i class="fas fa-boxes"></i> Suppliers</a></li>
-    <li><a href="admin_setting.php"><i class="fas fa-cog"></i> Settings</a></li>
+    <li><a href="admin_dashboard.php">
+      <i class="fas fa-home"></i> Dashboard
+    </a></li>
+    <li style="margin-left: 2px;"><a href="admin_inventory.php">
+      <i class="fas fa-toolbox" style="margin-right: 12px;"></i> Inventory
+    </a></li>
+    <li class="active"><a href="admin_customer.php">
+      <i class="fas fa-users"></i> Customers
+    </a></li>
+    <li style="margin-left: 3px;"><a href="admin_jobcards.php">
+      <i class="fas fa-file-alt" style="margin-right: 12px;"></i> Job Cards
+    </a></li>
+    <li><a href="admin_payment.php">
+      <i class="fas fa-credit-card"></i> Payment
+  </a></li>
+    <li><a href="admin_analytics.php">
+      <i class="fas fa-chart-line"></i> Analytics
+    </a></li>
+    <li><a href="admin_supplier.php">
+      <i class="fas fa-boxes"></i> Suppliers
+    </a></li>
+    <li><a href="admin_setting.php">
+      <i class="fas fa-cog"></i> Settings
+    </a></li>
   </ul>
 </div>
 
-<!-- Main content section -->
 <div class="main">
-  <!-- Top navbar -->
   <div class="navbar">
     <div class="page-info">
       <h1>Project Title</h1>
       <p>Project Description</p>
     </div>
-    <!-- User profile and notification -->
+
     <div style="display: flex; align-items: center;">
       <div class="notification-icon"><i class="fas fa-bell"></i></div>
+
       <div class="user-profile-container" style="position: relative;">
         <div class="user-info" style="cursor:pointer;">
           <div class="user-label">
@@ -246,19 +221,19 @@ body {
           <div class="user-icon"><i class="fas fa-user"></i></div>
           <span class="dropdown-icon"><i class="fas fa-chevron-down"></i></span>
         </div>
-        <!-- Dropdown menu for user options -->
+
         <ul class="profile-dropdown-menu" hidden>
           <li><a href="admin_profile.php">My Profile</a></li>
           <li><a href="admin_setting.php">Settings</a></li>
           <li><a href="logout.php">Logout</a></li>
         </ul>
+
       </div>
     </div>
   </div>
 </div>
 
 <script>
-  // --- Profile Dropdown Logic ---
   document.addEventListener('DOMContentLoaded', () => {
     const userProfile = document.querySelector('.user-profile-container');
     const dropdown = document.querySelector('.profile-dropdown-menu');
@@ -285,6 +260,5 @@ body {
     });
   });
 </script>
-
 </body>
 </html>
