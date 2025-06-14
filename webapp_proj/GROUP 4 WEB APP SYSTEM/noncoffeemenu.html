@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Non-coffee Menu - Caffeine & Calories by Gastro Scholar</title>
+	<link rel="shortcut icon" type="x-icon" href="images/logo_1.ico"/>
+	<script src="https://kit.fontawesome.com/3b737278a4.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<link rel="stylesheet" href="css/navigationBar.css">
+	<link rel="stylesheet" href="css/searchBar.css">
+	<link rel="stylesheet" href="css/nonCoffeeMenuSection.css">
+	<link rel="stylesheet" href="css/toTop.css">
+	<link rel="stylesheet" href="css/footerBar.css">
+	<style>
+		* {
+			margin: 0px;
+			padding: 0px;
+			box-sizing: border-box;
+			font-family: sans-serif;
+		}
+	</style>
+
+</head>
+
+<body>
+
+    <nav>
+        <ul>
+			<li class="logo"><a href="index.html">Caffeine & Calories by Gastro Scholar</a></li>
+			<li class="about"><a href="about.html">About</a></li>
+			<li class="menu">
+				<a>Menu</a>
+				<ul class="dropdown">
+					<li><a href="coffeemenu.html">Coffee</a></li>
+					<li><a href="frappemenu.html">Frappe</a></li>
+					<li><a href="noncoffeemenu.html">Non-Coffee</a></li>
+				</ul>
+			</li>
+			<li class="tracking"><a href="trackingDelivery.html">Tracking</a></li>
+			<form id="searchForm" style="float:right">
+				<input type="text" id="searchInput" placeholder="Search Google">
+				<button type="button" id="searchButton" onclick="googleSearch()">
+					<i class="fas fa-search"></i>
+				</button>
+			</form>
+			<li class="shoppingcart" style="float:right"><a href="viewcart.html"><i class="icon fa-solid fa-cart-shopping"></i></a></li>
+			<li class="user" style="float:right"><a href="profile_link.php"><i class="fa-solid fa-user"></i></a></li>
+		</ul>
+    </nav>
+	
+	<div class="banner">
+		<img src="images/banner.jpg">
+		<h2>Non-coffee Menu</h2>
+	</div>
+	
+	<section>
+		<div class="container">
+			<div class="menu-item">
+				<img class="item-img" src="images/noncoffee/chocolate.jpg" alt="Chocolate">
+				<a href="noncoffeemenu-chocolate.html"><button type="submit" class="button">
+					<span class="button__text">Chocolate</span>
+					<span class="button__icon"><i class="fa-solid fa-plus"></i></span>
+				</button></a>
+			</div>
+			<div class="menu-item">
+				<img class="item-img" src="images/noncoffee/matcha.jpg" alt="matcha">
+				<a href="noncoffeemenu-matcha.html"><button type="submit" class="button">
+					<span class="button__text">Matcha</span>
+					<span class="button__icon"><i class="fa-solid fa-plus"></i></span>
+				</button></a>
+			</div>
+		</div>
+	</section>
+	
+	<footer>
+		<div class="footericon">
+			<a href="https://www.facebook.com/cncbygastroscholar"><i class="fa-brands fa-facebook"></i></a>
+			<a href="https://www.instagram.com/gastroscholar/"><i class="fa-brands fa-instagram"></i></a>
+			<a href="https://www.tiktok.com/@caffeineandcaloriesrmc"><i class="fa-brands fa-tiktok"></i></a>
+		</div>
+		<div class="footernav">
+			<ul>
+				<li><a href="index.html">Home</a></li>
+				<li><a href="about.html">About</a></li>
+				<li><a href="trackingDelivery.html">Tracking</a></li>
+				<li><a href="./Admin/page-login.html">Admin Login</a></li>
+			</ul>
+		</div>
+		<div class="footerbottom">
+			<p> Copyright &copy; 2023; Designed by <span class="designer">KHOR HWEE SHIAN</span></p>
+		</div>
+	</footer>
+	
+	<i class="totop fa-solid fa-arrow-up"></i>
+	<script type="text/javascript" src="js/googleSearch.js"></script>
+	<script type="text/javascript" src="js/toTop.js"></script>
+	
+</body>
+</html>

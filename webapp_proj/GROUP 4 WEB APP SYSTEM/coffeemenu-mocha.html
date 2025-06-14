@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mocha - Caffeine & Calories by Gastro Scholar</title>
+	<link rel="shortcut icon" type="x-icon" href="images/logo_1.ico"/>
+	<script src="https://kit.fontawesome.com/3b737278a4.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="css/navigationBar.css">
+	<link rel="stylesheet" href="css/searchBar.css">
+	<link rel="stylesheet" href="css/orderCoffeeSection.css">
+	<link rel="stylesheet" href="css/footerBar.css">
+	<style>
+		* {
+			margin: 0px;
+			padding: 0px;
+			box-sizing: border-box;
+			font-family: sans-serif;
+		}
+	</style>
+
+</head>
+
+    <nav>
+        <ul>
+			<li class="logo"><a href="index.html">Caffeine & Calories by Gastro Scholar</a></li>
+			<li class="about"><a href="about.html">About</a></li>
+			<li class="menu">
+				<a>Menu</a>
+				<ul class="dropdown">
+					<li><a href="coffeemenu.html">Coffee</a></li>
+					<li><a href="frappemenu.html">Frappe</a></li>
+					<li><a href="noncoffeemenu.html">Non-Coffee</a></li>
+				</ul>
+			</li>
+			<li class="tracking"><a href="trackingDelivery.html">Tracking</a></li>
+			<form id="searchForm" style="float:right">
+				<input type="text" id="searchInput" placeholder="Search Google">
+				<button type="button" id="searchButton" onclick="googleSearch()">
+					<i class="fas fa-search"></i>
+				</button>
+			</form>
+			<li class="shoppingcart" style="float:right"><a href="viewcart.html"><i class="icon fa-solid fa-cart-shopping"></i></a></li>
+			<li class="user" style="float:right"><a href="profile_link.php"><i class="fa-solid fa-user"></i></a></li>
+		</ul>
+    </nav>
+
+	<section>
+		<div class="container">
+			<div class="left-side">
+				<img class="item-img" src="images/coffee/Mocha.jpg" alt="Mocha">
+				<div class="item-info">
+					<h3>Description</h3><hr>
+					<p>Combining rich chocolate with espresso and steamed milk, the mocha presents a delightful harmony of flavours, where the chocolatey sweetness beautifully complements the robustness of coffee.</p>
+					<h3>Ingredients</h3><hr>
+					<p>Espresso, Milk, Dark Chocolate sauce</p>
+				</div>
+			</div>
+			
+			<div class="right-side">
+				<h1>Mocha</h1><hr id="titleLine">
+				<form id="orderForm" method="post" action="coffeeRecordDatabase.php">
+					<div class="totalPriceDisplay">
+						<label for="totalPrice">Total Price:</label>
+						<span id="totalPriceDisplay">RM0.00</span>
+					</div>
+				
+					<div class="beverageName">
+						<label for="beverageName">Beverage:</label>
+						<br><input type="radio" name="beverageName" class="beverage" value="mocha" onclick="calculateTotal()" required>Mocha
+					</div>
+					
+					<div class="beverageTemp">
+						<label for="beverageTemp">Temperature:</label>
+						<br><input type="radio" name="beverageTemp" class="hotCoffee" value="hot_coffee" onclick="calculateTotal()" required>Hot Coffee
+						<br><input type="radio" name="beverageTemp" class="coldCoffee" value="cold_coffee" onclick="calculateTotal()" required>Cold Coffee
+					</div>
+				
+					<div class="sugarLevel">
+						<label for="sugarLevel">Sugar Level:</label>
+						<br><input type="radio" name="sugarLevel" class="lessSugar" value="less_sugar" onclick="calculateTotal()" required>Less Sugar
+						<br><input type="radio" name="sugarLevel" class="normalSugar" value="normal_sugar" onclick="calculateTotal()" required>Normal Sugar
+						<br><input type="radio" name="sugarLevel" class="moreSugar" value="more_sugar" onclick="calculateTotal()" required>More Sugar
+					</div>
+				
+					<div class="addons">
+						<label for="addons">Add-ons:</label>
+						<br><input type="checkbox" name="addons[]" class="coldFoam" value="cold_foam" onclick="calculateTotal()">Add Cold Foam
+						<br><input type="checkbox" name="addons[]" class="drizzleUpsideDown" value="drizzle_upside_down" onclick="calculateTotal()">Add Drizzle Upside-Down
+						<br><input type="checkbox" name="addons[]" class="espressoShot" value="espresso_shot" onclick="calculateTotal()">Add Espresso Shot
+						<br><input type="checkbox" name="addons[]" class="flavouredSyrup" value="flavoured_syrup" onclick="calculateTotal()">Add Flavoured Syrup
+						<br><input type="checkbox" name="addons[]" class="whippedCream" value="whipped_cream" onclick="calculateTotal()">Add Whipped Cream
+					</div>	
+				
+					<input type="hidden" name="totalPrice" id="hiddenTotalPrice" value="0.00">
+					<input type="submit" class="addCart" value="Add to Cart">
+				</form>
+			</div>
+		</div>
+	</section>
+	
+	<footer>
+		<div class="footericon">
+			<a href="https://www.facebook.com/cncbygastroscholar"><i class="fa-brands fa-facebook"></i></a>
+			<a href="https://www.instagram.com/gastroscholar/"><i class="fa-brands fa-instagram"></i></a>
+			<a href="https://www.tiktok.com/@caffeineandcaloriesrmc"><i class="fa-brands fa-tiktok"></i></a>
+		</div>
+		<div class="footernav">
+			<ul>
+				<li><a href="index.html">Home</a></li>
+				<li><a href="about.html">About</a></li>
+				<li><a href="trackingDelivery.html">Tracking</a></li>
+				<li><a href="./Admin/page-login.html">Admin Login</a></li>
+			</ul>
+		</div>
+		<div class="footerbottom">
+			<p> Copyright &copy; 2023; Designed by <span class="designer">KHOR HWEE SHIAN</span></p>
+		</div>
+	</footer>
+	
+	<script type="text/javascript" src="js/calculateTotalCoffee.js"></script>
+	<script type="text/javascript" src="js/googleSearch.js"></script>
+
+</body>
+</html>

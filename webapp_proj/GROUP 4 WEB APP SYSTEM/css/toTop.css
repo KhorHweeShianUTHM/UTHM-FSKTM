@@ -1,0 +1,18 @@
+.totop {
+	position: fixed;
+	bottom: 40px;
+	right: 40px;
+	font-size: 30px;
+	background: #bf8040;
+	padding: 10px 15px;
+	color: white;
+	cursor: pointer;
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity .3s ease-in-out;
+}
+
+.totop:hover {
+	transition: .5s;
+	background: #996633;
+}

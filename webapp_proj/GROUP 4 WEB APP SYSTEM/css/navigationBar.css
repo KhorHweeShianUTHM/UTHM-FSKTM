@@ -1,0 +1,45 @@
+nav ul {
+    list-style: none;
+    background: #4b341b;
+}
+
+nav ul li {
+    display: inline-block;
+    position: relative;
+}
+
+.logo {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+nav ul li a {
+    display: block;
+    padding: 30px 20px;
+    color: white;
+    text-decoration: none;
+	transition: 0.3s ease;
+    text-align: center;
+    font-size: 19px;
+}
+
+nav ul li ul.dropdown li {
+    display: block;
+}
+
+nav ul li ul.dropdown {
+    width: 200px;
+    background: #704e29;
+    position: absolute;
+	display: inline-block;
+    z-index: 999;
+    display: none;
+}
+
+.menu:hover, .dropdown a:hover, .about:hover, .tracking:hover {
+    background: #956837;
+}
+
+nav ul li:hover ul.dropdown {
+    display: block;
+}

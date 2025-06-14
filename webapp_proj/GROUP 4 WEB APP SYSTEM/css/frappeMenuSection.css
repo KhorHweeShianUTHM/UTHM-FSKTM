@@ -1,0 +1,90 @@
+.banner img{
+	width:100%;
+}
+
+.banner h2{
+	position:absolute;
+	top:260px;
+	left:300px;
+	font-size:120px;
+	color:#f2e6d9;
+	text-transform:uppercase;
+	text-shadow:#c38e55 -15px 12px;
+	padding:15px 30px;
+	background-color:rgba(0,0,0,0.2);
+}
+
+section {
+	height:2050px;
+	padding:35px;
+}
+
+section .container {
+	height:1980px;
+	background:#f1e6da;
+	padding:35px;
+	border-radius:10px;
+}
+
+.menu-item {
+    width:30%;
+    display:inline-block;
+    vertical-align:top;
+    margin:20px;
+    text-align:center;
+}
+	
+.item-img {
+    width:260px;
+    display:block; 
+	border-radius:10px;
+    margin-bottom:30px;
+	margin-left:auto;
+	margin-right:auto;
+	padding:15px;
+	background-color:white;
+}
+   
+.button{
+	display:inline-flex;
+	height:60px;
+	width:100%;
+	max-width:300px;
+	background:#996633;
+	border:none;
+	outline :none;
+	border-radius:10px;
+	font-size:16px;
+
+}
+
+.button__text {
+	flex:1;
+    color:white;
+	display:inline-flex;
+    align-items:center;
+	height:100%;
+    padding:0 20px;
+}
+	
+.button__icon{
+	font-size:1.5em;
+	background:rgba(0,0,0,0.08);
+	display:inline-flex;
+	align-items:center;
+    justify-content:center;
+	padding:0 50px;
+	color:white;
+	height:100%;
+	width:10%;
+	cursor:pointer;
+	border-radius:9px;
+}
+
+.button__icon:hover{
+	background:#ac7339;
+}
+	
+.button__icon:active{
+	background:#ac7339;
+}

@@ -1,0 +1,364 @@
+* {
+    margin: 0px;
+	padding: 0px;
+	box-sizing: border-box;
+	font-family: sans-serif;
+}
+
+nav ul {
+    list-style: none;
+    background: #4b341b;
+}
+
+nav ul li {
+    display: inline-block;
+    position: relative;
+}
+
+.logo {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+nav ul li a {
+    display: block;
+    padding: 30px 20px;
+    color: white;
+    text-decoration: none;
+	transition: 0.3s ease;
+    text-align: center;
+    font-size: 19px;
+}
+
+nav ul li ul.dropdown li {
+    display: block;
+}
+
+nav ul li ul.dropdown {
+    width: 200px;
+    background: #704e29;
+    position: absolute;
+	display: inline-block;
+    z-index: 999;
+    display: none;
+}
+
+.menu:hover, .dropdown a:hover, .about:hover, .tracking:hover {
+    background: #956837;
+}
+
+nav ul li:hover ul.dropdown {
+    display: block;
+}
+
+#searchForm {
+    display: flex;
+    height: 50px;
+	margin: 16px;
+	padding: 4px;
+}
+
+#searchForm #searchInput {
+	width: 275px;
+	border-color: #704e29;
+	border: none;
+	outline: none;
+	font-size: 18px;
+	padding: 10px;
+}
+
+#searchForm #searchButton {
+	width: 50px;
+	background-color: #704e29;
+	color: white;
+	border: none;
+	outline: none;
+	cursor: pointer;
+}
+
+footer {
+	background-color: #4b341b;
+	width: 100%;
+	padding: 30px;
+}
+
+.footericon {
+	display: flex;
+	justify-content: center;
+}
+
+.footericon a {
+	text-decoration: none;
+	padding: 10px;
+	background-color: white;
+	margin: 10px;
+	border-radius: 50px;
+}
+
+.footericon a i {
+	font-size: 2em;
+	color: #333;
+	opacity: 0.9;
+}
+
+.footericon a:hover {
+	background-color: #808080;
+	transition: 0.5s;
+}
+
+.footernav {
+	margin: 30px 0;
+}
+
+.footernav ul {
+	display: flex;
+	justify-content: center;
+	list-style: none;
+}
+
+.footernav ul li a {
+	color: white;
+	margin: 20px;
+	text-decoration: none;
+	font-size: 1.3em;
+	opacity: 0.7;
+	transition: 0.5s;
+}
+
+.footernav ul li a:hover { 
+	opacity: 1;
+}
+
+.footerbottom {
+	background-color: #4b341b;
+	padding: 20px;
+	text-align: center;
+}
+
+.footerbottom p {
+	color: white;
+}
+
+.designer {
+	opacity: 0.7;
+	text-decoration: uppercase;
+	letter-spacing: 1px;
+	font-weight: 400;
+	margin: 0px 5px;
+}
+
+.totop {
+	position: fixed;
+	bottom: 40px;
+	right: 40px;
+	font-size: 30px;
+	background: #bf8040;
+	padding: 10px 15px;
+	color: white;
+	cursor: pointer;
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity .3s ease-in-out;
+}
+
+.totop:hover {
+	transition: .5s;
+	background: #996633;
+}
+
+section {
+	height:885px;
+	padding:35px;
+}
+
+section .container {
+	display:flex;
+	height:810px;
+	background:#f1e6da;
+	justify-content:space-between;
+	overflow:hidden;
+	padding:35px;
+	border-radius:10px;
+}
+
+.left-side{
+    width:60%;
+    box-sizing:border-box;
+    padding:20px;
+	display:flex;
+    flex-direction:column;
+    align-items:center; 
+    text-align:center; 
+}
+
+.left-side .item-img{
+	width:40%;
+}
+
+.left-side .item-info h3{
+    position:relative; 
+    top:50px;
+	right:323px;
+	font-size:25px;
+	margin-bottom:60px;
+}
+
+.left-side .item-info p{
+    position:relative; 
+    top:10px;
+	left:5px;
+	font-size:18px;
+	text-align:left;
+}
+
+.left-side .item-info hr{
+	width:15%;
+	border-top: 2px solid black;
+}
+
+.right-side{
+    width:35%;
+	height:710px;
+    box-sizing:border-box;
+    padding:20px;
+    display:flex;
+    flex-direction:column;
+    margin-right:25px; 
+	background-color:white;
+	border-radius:5px;
+}
+
+.right-side h1{
+	font-size:35px;
+}
+
+.right-side #titleLine{
+	width:15%;
+	border-top: 2px solid black;
+	margin-top:10px;
+	margin-bottom:20px;
+}
+
+.right-side form{
+	padding:5px;
+	height:675px;
+	border:1px solid #e6e6e6;
+}
+
+.right-side form .totalPriceDisplay{
+	background-color: #d9b38c;
+	padding:25px;
+	color:white;
+	font-size:35px;
+	text-align:center;
+	margin-bottom:10px;
+}
+
+.right-side .beverageName {
+	font-size:20px;
+	margin-bottom:20px;
+	padding:5px;
+}
+
+.right-side .beverageName label{
+	padding:5px;
+	text-decoration:underline;
+}
+
+.right-side .beverageName input[type="radio"]{
+	width:17px;
+	height:17px;
+	margin-right:5px;
+}
+
+.right-side .beverageName .beverage{
+	margin-top:5px;
+}
+
+.right-side .beverageTemp{
+	font-size:20px;
+	margin-bottom:20px;
+	padding:5px;
+}
+
+.right-side .beverageTemp label{
+	padding:5px;
+	text-decoration:underline;
+}
+
+.right-side .beverageTemp input[type="radio"]{
+	width:17px;
+	height:17px;
+	margin-right:5px;
+}
+
+.right-side .beverageTemp .coldFrappe{
+	margin-top:5px;
+}
+
+.right-side .sugarLevel{
+	font-size:20px;
+	margin-bottom:20px;
+	padding:5px;
+}
+
+.right-side .sugarLevel label{
+	padding:5px;
+	text-decoration:underline;
+}
+
+.right-side .sugarLevel input[type="radio"]{
+	width:17px;
+	height:17px;
+	margin-right:5px;
+}
+
+.right-side .sugarLevel .lessSugar, .normalSugar, .moreSugar{
+	margin-top:5px;
+}
+
+.right-side .addons{
+	font-size:20px;
+	margin-bottom:20px;
+	padding:5px;
+}
+
+.right-side .addons label{
+	padding:5px;
+	text-decoration:underline;
+}
+
+.right-side .addons input[type="checkbox"]{
+	width:17px;
+	height:17px;
+	margin-right:5px;
+}
+
+.right-side .addons .coldFoam, .chocolateChip, .whippingCream, .cookie{
+	margin-top:5px;
+}
+
+.right-side .addCart{
+	display:block;
+	margin:auto;
+    margin-top:20px;
+	height:40px;
+	width:400px;
+	border-radius:5px;
+	border:none;
+	outline:none;
+	color:#fff;
+	font-size:16px;
+	background-color:#d9b38c;
+	font-weight:700;
+}
+
+.right-side .addCart:hover{
+	background-color:#bf8040;
+	cursor:pointer;
+}
+
+.right-side .addCart:active{
+	padding-top:2px;
+	box-shadow:none;
+}

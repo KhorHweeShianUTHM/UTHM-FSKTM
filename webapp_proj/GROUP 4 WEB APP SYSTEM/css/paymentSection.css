@@ -1,0 +1,290 @@
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #FDF7E4;
+      margin: 150px;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+
+    #payment-form {
+      background-color: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      padding: 30px; /* Increased padding for a more spacious feel */
+      max-width: 700px; /* Adjust the max-width to your preference */
+      width: 100%;
+    }
+
+    h2 {
+      font-size: 24px; /* Larger font size for the heading */
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-size: 16px; /* Larger font size for labels */
+      margin-bottom: 12px;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 12px; /* Increased padding for larger input/select boxes */
+      margin-bottom: 20px; /* Increased margin for more spacing between elements */
+      box-sizing: border-box;
+      font-size: 14px; /* Larger font size for input/select text */
+    }
+
+    .payment-option {
+      margin-bottom: 20px; /* Increased margin for more spacing between elements */
+    }
+
+    .specific-form {
+      display: none;
+    }
+
+    #debit-credit-card-form.active,
+    #online-banking-form.active,
+    #paypal-form.active,
+    #ewallet-form.active,
+    #cash-form.active {
+      display: block;
+    }
+
+    button[type="submit"] {
+      background-color: #704e29;
+      color: white;
+      padding: 14px; /* Increased padding for a larger button */
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      width: 100%;
+      font-size: 16px; /* Larger font size for button text */
+    }
+		
+
+
+* {
+    margin:0px;
+	padding:0px;
+	box-sizing:border-box;
+	font-family:sans-serif;
+}
+
+nav {
+      background: #4b341b;
+      padding: 15px 0;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      
+    }
+
+    nav ul {
+      list-style: none;
+
+      
+    }
+
+    nav ul li {
+      display: inline-block;
+      position: relative;
+	  
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: bold;
+      color: white;
+    }
+
+    nav ul li a {
+      display: block;
+      padding: 15px 20px;
+      color: white;
+      text-decoration: none;
+      transition: 0.3s ease;
+      text-align: center;
+      font-size: 19px;
+    }
+
+nav ul li ul.dropdown li {
+    display: block;
+}
+
+nav ul li ul.dropdown {
+    width: 200px;
+    background: #704e29;
+    position: absolute;
+	display: inline-block;
+    z-index: 999;
+    display: none;
+}
+
+.menu:hover, .dropdown a:hover, .about:hover, .contact:hover, .tracking:hover{
+    background: #956837;
+}
+
+nav ul li:hover ul.dropdown {
+    display: block;
+}
+
+nav topnav{
+    display: flex;
+    height:80px;
+	margin:16px;
+	padding:4px;
+	
+}
+
+
+#payment-form label {
+  color: #704e29;
+  font-weight: bold;
+}
+
+
+
+p {
+  font-size: 18px; /* Adjust the font size to your preference */
+  color: #704e29;
+}
+
+
+
+form.search{
+    display: flex;
+    height:10px;
+	margin:16px;
+	padding:4px;
+	
+}
+
+
+form input {
+	border-color:#704e29;
+	border:none;
+	outline:none;
+	font-size:18px;
+	
+}
+
+form button {
+	width:20px;
+	background-color:#704e29;
+	color:white;
+	border:none;
+	outline:none;
+	
+}
+
+	
+	
+	
+	
+	
+	footer {
+  background-color: #4b341b;
+  margin-bottom: -470px;
+  width: 100%;
+  padding: 30px 0; /* Adjust the padding as needed */
+  position: absolute;
+  bottom: 0;
+}
+
+
+.footericon {
+	display:flex;
+	justify-content:center;
+}
+
+.footericon a {
+	text-decoration:none;
+	padding:10px;
+	background-color:white;
+	margin:10px;
+	border-radius:50px;
+}
+
+.footericon a i {
+	font-size:2em;
+	color:#333;
+	opacity:0.9;
+}
+
+.footericon a:hover {
+	background-color:#808080;
+	transition:0.5s;
+}
+
+.footernav {
+	margin:30px 0;
+}
+
+.footernav ul {
+	display:flex;
+	justify-content:center;
+	list-style: none;
+}
+
+.footernav ul li a {
+	color:white;
+	margin:20px;
+	text-decoration:none;
+	font-size:1.3em;
+	opacity:0.7;
+	transition:0.5s;
+}
+
+.footernav ul li a:hover { 
+	opacity:1;
+}
+
+.footerbottom {
+	background-color:#4b341b;
+	padding:20px;
+	text-align:center;
+}
+
+.footerbottom p {
+	color:white;
+}
+
+.designer {
+	opacity:0.7;
+	text-decoration:uppercase;
+	letter-spacing:1px;
+	font-weight:400;
+	margin:0px 5px;
+}
+	
+	
+	
+	
+	#online-banking-form {
+    display: none;
+}
+
+#online-banking-form.active {
+    display: block;
+}
+
+#online-banking-form select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    font-size: 16px; /* Increase font size for better visibility */
+}
+#payment-method,
+#ewallet {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    font-size: 16px; /* Increase font size for better visibility */
+}

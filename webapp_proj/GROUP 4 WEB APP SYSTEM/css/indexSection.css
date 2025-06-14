@@ -1,0 +1,75 @@
+section {
+	height:1625px;
+}
+
+.contact {
+	height:450px;
+}
+
+.contact h1 {
+	padding:20px;
+	font-size:40px;
+	text-align:center;
+}
+
+.contact .intro {
+	padding:20px;
+	font-size:15px;
+	text-align:center;
+}
+
+.contact .address {
+	padding:30px;
+	position:absolute;
+	left:200px;
+	font-size:15px;
+	text-align:left;
+	width:22%;
+	letter-spacing:0.5px;
+}
+
+.contact .phonenum {
+	padding:20px;
+	position:relative;
+	left:200px;
+	top:130px;
+	font-size:15px;
+	text-align:center;
+	width:20%;
+	letter-spacing:0.5px;
+}
+
+.contact .email {
+	padding:20px;
+	position:relative;
+	left:200px;
+	top:150px;
+	font-size:15px;
+	text-align:center;
+	width:20%;
+	letter-spacing:0.5px;
+}
+
+.contact .opentime  {
+	padding:18px;
+	position:relative;
+	left:700px;
+	bottom:115px;
+}
+
+.contact .opentime h4{
+	margin-bottom:20px;
+}
+
+.contact .opentime p {
+	letter-spacing:0.5px;
+	font-size:15px;
+}
+
+.contact .opentime .time {
+	letter-spacing:0.5px;
+	font-size:15px;
+	position:relative;
+	left:300px;
+	bottom:16px;
+}

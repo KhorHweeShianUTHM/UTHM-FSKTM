@@ -1,0 +1,100 @@
+.banner img{
+	width:100%;
+}
+
+.banner h2{
+	position:absolute;
+	top:250px;
+	left:500px;
+	font-size:140px;
+	color:#f2e6d9;
+	text-transform:uppercase;
+	text-shadow:#c38e55 -15px 12px;
+	padding:15px 30px;
+	background-color:rgba(0,0,0,0.2);
+}
+
+section {
+	height:1800px;
+	padding:35px;
+	
+}
+
+section .container {
+	height:1700px;
+	background:#f1e6da;
+	padding:35px;
+	border-radius:10px;
+}
+
+section .container .header1{
+	position:relative;
+	margin-top:20px;
+	margin-bottom:80px;
+	letter-spacing:0.5px;
+	text-align:center;
+	color:#b98146;
+	font-size:27px;
+}
+
+section .container .title_info{
+	position:relative;
+	margin-bottom:50px;
+	letter-spacing:0.5px;
+	color:#6f4e2a;
+	font-size:25px;
+}
+
+section .container .title_info img{
+	position:relative;
+	margin-top:-100px;
+	margin-right:-50px;
+	height:300px;
+}
+
+section .container .subtitle_info{
+	position:relative;
+	margin-bottom:50px;
+	letter-spacing:0.5px;
+	color:#4a341c;
+	font-size:20px;
+}
+
+section .container .info{
+	position:relative;
+	margin-bottom:50px;
+	letter-spacing:0.5px;
+	color:#946838;
+	background:#e7cbb1;
+	padding:20px;
+	width:73%;
+	font-size:22px;
+	border-radius:10px;
+}
+
+section .container video{
+	width:300px;
+	height:533px;
+	border-radius:10px;
+}
+
+section .container .video1{
+	position:relative;
+	bottom:1100px;
+	left:1050px;
+}
+
+section .container .video2{
+	position:relative;
+	bottom:1100px;
+	left:1050px;
+}
+
+section .container .header2{
+	position:relative;
+	margin-top:-1050px;
+	letter-spacing:0.5px;
+	text-align:center;
+	color:#b98146;
+	font-size:27px;
+}

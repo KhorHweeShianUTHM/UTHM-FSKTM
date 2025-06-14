@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Caffeine & Calories by Gastro Scholar</title>
+	<link rel="shortcut icon" type="x-icon" href="images/logo_1.ico"/>
+	<script src="https://kit.fontawesome.com/3b737278a4.js" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<link rel="stylesheet" href="css/navigationBar.css">
+	<link rel="stylesheet" href="css/searchBar.css">
+	<link rel="stylesheet" href="css/slideShow.css">
+	<link rel="stylesheet" href="css/indexSection.css">
+	<link rel="stylesheet" href="css/toTop.css">
+	<link rel="stylesheet" href="css/footerBar.css">
+	<style>
+		* {
+			margin: 0px;
+			padding: 0px;
+			box-sizing: border-box;
+			font-family: sans-serif;
+		}
+	</style>
+
+</head>
+
+<body>
+
+    <nav>
+        <ul>
+			<li class="logo"><a href="index.html">Caffeine & Calories by Gastro Scholar</a></li>
+			<li class="about"><a href="about.html">About</a></li>
+			<li class="menu">
+				<a>Menu</a>
+				<ul class="dropdown">
+					<li><a href="coffeemenu.html">Coffee</a></li>
+					<li><a href="frappemenu.html">Frappe</a></li>
+					<li><a href="noncoffeemenu.html">Non-Coffee</a></li>
+				</ul>
+			</li>
+			<li class="tracking"><a href="trackingDelivery.html">Tracking</a></li>
+			<form id="searchForm" style="float:right">
+				<input type="text" id="searchInput" placeholder="Search Google">
+				<button type="button" id="searchButton" onclick="googleSearch()">
+					<i class="fas fa-search"></i>
+				</button>
+			</form>
+			<li class="shoppingcart" style="float:right"><a href="viewcart.html"><i class="icon fa-solid fa-cart-shopping"></i></a></li>
+			<li class="user" style="float:right"><a href="profile_link.php"><i class="fa-solid fa-user"></i></a></li>
+		</ul>
+    </nav>
+	
+	<section>
+		<div class="img-slider">
+			<div class="slide active">
+				<img src="images/slide1.jpg">
+				<div class="info">
+					<h2>Caffeine Boost</h2>
+					<p>Coffee contains caffeine, a natural stimulant that can help improve alertness, concentration, and mood. Many people rely on the energizing effects of caffeine to kickstart their day or stay focused during work or study sessions.</p>
+				</div>
+			</div>
+			<div class="slide">
+				<img src="images/slide2.jpg">
+				<div class="info">
+					<h2>Routine and Rituals</h2>
+					<p>For some, coffee is a part of their daily routine, providing a sense of comfort and familiarity. The process of brewing or buying coffee can be a ritual that helps individuals transition between different parts of their day.</p>
+				</div>
+			</div>	
+			<div class="slide">
+				<img src="images/slide3.jpg">
+				<div class="info">
+					<h2>Taste and Enjoyment</h2>
+					<p>Many people simply enjoy the taste of coffee. The variety of coffee flavors, from bold and robust to subtle and nuanced, caters to different taste preferences. Specialty coffee shops offering a range of unique and high-quality brews have contributed to the popularity of coffee as a beverage of choice.</p>
+				</div>
+			</div>
+			<div class="slide">
+				<img src="images/slide4.jpg">
+				<div class="info">
+					<h2>Work Productivity</h2>
+					<p>In fast-paced societies, where demands on productivity and performance are high, coffee is often seen as a quick and convenient way to stay alert and maintain focus. It is a popular choice for professionals and students alike.</p>
+				</div>
+			</div>
+			<div class="navigation">
+				<div class="btn active"></div>
+				<div class="btn"></div>
+				<div class="btn"></div>
+				<div class="btn"></div>
+			</div>
+		</div>
+		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3987.7211522698485!2d103.0809311748559!3d1.857790398125246!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31d05da5f1d48e71%3A0xa2eff1db027c3fc8!2sCaffeine%20%26%20Calories!5e0!3m2!1sen!2smy!4v1704013097537!5m2!1sen!2smy" style="width:100%; height:460px" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+		<div class="contact">
+			<h1>Contact</h1>
+			<p class="intro">A Coffee Shop Cafe' Business by Gastro Scholar. Since its establishment in 2019, C&C has been focus.</p>
+			<p class="address">Ground Floor Lobby, Research Management Centre, Universiti Tun Hussein Onn Malaysia, Parit Raja, Batu Pahat, Malaysia</p>
+			<p class="phonenum">Phone number: 018-341 2339</p>
+			<p class="email">Email: gastroscholar@gmail.com</p>
+			<div class="opentime">
+				<h4>Open time:</h4>
+				<p>Sunday<p class="time">8.30 am - 5.00 pm</p></p>
+				<p>Monday<p class="time">8.30 am - 5.00 pm</p></p>
+				<p>Tuesday<p class="time">8.30 am - 5.00 pm</p></p>
+				<p>Wednesday<p class="time">8.30 am - 5.00 pm</p></p>
+				<p>Thursday<p class="time">8.30 am - 3.30 pm</p></p>
+				<p>Friday<p class="time">CLOSED</p></p>
+				<p>Saturday<p class="time">CLOSED</p></p>
+			</div>
+		</div>
+	</section>
+	
+	<footer>
+		<div class="footericon">
+			<a href="https://www.facebook.com/cncbygastroscholar"><i class="fa-brands fa-facebook"></i></a>
+			<a href="https://www.instagram.com/gastroscholar/"><i class="fa-brands fa-instagram"></i></a>
+			<a href="https://www.tiktok.com/@caffeineandcaloriesrmc"><i class="fa-brands fa-tiktok"></i></a>
+		</div>
+		<div class="footernav">
+			<ul>
+				<li><a href="index.html">Home</a></li>
+				<li><a href="about.html">About</a></li>
+				<li><a href="trackingDelivery.html">Tracking</a></li>
+				<li><a href="./Admin/page-login.html">Admin Login</a></li>
+			</ul>
+		</div>
+		<div class="footerbottom">
+			<p> Copyright &copy; 2023; Designed by <span class="designer">KHOR HWEE SHIAN</span></p>
+		</div>
+	</footer>
+	
+	<i class="totop fa-solid fa-arrow-up"></i>
+	<script type="text/javascript" src="js/slideShow.js"></script>
+	<script type="text/javascript" src="js/googleSearch.js"></script>
+	<script type="text/javascript" src="js/toTop.js"></script>
+	
+</body>
+</html>

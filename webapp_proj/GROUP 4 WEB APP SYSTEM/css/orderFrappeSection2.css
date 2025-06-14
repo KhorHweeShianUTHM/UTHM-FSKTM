@@ -1,0 +1,196 @@
+section {
+	height:885px;
+	padding:35px;
+}
+
+section .container {
+	display:flex;
+	height:810px;
+	background:#f1e6da;
+	justify-content:space-between;
+	overflow:hidden;
+	padding:35px;
+	border-radius:10px;
+}
+
+.left-side{
+    width:60%;
+    box-sizing:border-box;
+    padding:20px;
+	display:flex;
+    flex-direction:column;
+    align-items:center; 
+    text-align:center; 
+}
+
+.left-side .item-img{
+	width:40%;
+}
+
+.left-side .item-info h3{
+    position:relative; 
+    top:50px;
+	right:323px;
+	font-size:25px;
+	margin-bottom:60px;
+}
+
+.left-side .item-info p{
+    position:relative; 
+    top:10px;
+	left:5px;
+	font-size:18px;
+	text-align:left;
+}
+
+.left-side .item-info hr{
+	width:15%;
+	border-top: 2px solid black;
+}
+
+.right-side{
+    width:35%;
+	height:750px;
+    box-sizing:border-box;
+    padding:20px;
+    display:flex;
+    flex-direction:column;
+    margin-right:25px; 
+	background-color:white;
+	border-radius:5px;
+}
+
+.right-side h1{
+	font-size:35px;
+}
+
+.right-side #titleLine{
+	width:15%;
+	border-top: 2px solid black;
+	margin-top:10px;
+	margin-bottom:20px;
+}
+
+.right-side form{
+	padding:5px;
+	height:700px;
+	border:1px solid #e6e6e6;
+}
+
+.right-side form .totalPriceDisplay{
+	background-color: #d9b38c;
+	padding:25px;
+	color:white;
+	font-size:35px;
+	text-align:center;
+	margin-bottom:10px;
+}
+
+.right-side .beverageName {
+	font-size:20px;
+	margin-bottom:20px;
+	padding:5px;
+}
+
+.right-side .beverageName label{
+	padding:5px;
+	text-decoration:underline;
+}
+
+.right-side .beverageName input[type="radio"]{
+	width:17px;
+	height:17px;
+	margin-right:5px;
+}
+
+.right-side .beverageName .beverage{
+	margin-top:5px;
+}
+
+.right-side .beverageTemp{
+	font-size:20px;
+	margin-bottom:20px;
+	padding:5px;
+}
+
+.right-side .beverageTemp label{
+	padding:5px;
+	text-decoration:underline;
+}
+
+.right-side .beverageTemp input[type="radio"]{
+	width:17px;
+	height:17px;
+	margin-right:5px;
+}
+
+.right-side .beverageTemp .coldFrappe{
+	margin-top:5px;
+}
+
+.right-side .sugarLevel{
+	font-size:20px;
+	margin-bottom:20px;
+	padding:5px;
+}
+
+.right-side .sugarLevel label{
+	padding:5px;
+	text-decoration:underline;
+}
+
+.right-side .sugarLevel input[type="radio"]{
+	width:17px;
+	height:17px;
+	margin-right:5px;
+}
+
+.right-side .sugarLevel .lessSugar, .normalSugar, .moreSugar{
+	margin-top:5px;
+}
+
+.right-side .addons{
+	font-size:20px;
+	margin-bottom:20px;
+	padding:5px;
+}
+
+.right-side .addons label{
+	padding:5px;
+	text-decoration:underline;
+}
+
+.right-side .addons input[type="checkbox"]{
+	width:17px;
+	height:17px;
+	margin-right:5px;
+}
+
+.right-side .addons .coldFoam, .chocolateChip, .whippingCream, .cookie{
+	margin-top:5px;
+}
+
+.right-side .addCart{
+	display:block;
+	margin:auto;
+    margin-top:20px;
+	height:40px;
+	width:400px;
+	border-radius:5px;
+	border:none;
+	outline:none;
+	color:#fff;
+	font-size:16px;
+	background-color:#d9b38c;
+	font-weight:700;
+}
+
+.right-side .addCart:hover{
+	background-color:#bf8040;
+	cursor:pointer;
+}
+
+.right-side .addCart:active{
+	padding-top:2px;
+	box-shadow:none;
+}

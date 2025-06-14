@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Caffeine & Calories by Gastro Scholar</title>
+	<link rel="shortcut icon" type="x-icon" href="images/logo_1.ico"/>
+	<script src="https://kit.fontawesome.com/3b737278a4.js" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<link rel="stylesheet" href="css/navigationBar.css">
+	<link rel="stylesheet" href="css/searchBar.css">
+	<link rel="stylesheet" href="css/trackingSection.css">
+	<link rel="stylesheet" href="css/toTop.css">
+	<link rel="stylesheet" href="css/footerBar.css">
+	<style>
+		* {
+			margin: 0px;
+			padding: 0px;
+			box-sizing: border-box;
+			font-family: sans-serif;
+		}
+	</style>
+	
+</head>
+
+<body>
+
+    <nav>
+        <ul>
+			<li class="logo"><a href="index.html">Caffeine & Calories by Gastro Scholar</a></li>
+			<li class="about"><a href="about.html">About</a></li>
+			<li class="menu">
+				<a>Menu</a>
+				<ul class="dropdown">
+					<li><a href="coffeemenu.html">Coffee</a></li>
+					<li><a href="frappemenu.html">Frappe</a></li>
+					<li><a href="noncoffeemenu.html">Non-Coffee</a></li>
+				</ul>
+			</li>
+			<li class="tracking"><a href="trackingDelivery.html">Tracking</a></li>
+			<form id="searchForm" style="float:right">
+				<input type="text" id="searchInput" placeholder="Search Google">
+				<button type="button" id="searchButton" onclick="googleSearch()">
+					<i class="fas fa-search"></i>
+				</button>
+			</form>
+			<li class="shoppingcart" style="float:right"><a href="viewcart.html"><i class="icon fa-solid fa-cart-shopping"></i></a></li>
+			<li class="user" style="float:right"><a href="profile_link.php"><i class="fa-solid fa-user"></i></a></li>
+		</ul>
+    </nav>
+	
+    <div class="container">
+        <div class="details">
+            <div class="order">
+                <h1>thank you, <span>name</span></h1>
+            </div>
+            <div class="time">
+                <p>ESTIMATED TIME : </p>
+                <p>ORDER NUMBER : <b>1000</b></p>
+            </div>
+
+            <div class="track">
+                <ul id="progress" class="d-flex justify-content-between mx-0 mt-0 mb-5 px-0 pt-0 pb-2">
+                    <li class="step0 active text-center" id="step1"></li>
+                    <li class="step0 active text-center" id="step2"></li>
+                    <li class="step0 active text-center" id="step3"></li>
+                    <li class="step0 active " id="step4"></li>
+                </ul>
+            </div>
+
+            <div class="lists">
+                <div class="list">
+                    <img src="img/OrderReceived.png" alt="">
+                    <p>Order <br> Received</p>
+                </div>
+                <div class="list">
+                    <img src="img/barista.png" alt="" style="margin-bottom: 30px;">
+                    <p>Order <br> In Process</p>
+                </div>
+                <div class="list">
+                    <img src="img/OutForDelivery.png" alt="">
+                    <p>Order <br> Out For Delivery</p>
+                </div>
+                <div class="list">
+                    <img src="img/Delivered.png" alt="">
+                    <p>Order <br> Delivered</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ... (Product Section)... -->
+    <div class="ynt7Fg" data-hook="LayoutDataHook.root">
+        <div class="aPqxXC">
+            <hr class="saAE6o4 ogUjq_q---direction-10-horizontal CEj1uA">
+            <section class="yPUeoh" data-hook="LayoutDataHook.itemsSection">
+                <div>
+                    <div data-hook="LayoutDataHook.productLineItem" class="Yqc0G4">
+                        <div class="mVQZ0C">
+                            <div class="d6WYJt">
+                                <div class="SXfybI">
+                                    <div class="e0DiaV">
+                                        <div data-hook="default-image" class="aOKdEq" style="width: 100px; height: 100px;">
+                                            <svg viewBox="0 0 32 32" fill="currentColor" width="50" height="50">
+                                                <path fill="currentColor" d="M30.026 3.502h-8.903c0.279-0.503 0.354-1.118 0.186-1.732-0.168-0.633-0.652-1.173-1.267-1.471s-1.267-0.298-1.863-0.037c-0.801 0.354-1.453 1.304-2.254 2.515-0.801-1.211-1.434-2.161-2.254-2.515-0.596-0.261-1.267-0.242-1.863 0.037-0.615 0.298-1.080 0.838-1.267 1.471-0.168 0.615-0.093 1.229 0.186 1.732h-8.755c-0.95 0-1.714 0.764-1.714 1.714v25.071c0 0.95 0.764 1.714 1.714 1.714h28.051c0.95 0 1.714-0.764 1.714-1.714v-25.071c0-0.95-0.764-1.714-1.714-1.714zM18.645 1.304c0.391-0.168 0.727-0.056 0.913 0.019 0.317 0.149 0.559 0.428 0.652 0.745 0.056 0.223 0.186 0.969-0.689 1.434h-2.682c0.652-1.006 1.285-1.975 1.807-2.198zM11.66 2.067c0.075-0.298 0.335-0.577 0.652-0.745 0.168-0.075 0.521-0.205 0.913-0.019 0.521 0.223 1.155 1.173 1.807 2.198h-2.682c-0.875-0.447-0.745-1.211-0.689-1.434zM1.378 30.287v-25.071c0-0.335 0.261-0.596 0.596-0.596h13.374v26.263h-13.374c-0.335 0-0.596-0.261-0.596-0.596zM30.622 30.287c0 0.335-0.261 0.596-0.596 0.596h-13.56v-26.263h13.56c0.335 0 0.596 0.261 0.596 0.596v25.071z"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="SXfybI RquFS9">
+
+                                    <style>
+                                        .sfoqlTE {
+                                            margin-left: 20px; /* Adjust the value as needed */
+                                        }
+
+                                        .XhdhL3{
+                                            margin-left: 30px;
+                                        }
+                                    </style>
+
+                                    <div class="XhdhL3">
+                                        <div data-hook="ProductLineItemDataHook.name" class="sImyAPU saA7V_Z">Product Name</div>
+                                        <div class="s__8Z_64s szgB3Ns">
+                                            <span data-hook="ProductLineItemDataHook.price">MYR 0.00</span>
+                                        </div>
+                                        <ul class="sfoqlTE sL_YEO4" data-hook="ProductLineItemDataHook.options">
+                                            <li>Product option 1</li>
+                                            <li>Product option 2</li>
+                                            <li>Product option 3</li>
+                                        </ul>
+                                        <a class="sEyzcPi sXgD6mI" href="https://kamille.info" target="_blank" download="" rel="noreferrer" data-hook="ProductLineItemDataHook.Link">
+                                            <span data-hook="ProductLineItemDataHook.LinkText"></span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="SXfybI Xsytvh">
+                                    <div class="sE_aIuZ sUiJJDU Akk13p" data-hook="ProductLineItemDataHook.readOnlyQuantity">Qty: 1</div>
+                                </div>
+                                <div class="SXfybI Qdg2aV">
+                                    <div class="sKYakIK s__3SQ5Ze ieHACr">
+                                        <span data-hook="ProductLineItemDataHook.totalPrice" class="ieHACr">MYR 0.00</span>
+                                    </div>
+                                </div>
+                                <div class="SXfybI hP7y57"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+          
+            <hr class="saAE6o4 ogUjq_q---direction-10-horizontal CEj1uA">
+            <section class="T9RwlW" data-hook="LayoutDataHook.totalsSection">
+                <div class="v0RQQz" data-hook="TotalsSectionDataHook.root">
+                    <div class="adDAwa" data-hook="TotalsSectionDataHook.buyerNoteWrapper">
+                        <div>
+                            <span class="s__6mJ7LM o__6UGnnS---typography-11-runningText o__6UGnnS---priority-7-primary s__4oAssR" aria-hidden="false" data-hook="TotalsSectionDataHook.buyerNoteLabel"  style="font-weight: bold;">Order Summary</span>
+                        </div>
+                        <div>
+                            <span class="s__6mJ7LM o__6UGnnS---typography-11-runningText o__6UGnnS---priority-7-primary sXAc4Ym" aria-hidden="false" data-hook="TotalsSectionDataHook.buyerNote">Your customer's note will show here.</span>
+                        </div>
+                        <hr class="saAE6o4 ogUjq_q---direction-10-horizontal iJoCCT">
+                    </div>
+                    <div class="aNdpCM">
+                        <div class="adDAwa" data-hook="TotalsSectionDataHook.totalsWrapper">
+                            <div data-hook="totals-table" class="YLTwsj">
+
+                        
+                                <table class="HQCqZG">
+                                    <tbody>
+
+                                        <style>
+                                            .s_oCCVu {
+                                                padding-left: 150px !important; /* Adjust the value as needed */
+                                            }
+                                        </style>
+                                        <tr data-hook="subtotal-row" class="sc9U6aj szAvIl3">
+                                            <td class="sn2h3vx">
+                                                <span class="s__6mJ7LM o__6UGnnS---typography-11-runningText o__6UGnnS---priority-7-primary sJTzDlp" aria-hidden="false" data-hook="subtotal-row-title">Subtotal</span>
+                                            </td>
+
+                                            <td class="s_oCCVu">
+                                                <span class="s__6mJ7LM o__6UGnnS---typography-11-runningText o__6UGnnS---priority-7-primary sBFFVMM" aria-hidden="false" data-hook="subtotal-row-value">MYR 0.00</span>
+                                            </td>
+                                        </tr>
+                                        <tr data-hook="subtotal-row" class="sc9U6aj szAvIl3">
+                                            <td class="sn2h3vx">
+                                                <span class="s__6mJ7LM o__6UGnnS---typography-11-runningText o__6UGnnS---priority-7-primary sJTzDlp" aria-hidden="false" data-hook="subtotal-row-title">Delivery</span>
+                                            </td>
+                                            <td class="s_oCCVu">
+                                                <span class="s__6mJ7LM o__6UGnnS---typography-11-runningText o__6UGnnS---priority-7-primary sBFFVMM" aria-hidden="false" data-hook="subtotal-row-value">MYR 0.00</span>
+                                            </td>
+                                        </tr>
+                                        <tr data-hook="subtotal-row" class="sc9U6aj szAvIl3">
+                                            <td class="sn2h3vx">
+                                                <span class="s__6mJ7LM o__6UGnnS---typography-11-runningText o__6UGnnS---priority-7-primary sJTzDlp" aria-hidden="false" data-hook="subtotal-row-title">Sales Tax</span>
+                                            </td>
+                                            <td class="s_oCCVu">
+                                                <span class="s__6mJ7LM o__6UGnnS---typography-11-runningText o__6UGnnS---priority-7-primary sBFFVMM" aria-hidden="false" data-hook="subtotal-row-value">MYR 0.00</span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <hr data-hook="summery-divider" class="saAE6o4 ogUjq_q---direction-10-horizontal sQzC81k sNTlg9J">
+                                <table class="HQCqZG">
+                                    <tbody>
+
+                                        <style>
+                                            .sdie60t {
+                                                padding-left: 188px !important; /* Adjust the value as needed */
+                                            }
+                                        </style>
+                                        <tr data-hook="total-row" class="s_AkKnL s_C3BAG">
+                                            <td class="shVdBp0">
+                                                <span class="s__6mJ7LM o__6UGnnS---typography-11-runningText o__6UGnnS---priority-7-primary sqjm__I" aria-hidden="false" data-hook="total-row-title">Total</span>
+                                            </td>
+                                            <td class="sdie60t">
+                                                <span class="s__6mJ7LM o__6UGnnS---typography-11-runningText o__6UGnnS---priority-7-primary sn60bPV" aria-hidden="false" data-hook="total-row-value">MYR 0.00</span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+
+
+    
+     <!-- Shipping Section -->                     
+     <div class="aPqxXC ZIFLxL" style="margin-left: -30px;">
+        <section class="U1tasQ" data-hook="LayoutDataHook.shippingSection">
+            <div class="yV19A7" data-hook="ShippingSectionDataHook.root">
+                <div class="PJnSe4">
+                    <div data-hook="ShippingColumnDataHook.root">
+                        <div class="sTNL6dD">
+                            <span class="s__6mJ7LM o__6UGnnS---typography-11-runningText o__6UGnnS---priority-7-primary swkwuuw" aria-hidden="false" data-hook="ShippingColumnDataHook.title">Delivery address</span>
+                        </div>
+                        <div class="">
+                            <span class="s__6mJ7LM o__6UGnnS---typography-11-runningText o__6UGnnS---priority-7-primary sa_Pjr_" aria-hidden="false" data-hook="ShippingColumnDataHook.fullName">Customer Name</span>
+                        </div>
+                        <div class="">
+                            <span class="s__6mJ7LM o__6UGnnS---typography-11-runningText o__6UGnnS---priority-7-primary sa_Pjr_" aria-hidden="false" data-hook="ShippingColumnDataHook.address">Street, City, State Zip Code, Country</span>
+                        </div>
+                        <div class="">
+                            <span class="s__6mJ7LM o__6UGnnS---typography-11-runningText o__6UGnnS---priority-7-primary sa_Pjr_" aria-hidden="false" data-hook="ShippingColumnDataHook.phone">Phone number</span>
+                        </div>
+                    </div>
+                </div>
+            
+            </div>
+        </section>
+    </div>
+    
+    </div>
+    
+    </div>
+    </div>
+    </main>
+                                        
+        </div>
+        </div>
+         </section>
+                           
+        </div>
+        </div>
+        </div>
+        </main>
+        <a href="payment.html"><button style="position:relative; left:1200px; bottom:180px; width:250px; height:50px;">Payment</button></a>
+    </body>
+
+
+	<footer>
+		<div class="footericon">
+			<a href="https://www.facebook.com/cncbygastroscholar"><i class="fa-brands fa-facebook"></i></a>
+			<a href="https://www.instagram.com/gastroscholar/"><i class="fa-brands fa-instagram"></i></a>
+			<a href="https://www.tiktok.com/@caffeineandcaloriesrmc"><i class="fa-brands fa-tiktok"></i></a>
+		</div>
+		<div class="footernav">
+			<ul>
+				<li><a href="index.html">Home</a></li>
+				<li><a href="about.html">About</a></li>
+				<li><a href="trackingDelivery.html">Tracking</a></li>
+				<li><a href="./Admin/page-login.html">Admin Login</a></li>
+			</ul>
+		</div>
+		<div class="footerbottom">
+			<p> Copyright &copy; 2023; Designed by <span class="designer">KHOR HWEE SHIAN</span></p>
+		</div>
+	</footer>
+	
+	<i class="totop fa-solid fa-arrow-up"></i>
+	<script type="text/javascript" src="js/googleSearch.js"></script>
+	<script type="text/javascript" src="js/toTop.js"></script>
+	
+</body>
+</html>

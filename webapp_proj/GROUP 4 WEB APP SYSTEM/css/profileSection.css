@@ -1,0 +1,28 @@
+.profile {
+  /* Existing styles */
+  width: 60%;
+  margin: 90px auto;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background: #f1e6da;
+  transform: scale(1.2); 
+}
+
+.profile h2 {
+  text-align: center;
+}
+
+.profile label {
+  display: block;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  font-weight: bold;
+}
+
+.profile button {
+	height:50px;
+	width:120px;
+	margin-right:10px;
+}
