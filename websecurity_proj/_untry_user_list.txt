@@ -1,0 +1,5 @@
+user001	Ali Ahmad	Pass123!	220101015673	ali@example.com	bluebird
+user002	Aina Rahmah	Test@456	230202065432	aina.rahmah@mail.com	sunshine
+user003	Daniel Khoo	Pass1234	220812076543	daniel.khoo@mail.com	mountain
+user004	Nurul Izzah	Sec#321	250408014578	nurul_izzah@yahoo.com	moonlight
+user005	Siti Aminah	Siti@2024	240627098765	siti.aminah@edu.my	lavender

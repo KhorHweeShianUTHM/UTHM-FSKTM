@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Registration</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    padding: 20px;
+  }
+
+  .container {
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  }
+
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+  }
+
+  label {
+    display: block;
+    margin-top: 15px;
+    color: #333;
+    font-weight: bold;
+  }
+
+  input[type="text"],
+  input[type="password"],
+  input[type="email"] {
+    width: 95%;
+    padding: 8px 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+
+  .error {
+    color: red;
+    font-size: 13px;
+    margin-bottom: 5px;
+    display: none;
+  }
+
+  button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    background-color: #3498db;
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  button[type="submit"]:hover {
+    background-color: #2980b9;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <h2>User Registration</h2>
+    <form id="registerForm" action="registerChecked.php" method="POST" onsubmit="return validateForm()">
+      <label>User ID</label>
+      <input type="text" name="userid" id="userid">
+      <div id="useridError" class="error">User ID is required</div> <!-- Display suitable error message -->
+
+      <label>Password</label>
+      <input type="password" name="password" id="password">
+      <div id="passwordError" class="error"></div> <!-- Display suitable error message -->
+
+      <label>Name</label>
+      <input type="text" name="name" id="name">
+      <div id="nameError" class="error"></div> <!-- Display suitable error message -->
+
+      <label>ID Number</label>
+      <input type="text" name="idnumber" id="idnumber">
+      <div id="idnumberError" class="error"></div> <!-- Display suitable error message -->
+
+      <label>Email</label>
+      <input type="email" name="email" id="email">
+      <div id="emailError" class="error"></div> <!-- Display suitable error message -->
+      
+      <label>Security Phrase</label>
+      <input type="text" name="security_phrase" id="security_phrase">
+      <div id="securityphraseError" class="error"></div> <!-- Display suitable error message -->
+      <button type="submit">Register</button>
+    </form>
+    <p style="text-align:center; margin-top:20px; margin-bottom: -2px;">
+      <a href="login.php">Already registered? Login here</a>
+    </p>
+  </div>
+
+<script>
+function validateForm() {
+  let isValid = true;
+
+  const userid = document.getElementById("userid").value.trim();
+  const password = document.getElementById("password").value.trim();
+  const name = document.getElementById("name").value.trim();
+  const idnumber = document.getElementById("idnumber").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const security_phrase = document.getElementById("security_phrase").value.trim();
+
+  document.querySelectorAll(".error").forEach(e => e.style.display = "none");
+
+  // UserID validation
+  if (userid === "") {
+    document.getElementById("useridError").style.display = "block";
+    isValid = false;
+  }
+
+  // Password strength validation
+  const passwordPattern = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[\W_]).{8,}$/;
+  if (password === "") {
+    document.getElementById("passwordError").innerText = "Password is required.";
+    document.getElementById("passwordError").style.display = "block";
+    isValid = false;
+  } else if (!passwordPattern.test(password)) {
+    document.getElementById("passwordError").innerText = 
+      "Password must be at least 8 characters with uppercase, lowercase, number, and special character.";
+    document.getElementById("passwordError").style.display = "block";
+    isValid = false;
+  }
+
+  // Name validation (only letters)
+  if (name === "") {
+    document.getElementById("nameError").innerText = "Name is required.";
+    document.getElementById("nameError").style.display = "block";
+    isValid = false;
+  } else if (!/^[a-zA-Z\s]+$/.test(name)) {
+    document.getElementById("nameError").innerText = "Name must contain only letters.";
+    document.getElementById("nameError").style.display = "block";
+    isValid = false;
+  }
+
+  // ID Number validation (12-digit numeric only)
+  if (idnumber === "") {
+    document.getElementById("idnumberError").innerText = "ID Number is required.";
+    document.getElementById("idnumberError").style.display = "block";
+    isValid = false;
+  } else if (!/^\d{12}$/.test(idnumber)) {
+    document.getElementById("idnumberError").innerText = "ID Number must be exactly 12 digits.";
+    document.getElementById("idnumberError").style.display = "block";
+    isValid = false;
+  }
+
+  // Email format validation
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (email === "") {
+    document.getElementById("emailError").innerText = "Email is required.";
+    document.getElementById("emailError").style.display = "block";
+    isValid = false;
+  } else if (!emailPattern.test(email)) {
+    document.getElementById("emailError").innerText = "Enter a valid email address.";
+    document.getElementById("emailError").style.display = "block";
+    isValid = false;
+  }
+
+  // Validate security phrase
+  if (security_phrase === "") {
+    document.getElementById("securityphraseError").innerText = "Security phrase is required.";
+    document.getElementById("securityphraseError").style.display = "block";
+    isValid = false;
+  } else if (security_phrase.length < 4) {
+    document.getElementById("securityphraseError").style.display = "block";
+    document.getElementById("securityphraseError").innerText = "Security phrase must be at least 4 characters.";
+    isValid = false;
+  }
+
+  return isValid;
+}
+</script>
+</body>
+</html>
