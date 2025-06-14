@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="x-icon" href="BANNER/C1.jpg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Customer Support | WEAR2WEAR Malaysia</title>
+
+<link rel="stylesheet" href="CSS/styles_customersupport.css">
+
+</head>
+<body>
+
+<header>
+    <img src="BANNER/C1.jpg" alt="WEAR2WEAR">
+</header>
+
+<nav>
+	<div class="nav-left">
+		<a href="index.html">Home</a>
+		<a href="aboutus.html">About</a>
+		<div class="dropdown">
+			<a href="#products">Categories</a>
+			<div class="dropdown-content">
+				<a href="kids.html">Kids</a>
+				<a href="men.html">Man Clothing</a>
+				<a href="women.html">Women Clothing</a>
+			</div>
+		</div>
+		<a href="contactus.html">Contact</a>
+		<a href="customersupport.html" id="nav-select">Customer Support</a>
+	</div>
+	<div class="nav-right">
+		<a href="loginregister.html">Login or Register</a>
+		<a href="shoppingcart.html">Shopping Cart</a>
+		<a href="ordertracking.html">Order Tracking</a>
+	</div>
+</nav>
+
+<main>
+    <div class="faq-container">
+        <div class="faq-section">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-item" id="faq-1">
+                <h3>When will I receive the parcel when I place my order?</h3>
+                <div class="answer">
+                    <p>Postage usually takes up to 2-5 working days.</p>
+                </div>
+            </div>
+            <div class="faq-item" id="faq-2">
+                <h3>Which delivery courier services does Wear2wear usually use?</h3>
+                <div class="answer">
+                    <p>We usually use J&T, NinjaVan, and FlashExpress for delivery.</p>
+                </div>
+            </div>
+            <div class="faq-item" id="faq-3">
+                <h3>Does Wear2wear include other countries besides Malaysia?</h3>
+                <div class="answer">
+                    <p>Yes, we also do postage outside of Malaysia.</p>
+                </div>
+            </div>
+            <div class="faq-item" id="faq-4">
+                <h3>Why choose Wear2wear compared to other brands?</h3>
+                <div class="answer">
+                    <p>We use high-quality materials at very affordable prices.</p>
+                </div>
+            </div>
+            <div class="faq-item" id="faq-5">
+                <h3>Can I get a refund?</h3>
+                <div class="answer">
+                    <p>Yes, we do accept returns if the item has not been posted yet.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="chat-container">
+            <h2>Customer Support Chat</h2>
+            <div class="chat-section">
+                <div class="chat-header">
+                    <h3>WEAR2WEAR Support</h3>
+                </div>
+                <div class="chat-messages" id="chatMessages">
+                </div>
+                <div class="chat-input">
+                    <input type="text" id="userInput" placeholder="Ask question here..." onkeypress="handleKeyPress(event)">
+                    <button onclick="sendMessage()">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <p>&copy; 2024 WEAR2WEAR</p>
+    <div class="social-icons">
+        <a href="https://facebook.com" target="_blank">
+            <img src="BANNER/FB.png" alt="Facebook">
+        </a>
+        <a href="https://instagram.com" target="_blank">
+            <img src="BANNER/IG.png" alt="Instagram">
+        </a>
+        <a href="https://tiktok.com" target="_blank">
+            <img src="BANNER/TT.png" alt="Tiktok">
+        </a>
+    </div>
+</footer>
+
+<script src="JS/script_customersupport.js"></script>
+
+</body>
+</html>

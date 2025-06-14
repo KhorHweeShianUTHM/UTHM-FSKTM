@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="x-icon" href="BANNER/C1.jpg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Order Tracking | WEAR2WEAR Malaysia</title>
+
+<link rel="stylesheet" href="CSS/styles_ordertracking.css">
+
+</head>
+<body>
+
+<header>
+	<img src="BANNER/C1.jpg" alt="WEAR2WEAR">
+</header>
+
+<nav>
+	<div class="nav-left">
+		<a href="index.html">Home</a>
+		<a href="aboutus.html">About</a>
+		<div class="dropdown">
+			<a href="#products">Categories</a>
+			<div class="dropdown-content">
+				<a href="kids.html">Kids</a>
+				<a href="men.html">Man Clothing</a>
+				<a href="women.html">Women Clothing</a>
+			</div>
+		</div>
+		<a href="contactus.html">Contact</a>
+		<a href="customersupport.html">Customer Support</a>
+	</div>
+	<div class="nav-right">
+		<a href="loginregister.html">Login or Register</a>
+		<a href="shoppingcart.html">Shopping Cart</a>
+		<a href="ordertracking.html" id="nav-select">Order Tracking</a>
+	</div>
+</nav>
+
+<main>
+    <div class="container">
+        <div class="track-order">
+            <h2>Track your Order</h2>
+            <div class="order-code">Order Code: W2W1237</div>
+            <div class="progress-bar">
+                <div class="step completed">Placed</div>
+                <div class="step completed">Packed</div>
+                <div class="step completed">Shipped</div>
+                <div class="step">Delivered</div>
+            </div>
+            <div class="delivery-info">
+                Your order is on its way<br>
+                J&T Express (tracking number 9287648564302)
+            </div>
+        </div>
+    
+        <div class="all-orders">
+            <h2>All Orders</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Order Code</th>
+                        <th>Product Name</th>
+                        <th>Qty</th>
+                        <th>Price</th>
+                        <th>Delivery Status</th>
+                        <th>Order Status</th>
+                        <th>Payment</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-order-code="W2W1234" data-status="Delivered" data-tracking-number="9287648564302" data-progress="completed,completed,completed,completed">
+                        <td>01</td>
+                        <td style="cursor: pointer;text-decoration:underline;color:blue;">W2W1234</td>
+                        <td><img src="MEN/M2.jpg" alt="Men shirt plain pink - XL">Men Shirt Plain Pink - XL</td>
+                        <td>1</td>
+                        <td>RM 80.00</td>
+                        <td><span class="status done">Delivered</span></td>
+                        <td><span class="status done">Done</span></td>
+                        <td><span class="status active">Received</span></td>
+                    </tr>
+                    <tr data-order-code="W2W1235" data-status="Delivered" data-tracking-number="9287648564303" data-progress="completed,completed,completed,completed">
+                        <td>02</td>
+                        <td style="cursor: pointer;text-decoration:underline;color:blue;">W2W1235</td>
+                        <td><img src="MEN/M22.jpg">Stripes Polo Shirt - L</td>
+                        <td>2</td>
+                        <td>RM 76.00</td>
+                        <td><span class="status done">Delivered</span></td>
+                        <td><span class="status done">Done</span></td>
+                        <td><span class="status active">Received</span></td>
+                    </tr>
+                    <tr data-order-code="W2W1236" data-status="Delivered" data-tracking-number="9287648564304" data-progress="completed,completed,completed,completed">
+                        <td>03</td>
+                        <td style="cursor: pointer;text-decoration:underline;color:blue;">W2W1236</td>
+                        <td><img src="KIDS/K7.jpg">Classic dsiney Dress - XS</td>
+                        <td>2</td>
+                        <td>RM 52.00</td>
+                        <td><span class="status done">Delivered</span></td>
+                        <td><span class="status done">Done</span></td>
+                        <td><span class="status active">Received</span></td>
+                    </tr>
+                    <tr data-order-code="W2W1237" data-status="Pending" data-tracking-number="9287648564305" data-progress="completed,completed,completed,pending">
+                        <td>04</td>
+                        <td style="cursor: pointer;text-decoration:underline;color:blue;">W2W1237</td>
+                        <td><img src="WOMEN/W1.jpg">Womens Blouse Floral - L</td>
+                        <td>1</td>
+                        <td>RM 31.00</td>
+                        <td><span class="status pending">On delivery</span></td>
+                        <td><span class="status pending">Pending</span></td>
+                        <td><span class="status active">Received</span></td>
+                    </tr>
+                    <tr data-order-code="W2W1238" data-status="Pending" data-tracking-number="9287648564306" data-progress="completed,pending,pending,pending">
+                        <td>05</td>
+                        <td style="cursor: pointer;text-decoration:underline;color:blue;">W2W1238</td>
+                        <td><img src="WOMEN/W3.jpg">Classic Two-toned Elegance - S</td>
+                        <td>1</td>
+                        <td>RM 25.00</td>
+                        <td><span class="status pending">Order Placed</span></td>
+                        <td><span class="status pending">Pending</span></td>
+                        <td><span class="status pending">Cash on Delivery</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main> 
+
+<footer>
+    <p>&copy; 2024 WEAR2WEAR</p>
+    <div class="social-icons">
+        <a href="https://facebook.com" target="_blank">
+            <img src="BANNER/FB.png" alt="Facebook">
+        </a>
+        <a href="https://instagram.com" target="_blank">
+            <img src="BANNER/IG.png" alt="Instagram">
+        </a>
+        <a href="https://tiktok.com" target="_blank">
+            <img src="BANNER/TT.png" alt="Tiktok">
+        </a>
+    </div>
+</footer>
+
+<script src="JS/script_ordertracking.js"></script>
+
+</body>
+</html>

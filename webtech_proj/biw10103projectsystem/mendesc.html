@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="x-icon" href="BANNER/C1.jpg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clothing Description | WEAR2WEAR Malaysia</title>
+
+<link rel="stylesheet" href="CSS/styles_desc.css">
+
+</head>
+<body>
+
+<header>
+    <img src="BANNER/C1.jpg" alt="WEAR2WEAR">
+</header>
+
+<nav>
+	<div class="nav-left">
+		<a href="index.html">Home</a>
+		<a href="aboutus.html">About</a>
+		<div class="dropdown">
+			<a href="#products">Categories</a>
+			<div class="dropdown-content">
+				<a href="kids.html">Kids</a>
+				<a href="men.html">Man Clothing</a>
+				<a href="women.html">Women Clothing</a>
+			</div>
+		</div>
+		<a href="contactus.html">Contact</a>
+		<a href="customersupport.html">Customer Support</a>
+	</div>
+	<div class="nav-right">
+		<a href="loginregister.html">Login or Register</a>
+		<a href="shoppingcart.html">Shopping Cart</a>
+		<a href="ordertracking.html">Order Tracking</a>
+	</div>
+</nav>
+
+<main>
+	<a href="#" class="go-back" onclick="goBack()">&lt;		</a>
+  <div class="product-info">
+  
+    <img src="" alt="Product Image" id="product-image" class="product-image">
+    <div class="product-details">
+      <div>
+        <h1 id="product-name">Product Name</h1>
+        <hr style="margin-top:35px;"><p id="product-description">Product Description</p>
+        <label for="size">Size:</label>
+        <select id="size" name="size">
+          <option value="small">S</option>
+          <option value="medium">M</option>
+          <option value="large">L</option>
+          <option value="extra large">XL</option>
+        </select>
+		<label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" name="quantity" value="1" min="1" oninput="updateTotalPrice()">
+        <p id="product-price">Price: RM X.XX</p>
+		<p id="total-price">Total Price: RM X.XX</p>
+      </div>
+      <div class="buttons">
+        <a href="shoppingcart.html"><button type="button" class="add-to-cart">Add to Cart</button></a>
+        <a href="checkoutpayment.html"><button type="button" class="buy-now">Buy Now</button></a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+    <p>&copy; 2024 WEAR2WEAR</p>
+    <div class="social-icons">
+        <a href="https://facebook.com" target="_blank">
+            <img src="BANNER/FB.png" alt="Facebook">
+        </a>
+        <a href="https://instagram.com" target="_blank">
+            <img src="BANNER/IG.png" alt="Instagram">
+        </a>
+        <a href="https://tiktok.com" target="_blank">
+            <img src="BANNER/TT.png" alt="Tiktok">
+        </a>
+    </div>
+</footer>
+
+<script src="JS/script_desc.js"></script>
+    
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="x-icon" href="BANNER/C1.jpg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout and Payment | WEAR2WEAR Malaysia</title>
+
+<link rel="stylesheet" href="CSS/styles_checkoutpayment.css">
+
+</head>
+<body>
+
+<header>
+	<img src="BANNER/C1.jpg" alt="WEAR2WEAR">
+</header>
+
+<nav>
+	<div class="nav-left">
+		<a href="index.html">Home</a>
+		<a href="aboutus.html">About</a>
+		<div class="dropdown">
+			<a href="#products">Categories</a>
+			<div class="dropdown-content">
+				<a href="kids.html">Kids</a>
+				<a href="men.html">Man Clothing</a>
+				<a href="women.html">Women Clothing</a>
+			</div>
+		</div>
+		<a href="contactus.html">Contact</a>
+		<a href="customersupport.html">Customer Support</a>
+	</div>
+	<div class="nav-right">
+		<a href="loginregister.html">Login or Register</a>
+		<a href="shoppingcart.html">Shopping Cart</a>
+		<a href="ordertracking.html">Order Tracking</a>
+	</div>
+</nav>
+
+<main>
+    <div class="checkout-container">
+        <h1>Checkout</h1>
+        <div class="cart-items">
+            <div class="cart-item">
+                <img src="KIDS/K1.jpg" alt="White Dress with Yellow Flowers" class="item-image">
+                <div class="item-info">
+                    <h2>White Dress with Yellow Flowers</h2>
+                    <p class="price">Price: RM <span class="item-price">23</span></p>
+                </div>
+            </div>
+            <div class="total">
+                <h3>Total: RM <span id="total-price">23.00</span></h3>
+            </div>
+        </div>
+        <form id="payment-form">
+            <h2>User Information</h2>
+            <label for="user-name">Name</label>
+            <input type="text" id="user-name" required>
+            
+            <label for="user-phone">Phone Number</label>
+            <input type="text" id="user-phone" required>
+            
+            <label for="user-email">Email</label>
+            <input type="email" id="user-email" required>
+            
+            <label for="user-address">Address</label>
+            <input type="text" id="user-address" required>
+            
+            <h2>Payment Details</h2>
+            <label for="payment-method">Payment Method</label>
+            <select id="payment-method" required>
+                <option value="card">Credit/Debit Card</option>
+                <option value="online-banking">Online Banking</option>
+            </select>
+            
+            <div id="card-details" class="payment-details">
+                <label for="card-name">Name on Card</label>
+                <input type="text" id="card-name">
+                
+                <label for="card-number">Card Number</label>
+                <input type="text" id="card-number">
+                
+                <label for="expiry-date">Expiry Date</label>
+                <input type="text" id="expiry-date" placeholder="MM/YY">
+                
+                <label for="cvv">CVV</label>
+                <input type="text" id="cvv">
+            </div>
+            
+            <div id="online-banking-details" class="payment-details" style="display: none;">
+                <label for="bank-name">Bank Name</label>
+                <input type="text" id="bank-name">
+            </div>
+            
+            <button type="submit">Submit Payment</button>
+        </form>
+        <div id="output" class="output-rectangle"></div>
+    </div>
+</main>
+
+<footer>
+    <p>&copy; 2024 WEAR2WEAR</p>
+    <div class="social-icons">
+        <a href="https://facebook.com" target="_blank">
+            <img src="BANNER/FB.png" alt="Facebook">
+        </a>
+        <a href="https://instagram.com" target="_blank">
+            <img src="BANNER/IG.png" alt="Instagram">
+        </a>
+        <a href="https://tiktok.com" target="_blank">
+            <img src="BANNER/TT.png" alt="Tiktok">
+        </a>
+    </div>
+</footer>
+
+</body>
+</html>
